@@ -1,4 +1,5 @@
 <template>
+  <div class="background">
   <div class="container">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
@@ -24,13 +25,60 @@
           Username alpha
         </b-form-invalid-feedback>
       </b-form-group>
+      
+      <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="text"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.firstName.length">
+          First name length should be between 3-15 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+          First name should contain only alphabetic characters
+        </b-form-invalid-feedback>
+      </b-form-group>
+      <b-form-group
+        id="input-group-lastName"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="text"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.lastName.length">
+          Last name length should be between 3-15 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+          Last name should contain only alphabetic characters
+        </b-form-invalid-feedback>
+      </b-form-group>
 
+      
       <b-form-group
         id="input-group-country"
         label-cols-sm="3"
         label="Country:"
         label-for="country"
       >
+      
         <b-form-select
           id="country"
           v-model="$v.form.country.$model"
@@ -90,14 +138,32 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
-      <b-button type="reset" variant="danger">Reset</b-button>
-      <b-button
-        type="submit"
-        variant="primary"
-        style="width:250px;"
-        class="ml-5 w-75"
-        >Register</b-button
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email:"
+        label-for="email"
       >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="email"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.email.emailFormat">
+          Invalid email format
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+
+      <b-button type="reset" class="ml-5 w-75 custom-reset-button" style="width: 250px;">Reset</b-button>
+
+      
+      <b-button type="submit" class="ml-5 w-75 custom-register-button" style="width: 500px;">Register</b-button>
+
       <div class="mt-2">
         You have an account already?
         <router-link to="login"> Log in here</router-link>
@@ -117,6 +183,7 @@
       <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
     </b-card> -->
   </div>
+</div>
 </template>
 
 <script>
@@ -149,6 +216,7 @@ export default {
       validated: false
     };
   },
+  
   validations: {
     form: {
       username: {
@@ -156,12 +224,27 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
       },
+      firstName: {
+      required,
+      length: (f) => minLength(3)(f) && maxLength(15)(f),
+      alpha
+      },
+      lastName: {
+      required,
+      length: (l) => minLength(3)(l) && maxLength(15)(l),
+      alpha
+      },
       country: {
         required
       },
       password: {
         required,
         length: (p) => minLength(5)(p) && maxLength(10)(p)
+      },
+      email: {
+      required,
+      emailFormat: (value) => /\S+@\S+\.\S+/.test(value), // Custom rule for email format
+      maxLength: maxLength(40) // Maximum length of 40 characters
       },
       confirmedPassword: {
         required,
@@ -234,7 +317,36 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.background {
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
-  max-width: 500px;
+  max-width: 900px;
+  width: 650px;
+  background: rgba(255, 255, 255, 0.9); /* White background with some transparency */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-reset-button {
+  background-color: #e97f29;
+  color: white;
+}
+
+.custom-register-button {
+  background-color: rgb(10, 10, 10);
+  color: white;
+  margin-top: 10px; /* Adding space between reset and register buttons */
 }
 </style>
