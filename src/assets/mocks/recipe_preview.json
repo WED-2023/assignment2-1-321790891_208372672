@@ -1,12 +1,69 @@
-{
-    "id": 716429,
-    "image": "https://img.spoonacular.com/recipes/716429-556x370.jpg",
-    "title": "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
-    "readyInMinutes": 45,
-    "aggregateLikes": 209,
-    "vegetarian": false,
-    "vegan": false,
-    "glutenFree": false,
-    "summary": "You can never have too many main course recipes, so give Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs a try. One serving contains <b>543 calories</b>, <b>17g of protein</b>, and <b>16g of fat</b>. For <b>$1.57 per serving</b>, this recipe <b>covers 22%</b> of your daily requirements of vitamins and minerals. This recipe serves 2. A mixture of butter, white wine, pasta, and a handful of other ingredients are all it takes to make this recipe so yummy. 209 people have tried and liked this recipe. It is brought to you by fullbellysisters.blogspot.com. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 83%</b>, which is tremendous. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1230187\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>, <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1229807\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>, and <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1229669\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>."
+[
+    {
+        "id": 716429,
+        "image": "https://img.spoonacular.com/recipes/716429-556x370.jpg",
+        "title": "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
+        "readyInMinutes": 45,
+        "aggregateLikes": 209,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "You can never have too many main course recipes, so give Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs a try. One serving contains <b>543 calories</b>, <b>17g of protein</b>, and <b>16g of fat</b>. For <b>$1.57 per serving</b>, this recipe <b>covers 22%</b> of your daily requirements of vitamins and minerals. This recipe serves 2. A mixture of butter, white wine, pasta, and a handful of other ingredients are all it takes to make this recipe so yummy. 209 people have tried and liked this recipe. It is brought to you by fullbellysisters.blogspot.com. From preparation to the plate, this recipe takes approximately <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 83%</b>, which is tremendous. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1230187\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>, <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1229807\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>, and <a href=\"https://spoonacular.com/recipes/pasta-with-garlic-scallions-cauliflower-breadcrumbs-1229669\">Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs</a>."
+    },
+    {
+        "id": 654789,
+        "image": "https://images.pexels.com/photos/6632285/pexels-photo-6632285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "title": "Vegan Buddha Bowl",
+        "readyInMinutes": 25,
+        "aggregateLikes": 295,
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "summary": "Enjoy a healthy and delicious Vegan Buddha Bowl, packed with a variety of colorful vegetables, quinoa, and a creamy tahini dressing. This recipe is not only vegan but also gluten-free, making it a perfect choice for those with dietary restrictions. With <b>350 calories</b> per serving, it provides a nutritious and satisfying meal that's ready in just <b>25 minutes</b>. Join 295 other food lovers who have already tried and liked this recipe!"
+    },
+    {
+        "id": 654321,
+        "image": "https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Spaghetti Carbonara",
+        "readyInMinutes": 25,
+        "aggregateLikes": 432,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Try your hand at making Spaghetti Carbonara, a classic Italian pasta dish loved by many. This recipe features al dente spaghetti tossed with crispy bacon, creamy egg sauce, and grated Parmesan cheese. It's a comforting and satisfying meal that's ready in just <b>25 minutes</b>. With <b>432 likes</b> from fellow food enthusiasts, you know it's a winner!"
+    },
+    {
+        "id": 987654,
+        "image": "https://images.pexels.com/photos/9045156/pexels-photo-9045156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "title": "Vegetable Stir-Fry Noodles",
+        "readyInMinutes": 20,
+        "aggregateLikes": 256,
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "summary": "For a quick and healthy meal, whip up some Vegetable Stir-Fry Noodles. This recipe features colorful vegetables stir-fried with tender noodles in a flavorful sauce. It's a vegetarian and gluten-free dish that's ready in just <b>20 minutes</b>, making it perfect for busy weeknights. With <b>256 likes</b>, it's a crowd favorite!"
+    },
+    {
+        "id": 123456,
+        "image": "https://plus.unsplash.com/premium_photo-1681406995032-c3ceeb24d7f9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Beef Tacos with Spicy Salsa",
+        "readyInMinutes": 35,
+        "aggregateLikes": 310,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Beef Tacos with Spicy Salsa is a flavorful Mexican dish that will spice up your dinner table. This recipe features seasoned ground beef topped with a spicy homemade salsa, all wrapped in warm tortillas. Each serving provides <b>520 calories</b>, <b>25g of protein</b>, and <b>22g of fat</b>. Ready in just <b>35 minutes</b>, it's a great option for a quick and delicious meal. With <b>310 likes</b>, it's a favorite among taco lovers!"
+    },
+    {
+        "id": 789123,
+        "image": "https://img.spoonacular.com/recipes/789123-556x370.jpg",
+        "title": "Creamy Lemon Chicken Pasta",
+        "readyInMinutes": 30,
+        "aggregateLikes": 345,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Indulge in the deliciousness of Creamy Lemon Chicken Pasta. This recipe features tender chicken breast cooked in a creamy lemon sauce served over perfectly cooked pasta. With <b>412 calories</b> and <b>22g of protein</b> per serving, it's a hearty meal that's sure to satisfy. Plus, it's ready in just <b>30 minutes</b>! Enjoy the tangy flavor of lemon paired with the richness of cream in this delightful dish. It's a crowd-pleaser with <b>345 likes</b> from other home cooks like you."
+    }
 
-}
+]

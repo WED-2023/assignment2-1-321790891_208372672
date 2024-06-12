@@ -4,30 +4,53 @@
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+    
+      <!-- Recipe Image and Overlay -->
+      <img :src="recipe.image" class="recipe-image" />
+      <div class="image-overlay">View Recipe</div>
+      
+      <!-- Diet Icons -->
+      <ul class="diet-icons">
+        <li v-if="recipe.vegetarian">
+          <img src="@/assets/vegetarian.png" alt="Vegetarian" class="diet-icon" />
+        </li>
+        <li v-if="recipe.vegan">
+          <img src="@/assets/vegan.png" alt="Vegan" class="diet-icon" />
+        </li>
+        <li v-if="recipe.glutenFree">
+          <img src="@/assets/gluten.png" alt="Gluten-Free" class="diet-icon" />
+        </li>
+      </ul>
     </div>
+
+    <!-- Recipe Footer -->
     <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title">
-        {{ recipe.title }}
+      <div class="title">
+        <div :title="recipe.title" class="recipe-title">
+          {{ recipe.title }}
+        </div>
       </div>
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
         <li>{{ recipe.aggregateLikes }} likes</li>
       </ul>
+      <div class="recipe-indicators">
+        <span v-if="recipe.viewed" class="viewed-indicator">Viewed</span>
+      </div>
     </div>
   </router-link>
 </template>
 
 <script>
 export default {
-  mounted() {
-    this.axios.get(this.recipe.image).then((i) => {
-      this.image_load = true;
-    });
-  },
+  // mounted() {
+  //   this.axios.get(this.recipe.image).then((i) => {
+  //     this.image_load = true;
+  //   });
+  // },
   data() {
     return {
-      image_load: false
+      // image_load: false
     };
   },
   props: {
@@ -59,6 +82,11 @@ export default {
     //     return undefined;
     //   }
     // }
+  },
+  methods: {
+    toggleFavorite() {
+      this.$emit('toggle-favorite', this.recipe.id);
+    }
   }
 };
 </script>
@@ -66,76 +94,109 @@ export default {
 <style scoped>
 .recipe-preview {
   display: inline-block;
-  width: 90%;
-  height: 100%;
+  width: 500px; /* Set fixed width */
+  height: 300px; /* Set fixed height */
   position: relative;
   margin: 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
 }
-.recipe-preview > .recipe-body {
+
+.recipe-preview:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-body {
+  position: relative;
   width: 100%;
   height: 200px;
-  position: relative;
 }
 
-.recipe-preview .recipe-body .recipe-image {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+.recipe-body .recipe-image {
   display: block;
-  width: 98%;
-  height: auto;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.recipe-preview .recipe-footer {
+.image-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 50%;
-  overflow: hidden;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  line-height: 200px;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.recipe-preview .recipe-footer .recipe-title {
-  padding: 10px 10px;
-  width: 100%;
-  font-size: 12pt;
-  text-align: left;
+.recipe-preview:hover .image-overlay {
+  display: block;
+  opacity: 1;
+}
+
+.diet-icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+}
+
+.diet-icons li {
+  margin-left: 5px;
+}
+
+.diet-icon {
+  width: 60px;
+  height: 60px;
+  /* Add additional styling as needed */
+}
+
+.recipe-footer {
+  padding: 10px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.recipe-title {
+  font-size: 16pt;
   white-space: nowrap;
   overflow: hidden;
-  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 
-.recipe-preview .recipe-footer ul.recipe-overview {
-  padding: 5px 10px;
-  width: 100%;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.recipe-overview {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
   display: flex;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1 auto;
-  -ms-flex: 1 auto;
-  flex: 1 auto;
-  table-layout: fixed;
-  margin-bottom: 0px;
+  justify-content: space-between;
 }
 
-.recipe-preview .recipe-footer ul.recipe-overview li {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  -ms-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-  width: 90px;
-  display: table-cell;
-  text-align: center;
+.recipe-overview li {
+  font-size: 12pt;
+}
+
+.recipe-indicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewed-indicator {
+  color: green;
 }
 </style>

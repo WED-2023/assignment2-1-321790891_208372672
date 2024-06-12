@@ -13,13 +13,23 @@
         </div>
       </div>
       <div class="right-container">
-        <span v-if="!$root.store.username" class="guest-container">
+        <span v-if="!$root.store.username">
           Hello Guest!  
-          <router-link :to="{ name: 'register' }">Register</router-link>|
+          <router-link :to="{ name: 'register' }" >Register</router-link>|
           <router-link :to="{ name: 'login' }">Login</router-link>|
         </span>
         <span v-else>
-          {{ $root.store.username }}: <button @click="Logout">Logout</button>|
+          Hello, {{ $root.store.username }}!
+          <div class="dropdown">
+            <button class="dropbtn">Personal &#9662;</button> <!-- Unicode character for down arrow -->
+            <div class="dropdown-content">
+              <router-link :to="{ name: 'favorites' }">My Favorite Recipes</router-link>
+              <router-link :to="{ name: 'private' }">My Recipes</router-link>
+              <router-link :to="{ name: 'family' }">My Family Recipes</router-link>
+            </div>
+          </div>|
+          <router-link :to="{ name: 'create-recipe' }">Create New Recipe</router-link>|
+          <button class="logout" @click="Logout">Logout</button>|
         </span>
       </div>
     </div>
@@ -56,10 +66,11 @@ export default {
 
 #nav {
   background-color: #000000; /* Black background */
-  padding: 10px 40px; /* Adjusted padding for a more compact look */
+  padding: 10px 10px; /* Adjusted padding for a more compact look */
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between items */
+  font-size: 15px;
 }
 
 .left-container {
@@ -75,7 +86,7 @@ export default {
 .nav-icon {
   width: 50px; /* Adjust size as needed */
   height: 50px; /* Adjust size as needed */
-  margin-right: 5px;
+  //margin-right: 5px;
   transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
 
@@ -85,7 +96,7 @@ export default {
 
 .site-name {
   font-family: 'Georgia', serif; /* Different font for the site name */
-  font-size: 24px;
+  font-size: 20px;
   color: #d16c3d; /* Orange color */
   margin-left: 5px; /* Closer to the logo */
 }
@@ -103,6 +114,7 @@ export default {
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 4px; /* Add border radius for smooth effect */
+  transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
 #nav a.router-link-exact-active, #nav a:active {
@@ -111,7 +123,100 @@ export default {
 
 #nav a:hover {
   color: #d16c3d; /* Hover color */
+  
 }
+
+#nav .logout {
+  background-color: transparent; /* Set background color to transparent */
+  font-weight: bold;
+  font-size: 15px;
+  color: #ffffff; /* White color for links */
+  margin-right: 15px; /* Spacing between links */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px; /* Add border radius for smooth effect */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+#nav .logout:hover {
+  color: #d16c3d; /* Change text color on hover */
+}
+
+#nav .logout:active{
+  background-color: transparent; /* Set background color to transparent */
+}
+
+#nav .dropdown .dropbtn,
+#nav button {
+  font-size: 15px;
+  background-color: transparent; /* Remove background color */
+  font-weight: bold;
+  color: #ffffff; /* White color for links */
+  margin-right: 15px; /* Spacing between links */
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px; /* Add border radius for smooth effect */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+#nav .dropdown .dropbtn:hover,
+#nav button:hover {
+  color: #d16c3d; /* Change text color on hover */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  font-weight: bold;
+  //color: #d16c3d; /* Orange text color */
+  margin-right: 15px; /* Spacing between links */
+  text-decoration: none;
+  padding: 5px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.dropbtn:hover {
+  color: #d16c3d; /* Hover color */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.dropdown-content a:hover {
+  background-color: transparent;
+  color: #000; /* Change text color on hover */
+}
+
+/* Additional styles to explicitly set text color for dropdown options */
+.dropdown-content a.router-link-exact-active,
+.dropdown-content a:active {
+  color: black; /* Set text color to black */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 .right-container {
   display: flex;
@@ -165,9 +270,4 @@ export default {
 #nav input[type="submit"]:active {
   background-color: #d8642f; /* Darker orange when clicked */
 }
-
-.guest-container {
-  margin-right: 40px; /* Adjust the margin as per your preference */
-}
-
 </style>

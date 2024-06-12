@@ -132,10 +132,11 @@ html, body {
 .login-container {
   display: flex;
   max-width: 1000px;
-  height: 500px;
-  width: 100%; // Ensure the container doesn't exceed the viewport width
+  height: 75%;
+  width: 85%; // Ensure the container doesn't exceed the viewport width
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .login-form, .login-welcome {
