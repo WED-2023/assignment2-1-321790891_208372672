@@ -330,7 +330,8 @@ export default {
 
 .container {
   max-width: 900px;
-  width: 650px;
+  width: flex;
+  position: center;
   background: rgba(255, 255, 255, 0.9); /* White background with some transparency */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
