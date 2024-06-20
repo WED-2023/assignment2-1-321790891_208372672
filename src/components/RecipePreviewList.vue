@@ -1,21 +1,19 @@
 <template>
-  <b-container>
-    <div>
-      <h3>{{ title }}:</h3>
+  <div class="recipe-preview-list">
+    <h3 class="list-title">{{ title }}:</h3>
+    <div class="recipes">
+      <div v-for="r in recipes" :key="r.id" class="recipe-item">
+        <RecipePreview :recipe="r" />
+      </div>
     </div>
-    <div>
-      <b-row>
-        <b-col v-for="r in recipes" :key="r.id">
-          <RecipePreview class="recipePreview" :recipe="r" />
-        </b-col>
-      </b-row>
-    </div>
-  </b-container>
+  </div>
 </template>
+
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
 import { mockGetRecipesPreview } from "../services/recipes.js";
+
 export default {
   name: "RecipePreviewList",
   components: {
@@ -60,12 +58,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  min-height: 400px;
+.recipe-preview-list {
+  margin-bottom: 20px;
+  
 }
 
-/* Separate the title and recipes with margins */
-div {
+.list-title {
   margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.recipes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust gap as needed */
+}
+
+.recipe-item {
+  /* Additional styling if needed */
 }
 </style>

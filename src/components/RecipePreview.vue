@@ -31,8 +31,17 @@
         </div>
       </div>
       <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
+        <img src="@/assets/time2.png" alt="Icon" class="time-icon" />
+        <li class="recipe-readyInMinutes">{{ recipe.readyInMinutes }} minutes</li>
+        <img src="@/assets/heart-empty.png" alt="Icon" class="like-icon" />
         <li>{{ recipe.aggregateLikes }} likes</li>
+        <div>
+          <button @click.stop="toggleFavorite" :class="['favorite-button', { 'favorite-active': !isFavorite }]" class="favorite-button">
+          <img :src="isFavorite ? require('@/assets/favorite-full.jpg') : require('@/assets/favorite-empty.jpg')" alt="Favorite Icon" class="favorite-icon" />
+          {{ isFavorite ? 'Added To Favorites' : 'Add To Favorites' }}
+          </button>
+        </div>
+
       </ul>
       <div class="recipe-indicators">
         <span v-if="recipe.viewed" class="viewed-indicator">Viewed</span>
@@ -51,6 +60,7 @@ export default {
   data() {
     return {
       // image_load: false
+      isFavorite: false // Track if the recipe is added to favorites
     };
   },
   props: {
@@ -85,6 +95,7 @@ export default {
   },
   methods: {
     toggleFavorite() {
+      this.isFavorite = true;
       this.$emit('toggle-favorite', this.recipe.id);
     }
   }
@@ -92,10 +103,17 @@ export default {
 </script>
 
 <style scoped>
+
+/* Remove underline on hover */
+.recipe-preview,
+.recipe-preview:hover {
+  text-decoration: none;
+}
+
 .recipe-preview {
   display: inline-block;
-  width: 500px; /* Set fixed width */
-  height: 300px; /* Set fixed height */
+  width: 550px; /* Set fixed width */
+  height: 280px; /* Set fixed height */
   position: relative;
   margin: 10px 10px;
   border: 1px solid #ccc;
@@ -113,6 +131,7 @@ export default {
   width: 100%;
   height: 200px;
 }
+
 
 .recipe-body .recipe-image {
   display: block;
@@ -142,6 +161,10 @@ export default {
   opacity: 1;
 }
 
+/* .recipe-preview:hover{
+  transform: scale(1.05); /* Increase size on hover */
+/* }  */
+
 .diet-icons {
   list-style: none;
   padding: 0;
@@ -163,6 +186,9 @@ export default {
 
 .recipe-footer {
   padding: 10px;
+  background-color: white;
+  color: black;
+
 }
 
 .title {
@@ -172,10 +198,12 @@ export default {
 }
 
 .recipe-title {
-  font-size: 16pt;
+  font-size: 14pt;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .recipe-overview {
@@ -183,11 +211,58 @@ export default {
   padding: 0;
   margin: 10px 0;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+}
+
+.recipe-readyInMinutes{
+  margin-right: 90px;
+}
+
+.time-icon{
+  width: 19px; /* Adjust size as needed */
+  height: 19px; /* Adjust size as needed */
+  margin-top: 2px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.like-icon{
+  width: 16px; /* Adjust size as needed */
+  height: 16px; /* Adjust size as needed */
+  margin-top: 4px;
+  margin-right: 5px;
 }
 
 .recipe-overview li {
   font-size: 12pt;
+}
+
+.favorite-button {
+  background-color: transparent;
+  border: none;
+  color: #e97f29;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 12pt;
+  padding: 0px 10px;
+  margin-left: 45px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.favorite-button.favorite-active {
+  margin-left: 63px;
+}
+
+/* .favorite-button:hover {
+  background-color: #e5761b;
+} */
+
+.favorite-icon {
+  width: 19px;
+  height: 19px;
+  margin-right: 5px;
 }
 
 .recipe-indicators {
@@ -199,4 +274,6 @@ export default {
 .viewed-indicator {
   color: green;
 }
+
+
 </style>

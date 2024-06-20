@@ -56,7 +56,7 @@
     },
     {
         "id": 789123,
-        "image": "https://img.spoonacular.com/recipes/789123-556x370.jpg",
+        "image": "https://images.unsplash.com/photo-1600345968497-bb0c69de64f8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "title": "Creamy Lemon Chicken Pasta",
         "readyInMinutes": 30,
         "aggregateLikes": 345,
@@ -64,6 +64,105 @@
         "vegan": false,
         "glutenFree": false,
         "summary": "Indulge in the deliciousness of Creamy Lemon Chicken Pasta. This recipe features tender chicken breast cooked in a creamy lemon sauce served over perfectly cooked pasta. With <b>412 calories</b> and <b>22g of protein</b> per serving, it's a hearty meal that's sure to satisfy. Plus, it's ready in just <b>30 minutes</b>! Enjoy the tangy flavor of lemon paired with the richness of cream in this delightful dish. It's a crowd-pleaser with <b>345 likes</b> from other home cooks like you."
+    },
+    {
+        "id": 234567,
+        "image": "https://cdn.pixabay.com/photo/2017/01/19/15/48/soup-1992656_1280.jpg",
+        "title": "Mediterranean Chickpea Salad",
+        "readyInMinutes": 15,
+        "aggregateLikes": 180,
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "summary": "Enjoy a refreshing Mediterranean Chickpea Salad, packed with fresh vegetables, herbs, and a tangy lemon dressing. This salad is not only delicious but also vegetarian, vegan, and gluten-free, making it a versatile and healthy choice. Each serving provides <b>220 calories</b> and <b>8g of protein</b>, perfect for a light lunch or side dish. With <b>180 likes</b>, it's a popular recipe among health-conscious food lovers."
+    },
+    {
+        "id": 345678,
+        "image": "https://images.unsplash.com/photo-1595587870672-c79b47875c6a?q=80&w=1946&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Caprese Salad with Balsamic Glaze",
+        "readyInMinutes": 10,
+        "aggregateLikes": 240,
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": true,
+        "summary": "Indulge in the flavors of Italy with a refreshing Caprese Salad drizzled with balsamic glaze. This classic salad features fresh tomatoes, creamy mozzarella, aromatic basil leaves, and a tangy-sweet balsamic reduction. It's a vegetarian and gluten-free dish that's ready in just <b>10 minutes</b>, making it a perfect appetizer or side dish. With <b>240 likes</b>, it's loved by many for its simplicity and delicious taste."
+    },
+    {
+        "id": 456789,
+        "image": "https://plus.unsplash.com/premium_photo-1707935175109-ba307d98bfe2?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Lemon Garlic Butter Shrimp",
+        "readyInMinutes": 20,
+        "aggregateLikes": 380,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": true,
+        "summary": "Treat yourself to succulent Lemon Garlic Butter Shrimp, a quick and flavorful seafood dish that's perfect for dinner. This recipe features tender shrimp cooked in a tangy lemon garlic butter sauce, served over rice or pasta. It's gluten-free and ready in just <b>20 minutes</b>, making it ideal for busy weeknights. With <b>380 likes</b>, it's a favorite among seafood enthusiasts!"
+    },
+    {
+        "id": 567890,
+        "image": "https://cdn.pixabay.com/photo/2016/10/21/22/24/gyro-1759333_1280.jpg",
+        "title": "Greek Gyros with Tzatziki Sauce",
+        "readyInMinutes": 30,
+        "aggregateLikes": 315,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Enjoy the taste of Greece with flavorful Greek Gyros topped with creamy tzatziki sauce. This recipe features tender slices of seasoned meat (typically lamb or chicken) wrapped in warm pita bread with fresh vegetables and a tangy yogurt-based tzatziki sauce. It's a satisfying meal that's ready in just <b>30 minutes</b>. With <b>315 likes</b>, it's a beloved dish among Mediterranean food enthusiasts."
+    },
+    {
+        "id": 678901,
+        "image": "https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Ratatouille",
+        "readyInMinutes": 50,
+        "aggregateLikes": 280,
+        "vegetarian": true,
+        "vegan": true,
+        "glutenFree": true,
+        "summary": "Delight in the flavors of France with Ratatouille, a classic vegetable dish that's as colorful as it is delicious. This recipe features a medley of eggplant, zucchini, bell peppers, and tomatoes cooked in a savory herb-infused sauce. It's vegetarian, vegan, and gluten-free, making it a versatile and healthy choice for any meal. With <b>280 likes</b>, it's a popular dish that showcases the beauty of French cuisine."
+    },
+    {
+        "id": 789012,
+        "image": "https://plus.unsplash.com/premium_photo-1713089366140-814130d69933?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Thai Green Curry",
+        "readyInMinutes": 40,
+        "aggregateLikes": 340,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": true,
+        "summary": "Transport your taste buds to Thailand with aromatic Thai Green Curry, a flavorful dish featuring tender chicken or tofu cooked in a fragrant green curry sauce with coconut milk, bamboo shoots, and bell peppers. It's a gluten-free dish that's ready in just <b>40 minutes</b>, perfect for a comforting dinner. With <b>340 likes</b>, it's a favorite among fans of Thai cuisine."
+    },
+    {
+        "id": 890123,
+        "image": "https://cdn.pixabay.com/photo/2019/09/06/19/29/rice-4457143_1280.jpg",
+        "title": "Mushroom Risotto",
+        "readyInMinutes": 35,
+        "aggregateLikes": 290,
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Indulge in the creamy goodness of Mushroom Risotto, a classic Italian dish that's both comforting and flavorful. This recipe features Arborio rice cooked with earthy mushrooms, onions, garlic, and Parmesan cheese until creamy and tender. It's a vegetarian dish that's ready in just <b>35 minutes</b>, making it a perfect option for a cozy dinner. With <b>290 likes</b>, it's a beloved recipe for risotto enthusiasts."
+    },
+    {
+        "id": 901234,
+        "image": "https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_1280.jpg",
+        "title": "Teriyaki Salmon",
+        "readyInMinutes": 30,
+        "aggregateLikes": 320,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": true,
+        "summary": "Savor the flavors of Japan with Teriyaki Salmon, a delicious dish featuring succulent salmon fillets marinated in a sweet and savory teriyaki glaze. This recipe is gluten-free and ready in just <b>30 minutes</b>, making it perfect for a quick and healthy dinner. With <b>320 likes</b>, it's a favorite among seafood lovers."
+    },
+    {
+        "id": 912345,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "title": "Pesto Pasta with Cherry Tomatoes",
+        "readyInMinutes": 20,
+        "aggregateLikes": 280,
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Treat yourself to the vibrant flavors of Pesto Pasta with Cherry Tomatoes, a delicious Italian-inspired dish that's perfect for a quick meal. This recipe features al dente pasta tossed in fragrant basil pesto sauce with juicy cherry tomatoes and Parmesan cheese. It's a vegetarian dish that's ready in just <b>20 minutes</b>, making it ideal for busy weeknights. With <b>280 likes</b>, it's a beloved recipe for pasta enthusiasts."
     }
-
+    
 ]

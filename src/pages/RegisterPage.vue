@@ -301,9 +301,10 @@ export default {
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
+  align-items: center;
   padding-top: 85px;
+  min-height: 100vh;
 }
 
 .title {
@@ -325,8 +326,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //margin-top: 10px;
+  margin-top: 10px;
   margin-bottom: 70px;
+  // margin: 0 auto;
 }
 
 .button-container {

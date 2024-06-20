@@ -1,49 +1,49 @@
 
 <template>
-  <div class="container">
-    <div class="left-column">
-      <RecipePreviewList
-        title="Explore Recipes"
-        class="RandomRecipes"
-      />
-      <button @click="loadNewRandomRecipes" class="load-more-button">
-        Load More
-      </button>
-    </div>
-    <div class="right-column">
-      
-      <span v-if="!$root.store.username" class="sign-in-form">
-        <h2 class="form-title">Sign In</h2>
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" id="email" v-model="email" placeholder="Enter Email">
+  <div class="background-container">
+    <div class="container">
+      <div class="left-column">
+        <div>
+          <RecipePreviewList
+            ref="randomRecipesList"
+            title="Explore Recipes"
+            class="RandomRecipes"
+          />
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" v-model="password" placeholder="Enter Password">
-        </div>
-        <div class="form-group">
-          <input type="checkbox" id="remember-me">
-          <label for="remember-me">Remember me</label>
-        </div>
-        <button @click="submitForm" class="submit-button">Submit</button>
-      </span>
+        <button @click="loadNewRandomRecipes" class="load-more-button">
+          Load More
+        </button>
+      </div>
+      <div class="right-column">
+        
+        <span v-if="!$root.store.username" class="sign-in-form">
+          <h2 class="form-title">Sign In</h2>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" id="username" v-model="username" placeholder="Enter Username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" v-model="password" placeholder="Enter Password">
+          </div>
+          <button @click="submitForm" class="submit-button">Sign In</button>
+        </span>
 
-      <span v-else>
-        <h2 class="section-title">Last Viewed Recipes</h2>
-        <RecipePreviewList
-        title="Last Viewed Recipes"
-        class="LastViewedRecipes"
-        :disabled="!$root.store.username"
-      />
-      </span>
+        <span v-else class="last-viewed">
+          <RecipePreviewList
+          title="Last Viewed Recipes"
+          class="LastViewedRecipes"
+          :disabled="!$root.store.username"
+        />
+        </span>
 
-    </div>
+      </div>
     <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
       Centeredasdasdad
     </div>-->
+    </div>
   </div>
 </template>
 
@@ -55,13 +55,13 @@ export default {
   },
   data() {
     return {
-      email: '',
+      username: '',
       password: ''
     };
   },
   methods: {
     loadNewRandomRecipes() {
-      // Logic to load new random recipes
+      this.$refs.randomRecipesList.updateRecipes();
     },
     submitForm() {
       // Logic to submit the form
@@ -84,17 +84,30 @@ export default {
 }
 </style> -->
 <style lang="scss" scoped>
+// .background-container {
+//   background-image: url('../assets/recipes.jpg');
+//   background-size: cover; /* Ensures the image covers the entire background */
+//   background-position: center; /* Centers the image */
+//   background-repeat: no-repeat; /* Ensures the image does not repeat */
+//   height: 100%; /* Adjusts height to cover the viewport */
+//   width: 100%; /* Adjusts width to cover the viewport */
+// }
+
+
 .container {
   display: flex;
   justify-content: space-between;
 }
 
 .left-column {
-  flex-basis: 20%; /* Adjust as needed */
+  margin-top: 40px;
+  margin-left: -50px; /* Adjust this value to move left column more to the left */
 }
 
 .right-column {
-  flex-basis: 20%; /* Adjust as needed */
+  margin-top: 40px;
+  margin-right: -50px; /* Adjust this value to move left column more to the left */
+  flex-basis: 40%; /* Adjusted to 30% */
 }
 
 .section-title {
@@ -103,16 +116,23 @@ export default {
 
 .RandomRecipes,
 .LastViewedRecipes {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .load-more-button {
-  width: 100%;
+  width: 20%;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
   cursor: pointer;
+  background-color: #e97f29;
+  color: white;
+  border: #e97f29;
+  border-radius: 4px;
+  margin-left: 40%;
+  margin-bottom: 20px;
+}
+
+.load-more-button:hover {
+  transform: scale(1.05); /* Increase size on hover */
 }
 
 .sign-in-form {
@@ -120,7 +140,8 @@ export default {
 }
 
 .form-title {
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .form-group {
@@ -131,7 +152,7 @@ label {
   display: block;
 }
 
-input[type="email"],
+input[type="username"],
 input[type="password"] {
   width: 100%;
   padding: 8px;
@@ -143,10 +164,15 @@ input[type="password"] {
 .submit-button {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: black;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  transform: scale(1.05); /* Increase size on hover */
 }
 </style>
