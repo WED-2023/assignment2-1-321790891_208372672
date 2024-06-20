@@ -28,7 +28,10 @@
               <router-link :to="{ name: 'family' }">My Family Recipes</router-link>
             </div>
           </div>|
-          <router-link :to="{ name: 'create-recipe' }">Create New Recipe</router-link>|
+          <RecipeModal :show="showRecipeModal" @close="showRecipeModal = false" />
+        <button class="nav-link btn btn-link" @click="showRecipeModal = true">
+          Create New Recipe
+        </button>
           <button class="logout" @click="Logout">Logout</button>|
         </span>
       </div>
@@ -38,8 +41,17 @@
 </template>
 
 <script>
+import RecipeModal from './components/RecipeModal.vue';
 export default {
   name: "App",
+  components: {
+    RecipeModal
+  },
+  data() {
+    return {
+      showRecipeModal: false
+    }
+  },
   methods: {
     Logout() {
       this.$root.store.logout();
@@ -48,7 +60,10 @@ export default {
       this.$router.push("/").catch(() => {
         this.$forceUpdate();
       });
-    }
+    },
+    openModal() {
+    this.$refs.recipeModal.modalOpen = true; // Ensure you have a ref="recipeModal" in RecipeModal.vue
+  }
   }
 };
 </script>
