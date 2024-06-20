@@ -8,7 +8,7 @@
   "dependencies": {
     "ax": "^0.2.2",
     "axios": "^0.19.2",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",

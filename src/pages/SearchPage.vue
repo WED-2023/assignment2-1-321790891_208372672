@@ -1,23 +1,22 @@
-
 <template>
   <div class="search-page">
     <div class="background-photo">
       <!-- Your background photo -->
     </div>
+    <div class="icon-container">
+      <img src="../assets/logo.png" alt="Icon" class="icon">
+    </div>
     <div class="search-container">
       <div class="search-icon">
       </div>
       <b-form @submit.prevent="onSearch" class="search-form">
-        <img src="../assets/logo.png" alt="Icon" class="icon">
         <div class="search-bar">
-          
           <b-form-input
             v-model="searchQuery"
             type="text"
             placeholder="Search for recipes..."
             class="search-input"
           ></b-form-input>
-        
           <div class="filter-container">
             <b-form-select
               v-model="numResults"
@@ -55,22 +54,32 @@
           </b-button-group>
         </div>
       </div>
-      <div class="search-results">
-        <!-- Search results will be rendered here -->
+      <div v-if="showResults" class="search-results">
+        <RecipePreviewList
+          title="Found Recipes"
+          class="FoundRecipes"
+          :searchQuery="searchQuery"
+          :numResults="numResults"
+          :selectedFilters="selectedFilters"
+        />
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
+import RecipePreviewList from "../components/RecipePreviewList";
 export default {
+  components: {
+    RecipePreviewList
+  },
   data() {
     return {
       searchQuery: '',
       numResults: 5,
       resultOptions: [5, 10, 15],
       showFilter: false,
+      showResults: false,
       cuisines: ['Italian', 'Thai', 'French', 'Greek', 'Chinese', 'Mexican', 'German', 'Indian', 'Japanese'],
       diets: ['Vegetarian', 'Vegan'],
       intolerances: ['Gluten', 'Dairy', 'Peanut', 'Seafood', 'Soy'],
@@ -83,7 +92,7 @@ export default {
   },
   methods: {
     onSearch() {
-      // Handle the search logic
+      this.showResults = true; // Show the search results component
     },
     toggleFilter() {
       this.showFilter = !this.showFilter;
@@ -99,49 +108,41 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 /* Existing styles */
 .search-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto; /* Enable scrolling if content overflows vertically */
+  position: relative; /* Ensure relative positioning for absolute child elements */
 }
-.search-page {
-  position: relative;
-}
-.filter-category .mb-2 .btn:focus,
-.filter-category .mb-2 .btn:active {
-  outline: none;
-  color: white;
-  background-color: #eb7037;
-}
-.background-photo {
+
+
+.icon-container {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../assets/searchCover.jpg');
-  background-size: cover;
-  z-index: -1; /* Ensure it's behind other content */
+ margin-left: 10%;
+ margin-top: 25px;
+  transform: translateX(-50%);
 }
 
 .icon {
+  width: 150px; /* Adjust size as needed */
+  height: 150px; /* Adjust size as needed */
+  margin-top: 10px;
   position: absolute center;
-  margin-bottom: 5%;
-  margin-left: 50%;
-  top: 10%; /* Adjust the top position as needed */
-  right: 50%; 
-  transform: translateX(-50%); /* Adjust horizontally centered position */
-  width: 150px; /* Change the width to your desired size */
-  height: 150px; /* Change the height to your desired size */
-  z-index: 1; /* Ensure it's above other content */
 }
 
 .search-container {
   width: 100%;
   max-width: 650px;
+  background-color: rgba(255, 255, 255, 0.8); /* Example background color for clarity */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Example box shadow for clarity */
+  padding: 20px;
+  margin-top: 250px; /* Adjust margin top to create space for icon */
 }
 
 .search-bar {
@@ -171,8 +172,7 @@ export default {
   border-color: black;
   background-color: black;
   white-space: nowrap;
-  color:white
-  
+  color: white;
 }
 
 .search-button {
@@ -205,16 +205,27 @@ export default {
   color: white;
   background-color: orange;
 }
-.filter-category .mb-2 .btn::selection{
+
+.filter-category .mb-2 .btn::selection {
   color: aqua;
 }
 
 .filter-category h5 {
-  color: #ffffff; /* Change the color to your desired color */
+  color: black; /* Change the color to your desired color */
 }
+
 .filter-category .mb-2 .btn:last-child {
   margin-right: 0; /* Remove the margin from the last button */
 }
 
+.search-results {
+  width: 100%;
+  max-width: 650px;
+  background-color: rgba(255, 255, 255, 0.8); /* Example background color for clarity */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Example box shadow for clarity */
+  padding: 20px;
+  margin-top: 20px; /* Add margin top */
+}
 
 </style>

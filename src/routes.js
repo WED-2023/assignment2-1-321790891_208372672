@@ -1,5 +1,6 @@
 import Main from "./pages/MainPage";
 import NotFound from "./pages/NotFoundPage";
+import RecipeModal from "./components/RecipeModal.vue";
 
 const routes = [
   {
@@ -30,7 +31,7 @@ const routes = [
   {
     path: "/create-recipe",
     name: "create-recipe",
-    component: () => import("./pages/CreateNewRecipe"),
+    component: RecipeModal
   },
   {
     path: "/favorites",
