@@ -21,17 +21,19 @@
         <span v-else>
           Hello, {{ $root.store.username }}!
           <div class="dropdown">
-            <button class="dropbtn">Personal &#9662;</button> <!-- Unicode character for down arrow -->
-            <div class="dropdown-content">
-              <router-link :to="{ name: 'favorites' }">My Favorite Recipes</router-link>
-              <router-link :to="{ name: 'private' }">My Recipes</router-link>
-              <router-link :to="{ name: 'family' }">My Family Recipes</router-link>
+            <button class="dropbtn" :class="{ active: isDropdownActive || isDropdownOptionSelected }" @click="toggleDropdown">
+              Personal &#9662;
+            </button>
+            <div class="dropdown-content" v-show="isDropdownActive">
+              <router-link :to="{ name: 'favorites' }" @click.native="selectDropdownOption">My Favorite Recipes</router-link>
+              <router-link :to="{ name: 'private' }" @click.native="selectDropdownOption">My Recipes</router-link>
+              <router-link :to="{ name: 'family' }" @click.native="selectDropdownOption">My Family Recipes</router-link>
             </div>
           </div>|
           <RecipeModal :show="showRecipeModal" @close="showRecipeModal = false" />
-        <button class="nav-link btn btn-link" @click="showRecipeModal = true">
+        <button class="createNewRecipeBtn" @click="showRecipeModal = true">
           Create New Recipe
-        </button>
+        </button> |
           <button class="logout" @click="Logout">Logout</button>|
         </span>
       </div>
@@ -49,7 +51,9 @@ export default {
   },
   data() {
     return {
-      showRecipeModal: false
+      showRecipeModal: false,
+      isDropdownActive: false,
+      isDropdownOptionSelected: false
     }
   },
   methods: {
@@ -63,7 +67,14 @@ export default {
     },
     openModal() {
     this.$refs.recipeModal.modalOpen = true; // Ensure you have a ref="recipeModal" in RecipeModal.vue
-  }
+    },
+    toggleDropdown() {
+        this.isDropdownActive = !this.isDropdownActive;
+    },
+    selectDropdownOption() {
+      this.isDropdownOptionSelected = true;
+      this.isDropdownActive = false;
+    }
   }
 };
 </script>
@@ -161,6 +172,7 @@ export default {
   background-color: transparent; /* Set background color to transparent */
 }
 
+
 #nav .dropdown .dropbtn,
 #nav button {
   font-size: 15px;
@@ -174,10 +186,6 @@ export default {
   transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
-#nav .dropdown .dropbtn:hover,
-#nav button:hover {
-  color: #d16c3d; /* Change text color on hover */
-}
 
 .dropdown {
   position: relative;
@@ -196,8 +204,12 @@ export default {
   transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
-.dropbtn:hover {
+#nav .dropbtn:hover {
   color: #d16c3d; /* Hover color */
+}
+
+#nav .dropbtn:active {
+  color: #d16c3d; 
 }
 
 .dropdown-content {
@@ -244,14 +256,14 @@ export default {
 }
 
 #nav button {
-  background-color: #d16c3d; /* Orange logout button */
+  background-color: transparent; /* Orange logout button */
   border: none;
   color: white;
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  //font-size: 14px;
   margin: 2px 1px;
   cursor: pointer;
   border-radius: 4px;
@@ -259,7 +271,11 @@ export default {
 }
 
 #nav button:active {
-  background-color: #d8642f; /* Darker orange when clicked */
+  color: #d8642f; /* Darker orange when clicked */
+}
+
+#nav button:hover {
+  color: #d16c3d; /* Darker orange when clicked */
 }
 
 #nav input[type="text"] {

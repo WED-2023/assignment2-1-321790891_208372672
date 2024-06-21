@@ -12,7 +12,8 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview } from "../services/recipes.js";
+import { mockGetRecipesPreview, mockGetRandomRecipesPreview } from "../services/recipes.js";
+
 
 export default {
   name: "RecipePreviewList",
@@ -42,7 +43,27 @@ export default {
 
         const amountToFetch = 3; // Set this to how many recipes you want to fetch
         const response = mockGetRecipesPreview(amountToFetch);
+        //const response = mockGetRandomRecipesPreview(amountToFetch)
 
+        console.log(response);
+        const recipes = response.data.recipes;
+        console.log(recipes);
+        this.recipes = [];
+        this.recipes.push(...recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateRandomRecipes() {
+      try {
+        alert
+        // const response = await this.axios.get(
+        //   this.$root.store.server_domain + "/recipes/random",
+        // );
+
+        const amountToFetch = 3; // Set this to how many recipes you want to fetch
+        //const response = mockGetRecipesPreview(amountToFetch);
+        const response = mockGetRandomRecipesPreview(amountToFetch)
 
         console.log(response);
         const recipes = response.data.recipes;

@@ -195,8 +195,8 @@ html, body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.btn-signup:hover {
-  background-color: #e97f29;
-  color: white;
-}
+// .btn-signup:hover {
+//   background-color: #e97f29;
+//   color: white;
+// }
 </style>
