@@ -6,7 +6,7 @@
         <div>
           <RecipePreviewList
             ref="randomRecipesList"
-            title="Explore Recipes"
+            title="EXPLORE RECIPES"
             class="RandomRecipes"
           />
         <button @click="loadNewRandomRecipes" class="load-more-button">
@@ -63,7 +63,7 @@
 
         <div v-else class="last-viewed">
           <RecipePreviewList
-          title="Last Viewed Recipes"
+          title="LAST VIEWED RECIPES"
           class="LastViewedRecipes"
           :disabled="!$root.store.username"
         />

@@ -7,34 +7,34 @@
           <div class="site-name">FOXCHEF CUISINE</div>
         </div>
         <div class="links-container">
-          <router-link :to="{ name: 'main' }">Recipes</router-link>|
-          <router-link :to="{ name: 'search' }">Search</router-link>|
-          <router-link :to="{ name: 'about' }">About</router-link>|
+          <router-link :to="{ name: 'main' }">RECIPES</router-link>|
+          <router-link :to="{ name: 'search' }">SEARCH</router-link>|
+          <router-link :to="{ name: 'about' }">ABOUT</router-link>|
         </div>
       </div>
       <div class="right-container">
         <span v-if="!$root.store.username">
           Hello Guest!  
-          <router-link :to="{ name: 'register' }" >Register</router-link>|
-          <router-link :to="{ name: 'login' }">Login</router-link>|
+          <router-link :to="{ name: 'register' }" >REGISTER</router-link>|
+          <router-link :to="{ name: 'login' }">LOGIN</router-link>|
         </span>
         <span v-else>
           Hello, {{ $root.store.username }}!
           <div class="dropdown">
             <button class="dropbtn" :class="{ active: isDropdownActive || isDropdownOptionSelected }" @click="toggleDropdown">
-              Personal &#9662;
+              PERSONAL &#9662;
             </button>
             <div class="dropdown-content" v-show="isDropdownActive">
-              <router-link :to="{ name: 'favorites' }" @click.native="selectDropdownOption">My Favorite Recipes</router-link>
-              <router-link :to="{ name: 'private' }" @click.native="selectDropdownOption">My Recipes</router-link>
-              <router-link :to="{ name: 'family' }" @click.native="selectDropdownOption">My Family Recipes</router-link>
+              <router-link :to="{ name: 'favorites' }" @click.native="selectDropdownOption">MY FAVORITE RECIPES</router-link>
+              <router-link :to="{ name: 'private' }" @click.native="selectDropdownOption">MY RECIPES</router-link>
+              <router-link :to="{ name: 'family' }" @click.native="selectDropdownOption">MY FAMILY RECIPES</router-link>
             </div>
           </div>|
           <RecipeModal :show="showRecipeModal" @close="showRecipeModal = false" />
         <button class="createNewRecipeBtn" @click="showRecipeModal = true">
-          Create New Recipe
+          CREATE NEW RECIPE
         </button> |
-          <button class="logout" @click="Logout">Logout</button>|
+          <button class="logout" @click="Logout">LOGOUT</button>|
         </span>
       </div>
     </div>
@@ -96,7 +96,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between items */
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .left-container {
@@ -125,7 +125,6 @@ export default {
   font-size: 20px;
   color: #d16c3d; /* Orange color */
   margin-left: 5px; /* Closer to the logo */
-  margin-top: 2px;
 }
 
 .links-container {

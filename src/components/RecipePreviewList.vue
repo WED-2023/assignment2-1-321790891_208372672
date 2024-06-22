@@ -3,7 +3,7 @@
     <h3 class="list-title">{{ title }}:</h3>
     <div class="recipes">
       <div v-for="r in recipes" :key="r.id" class="recipe-item">
-        <RecipePreview :recipe="r" />
+        <RecipePreview :recipe="r" @toggle-favorite="handleToggleFavorite" />
       </div>
     </div>
   </div>
@@ -13,6 +13,7 @@
 <script>
 import RecipePreview from "./RecipePreview.vue";
 import { mockGetRecipesPreview, mockGetRandomRecipesPreview } from "../services/recipes.js";
+import { mockAddFavorite } from "../services/user.js";
 
 
 export default {
@@ -35,13 +36,13 @@ export default {
     this.updateRecipes();
   },
   methods: {
-    async updateRecipes() {
+    async updateRecipes(amountToFetch = 3) {
       try {
         // const response = await this.axios.get(
         //   this.$root.store.server_domain + "/recipes/random",
         // );
 
-        const amountToFetch = 3; // Set this to how many recipes you want to fetch
+       // const amountToFetch = 3; // Set this to how many recipes you want to fetch
         const response = mockGetRecipesPreview(amountToFetch);
         //const response = mockGetRandomRecipesPreview(amountToFetch)
 
@@ -54,9 +55,8 @@ export default {
         console.log(error);
       }
     },
-    async updateRandomRecipes() {
+    async updateRandomRecipes(amountToFetch = 3) {
       try {
-        alert
         // const response = await this.axios.get(
         //   this.$root.store.server_domain + "/recipes/random",
         // );
@@ -72,6 +72,17 @@ export default {
         this.recipes.push(...recipes);
       } catch (error) {
         console.log(error);
+      }
+    },
+    async handleToggleFavorite(recipeId, isFavorite) {
+      try {
+        // Call addFavorite function
+        const response = await mockAddFavorite(recipeId);
+        console.log(response.data.message);
+        // Handle state update or other actions as needed
+      } catch (error) {
+        console.error(error);
+        // Handle error
       }
     }
   }

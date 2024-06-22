@@ -1,7 +1,7 @@
 <template>
   <div class="about-page">
     <div class="container">
-      <h1 class="title">About <span class="special-font">FOXCHEF CUISINE</span></h1>
+      <h1 class="title">ABOUT <span class="special-font">FOXCHEF CUISINE</span></h1>
       <div class="content">
         <p>
           Welcome to <strong class="special-font">FOXCHEF CUISINE</strong> ! We are a dedicated team of students passionate about bringing the joy of cooking to everyone. Our mission is to create a user-friendly platform where food enthusiasts can explore a diverse range of recipes, from traditional favorites to innovative culinary creations.
@@ -27,7 +27,10 @@
   </div>
 </template>
 
+
+
 <script>
+import RecipePreviewList from "../components/RecipePreviewList";
 export default {
   name: 'AboutPage'
 }

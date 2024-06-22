@@ -14,9 +14,6 @@ export function mockGetRecipesPreview(amount = 1) {
   }
 
   return { data: { recipes: recipes } };
-  //   let shuffled = recipe_previews.sort(() => 0.5 - Math.random());
-  // let selected = shuffled.slice(0, amount);
-  // return { data: { recipes: selected } };
 }
 
 export function mockGetRandomRecipesPreview(amount = 1) {
