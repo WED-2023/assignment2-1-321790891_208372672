@@ -1,10 +1,10 @@
 <template>
   <div class="about-page">
     <div class="container">
-      <h1 class="title">About FOXCHEF CUISINE</h1>
+      <h1 class="title">About <span class="special-font">FOXCHEF CUISINE</span></h1>
       <div class="content">
         <p>
-          Welcome to <strong>FOXCHEF CUISINE</strong>! We are a dedicated team of students passionate about bringing the joy of cooking to everyone. Our mission is to create a user-friendly platform where food enthusiasts can explore a diverse range of recipes, from traditional favorites to innovative culinary creations.
+          Welcome to <strong class="special-font">FOXCHEF CUISINE</strong> ! We are a dedicated team of students passionate about bringing the joy of cooking to everyone. Our mission is to create a user-friendly platform where food enthusiasts can explore a diverse range of recipes, from traditional favorites to innovative culinary creations.
         </p>
         <p>
           Our website features a vast collection of recipes that cater to various dietary preferences and cuisines. Whether you're looking for vegetarian, vegan, gluten-free, or family-friendly recipes, FOXCHEF CUISINE has something for everyone. Each recipe is carefully curated to ensure that you have the best cooking experience.
@@ -58,6 +58,10 @@ export default {
   font-size: 28px;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.special-font {
+  font-family: 'Lucida Handwriting', cursive; /* Different font for the site name */
 }
 
 .content {

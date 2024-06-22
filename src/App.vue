@@ -83,7 +83,7 @@ export default {
 @import "@/scss/form-style.scss";
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Lucida Sans Unicode', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #8f98a0;
@@ -117,14 +117,15 @@ export default {
 }
 
 .nav-icon:hover {
-  transform: scale(1.2); /* Increase size on hover */
+  transform: scale(1.1); /* Increase size on hover */
 }
 
 .site-name {
-  font-family: 'Georgia', serif; /* Different font for the site name */
+  font-family: 'Lucida Handwriting', cursive; /* Different font for the site name */
   font-size: 20px;
   color: #d16c3d; /* Orange color */
   margin-left: 5px; /* Closer to the logo */
+  margin-top: 2px;
 }
 
 .links-container {

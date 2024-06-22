@@ -246,13 +246,13 @@ export default {
   align-items: center;
   font-size: 12pt;
   padding: 0px 10px;
-  margin-left: 45px;
+  margin-left: 35px;
   border-radius: 5px;
   font-weight: bold;
 }
 
 .favorite-button.favorite-active {
-  margin-left: 63px;
+  margin-left: 54px;
 }
 
 /* .favorite-button:hover {
