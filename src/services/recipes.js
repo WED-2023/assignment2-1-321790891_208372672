@@ -24,5 +24,13 @@ export function mockGetRandomRecipesPreview(amount = 1) {
 
 
 export function mockGetRecipeFullDetails(recipeId) {
-  return { data: { recipe: recipe_full_view } };
+  // return { data: { recipe: recipe_full_view } };
+
+  const recipe = recipe_full_view.find(recipe => recipe.id === recipeId);
+  if (recipe) {
+    return { status: 200, data: { recipe: recipe } };
+  } else {
+    return { status: 404, error: "Recipe not found", data: null };
+  }
+
 }

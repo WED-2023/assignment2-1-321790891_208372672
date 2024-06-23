@@ -1,18 +1,21 @@
 <template>
   <div class="container">
-    <div v-if="recipe">
-      <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
-        <img :src="recipe.image" class="center" />
+    <div v-if="recipe" class="recipe-container">
+      <div class="left-section">
+        <div class="recipe-header">
+          <h1>{{ recipe.title }}</h1>
+        </div>
+        <hr class="separator" />
+        <div class="recipe-info">
+          <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
+          <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p>
+        </div>
       </div>
-      <div class="recipe-body">
-        <div class="wrapper">
-          <div class="wrapped">
-            <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
-            </div>
-            Ingredients:
+      <div class="right-section">
+        <img :src="recipe.image" class="recipe-image" />
+        <div class="recipe-body">
+          <div class="recipe-ingredients">
+            <h3>Ingredients:</h3>
             <ul>
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
@@ -22,8 +25,8 @@
               </li>
             </ul>
           </div>
-          <div class="wrapped">
-            Instructions:
+          <div class="recipe-instructions">
+            <h3>Instructions:</h3>
             <ol>
               <li v-for="s in recipe._instructions" :key="s.number">
                 {{ s.step }}
@@ -31,7 +34,6 @@
             </ol>
           </div>
         </div>
-      </div>
       <!-- <pre>
       {{ $route.params }}
       {{ recipe }}
@@ -39,6 +41,7 @@
       > -->
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -109,19 +112,92 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
+.container {
   display: flex;
+  justify-content: center;
+  padding: 20px;
 }
-.wrapped {
-  width: 50%;
-}
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-/* .recipe-header{
 
-} */
+.recipe-container {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  gap: 20px;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.recipe-header {
+  text-align: left;
+
+}
+
+.recipe-header h1 {
+  font-size: 2.5em;
+  color: #333;
+}
+
+.separator {
+  border: 0;
+  border-top: 2px solid #e0e0e0;
+  margin: 10px 0;
+  margin-bottom: 40px;
+}
+
+.recipe-info {
+  color: #555;
+}
+
+.right-section {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-image {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.recipe-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.recipe-ingredients,
+.recipe-instructions {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  color: #333;
+  width: 100%;
+}
+
+.recipe-ingredients h3,
+.recipe-instructions h3 {
+  margin-top: 0;
+}
+
+.recipe-ingredients ul,
+.recipe-instructions ol {
+  padding-left: 20px;
+}
+
+.recipe-ingredients li,
+.recipe-instructions li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
 </style>

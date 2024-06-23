@@ -1,17 +1,20 @@
 <template>
-  <div class="container">
-    <div class="content">
-      <RecipePreviewList
-        ref="favoriteRecipesList"
-        title="MY FAVORITE RECIPES"
-        class="FavoritesRecipes"
-      />
-      <button @click="loadMoreFavoriteRecipes" class="load-more-button">
-        Load More
-      </button>
+  <div class="background">
+    <div class="container">
+      <div class="content">
+        <RecipePreviewList
+          ref="favoriteRecipesList"
+          title="MY FAVORITE RECIPES"
+          class="FavoritesRecipes"
+        />
+        <button @click="loadMoreFavoriteRecipes" class="load-more-button">
+          Load More
+        </button>
+      </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
@@ -31,6 +34,7 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -39,11 +43,13 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%; /* Ensures container takes full height of viewport */
+
 }
 
 .content {
   margin-top: 20px;
   text-align: center; /* Center aligns child elements */
+  
 }
 
 .load-more-button {

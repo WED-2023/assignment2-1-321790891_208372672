@@ -7,7 +7,7 @@
           <div class="site-name">FOXCHEF CUISINE</div>
         </div>
         <div class="links-container">
-          <router-link :to="{ name: 'main' }">RECIPES</router-link>|
+          <router-link :to="{ name: 'main'}">RECIPES</router-link>|
           <router-link :to="{ name: 'search' }">SEARCH</router-link>|
           <router-link :to="{ name: 'about' }">ABOUT</router-link>|
         </div>
