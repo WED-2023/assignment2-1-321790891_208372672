@@ -25,6 +25,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    numResults: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -33,7 +37,7 @@ export default {
     };
   },
   mounted() {
-    this.updateRecipes();
+    this.updateRecipes(this.numResults);
   },
   methods: {
     async updateRecipes(amountToFetch = 3) {

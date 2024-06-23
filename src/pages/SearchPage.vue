@@ -56,6 +56,7 @@
       </div>
       <div v-if="showResults" class="search-results">
         <RecipePreviewList
+          ref="searchRecipesList"
           title="Found Recipes"
           class="FoundRecipes"
           :searchQuery="searchQuery"
@@ -93,6 +94,7 @@ export default {
   methods: {
     onSearch() {
       this.showResults = true; // Show the search results component
+      this.$refs.searchRecipesList.updateRecipes(this.numResults);
     },
     toggleFilter() {
       this.showFilter = !this.showFilter;
@@ -123,8 +125,8 @@ export default {
 
 .icon-container {
   position: absolute;
- margin-left: 10%;
- margin-top: 25px;
+  margin-left: 10%;
+  margin-top: 25px;
   transform: translateX(-50%);
 }
 
