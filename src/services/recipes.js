@@ -34,3 +34,21 @@ export function mockGetRecipeFullDetails(recipeId) {
   }
 
 }
+let recipes = [];
+
+export function saveRecipe(recipe) {
+  return new Promise((resolve, reject) => {
+    try {
+      recipes.push({ ...recipe, id: Date.now() }); // Add an ID to the recipe
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export function getRecipes() {
+  return new Promise((resolve) => {
+    resolve(recipes);
+  });
+}

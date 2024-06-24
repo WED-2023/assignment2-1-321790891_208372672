@@ -23,6 +23,11 @@
               :options="resultOptions"
               class="num-results-select"
             ></b-form-select>
+            <b-form-select
+              v-model="sortOption"
+              :options="sortOptions"
+              class="sort-select"
+            ></b-form-select>
             <b-button @click="toggleFilter" class="filter-button">Filter</b-button>
           </div>
         </div>
@@ -32,7 +37,7 @@
         <div class="filter-category">
           <h5>Cuisine</h5>
           <b-button-group class="mb-2">
-            <b-button v-for="cuisine in cuisines" :key="cuisine"  @click="toggleFilterOption('cuisine', cuisine)">
+            <b-button v-for="cuisine in cuisines" :key="cuisine" @click="toggleFilterOption('cuisine', cuisine)">
               {{ cuisine }}
             </b-button>
           </b-button-group>
@@ -40,7 +45,7 @@
         <div class="filter-category">
           <h5>Diet</h5>
           <b-button-group class="mb-2">
-            <b-button v-for="diet in diets" :key="diet"  @click="toggleFilterOption('diet', diet)">
+            <b-button v-for="diet in diets" :key="diet" @click="toggleFilterOption('diet', diet)">
               {{ diet }}
             </b-button>
           </b-button-group>
@@ -56,12 +61,9 @@
       </div>
       <div v-if="showResults" class="search-results">
         <RecipePreviewList
-          ref="searchRecipesList"
           title="Found Recipes"
           class="FoundRecipes"
-          :searchQuery="searchQuery"
-          :numResults="numResults"
-          :selectedFilters="selectedFilters"
+          :recipes="sortedRecipes"
         />
       </div>
     </div>
@@ -70,6 +72,8 @@
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import { mockGetRecipesPreview } from "../services/recipes";
+
 export default {
   components: {
     RecipePreviewList
@@ -79,6 +83,8 @@ export default {
       searchQuery: '',
       numResults: 5,
       resultOptions: [5, 10, 15],
+      sortOptions: ['likes', 'time'],
+      sortOption: 'time', // Default sort option
       showFilter: false,
       showResults: false,
       cuisines: ['Italian', 'Thai', 'French', 'Greek', 'Chinese', 'Mexican', 'German', 'Indian', 'Japanese'],
@@ -88,13 +94,29 @@ export default {
         cuisine: [],
         diet: [],
         intolerance: []
-      }
+      },
+      recipes: []
     };
+  },
+  computed: {
+    sortedRecipes() {
+      let sorted = [...this.recipes];
+      if (this.sortOption === 'likes') {
+        sorted.sort((a, b) => b.aggregateLikes - a.aggregateLikes);
+      } else if (this.sortOption === 'time') {
+        sorted.sort((a, b) => a.readyInMinutes - b.readyInMinutes);
+      }
+      return sorted;
+    }
   },
   methods: {
     onSearch() {
-      this.showResults = true; // Show the search results component
-      this.$refs.searchRecipesList.updateRecipes(this.numResults);
+      this.fetchRecipes();
+    },
+    fetchRecipes() {
+      const { data } = mockGetRecipesPreview(this.numResults);
+      this.recipes = data.recipes;
+      this.showResults = true;
     },
     toggleFilter() {
       this.showFilter = !this.showFilter;
@@ -121,7 +143,6 @@ export default {
   overflow-y: auto; /* Enable scrolling if content overflows vertically */
   position: relative; /* Ensure relative positioning for absolute child elements */
 }
-
 
 .icon-container {
   position: absolute;
@@ -170,6 +191,11 @@ export default {
   margin-right: 10px;
 }
 
+.sort-select {
+  width: 120px; /* Adjust width as needed */
+  margin-right: 10px;
+}
+
 .filter-button {
   border-color: black;
   background-color: black;
@@ -195,12 +221,21 @@ export default {
   margin-bottom: 20px;
 }
 
+.filter-category .mb-2 {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+}
+
 .filter-category .mb-2 .btn {
   margin-right: 10px; /* Add space between buttons */
-  margin-bottom: 5px; /* Optional: Add space below buttons for better wrapping */
+  margin-bottom: 5px; /* Add space below buttons for better wrapping */
   color: orange;
   background-color: rgb(240, 236, 236);
   border-color: black;
+  padding: 5px 10px; /* Adjust padding to make buttons smaller */
+  font-size: 0.8em; /* Adjust font size to make text smaller */
+  flex: 1 0 auto; /* Adjust flex property to allow auto width */
+  max-width: 120px; /* Set a maximum width to make buttons narrower */
 }
 
 .filter-category .mb-2 .btn:hover {
@@ -229,5 +264,4 @@ export default {
   padding: 20px;
   margin-top: 20px; /* Add margin top */
 }
-
 </style>

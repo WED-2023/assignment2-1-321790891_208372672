@@ -9,12 +9,10 @@
   </div>
 </template>
 
-
 <script>
 import RecipePreview from "./RecipePreview.vue";
 import { mockGetRecipesPreview, mockGetRandomRecipesPreview } from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
-
 
 export default {
   name: "RecipePreviewList",
@@ -28,30 +26,29 @@ export default {
     },
     numResults: {
       type: Number,
-      required: true
+      default: 3 // Default to 3 if not provided
+    },
+    recipes: {
+      type: Array,
+      default: () => [] // Default to an empty array if not provided
     }
   },
   data() {
     return {
-      recipes: []
+      recipesInternal: this.recipes // Use internal data property for recipes
     };
   },
   mounted() {
-    this.updateRecipes(this.numResults);
+    
+      this.updateRecipes(this.numResults);
+    
   },
   methods: {
     async updateRecipes(amountToFetch = 3) {
       try {
-        // const response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/random",
-        // );
-
-       // const amountToFetch = 3; // Set this to how many recipes you want to fetch
         const response = mockGetRecipesPreview(amountToFetch);
-        //const response = mockGetRandomRecipesPreview(amountToFetch)
-
-        console.log(response);
         const recipes = response.data.recipes;
+        this.recipesInternal = recipes;
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);
@@ -61,16 +58,9 @@ export default {
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
-        // const response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/random",
-        // );
-
-        const amountToFetch = 3; // Set this to how many recipes you want to fetch
-        //const response = mockGetRecipesPreview(amountToFetch);
-        const response = mockGetRandomRecipesPreview(amountToFetch)
-
-        console.log(response);
+        const response = mockGetRandomRecipesPreview(amountToFetch);
         const recipes = response.data.recipes;
+        this.recipesInternal = recipes;
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);
@@ -80,14 +70,16 @@ export default {
     },
     async handleToggleFavorite(recipeId, isFavorite) {
       try {
-        // Call addFavorite function
         const response = await mockAddFavorite(recipeId);
         console.log(response.data.message);
-        // Handle state update or other actions as needed
       } catch (error) {
         console.error(error);
-        // Handle error
       }
+    }
+  },
+  watch: {
+    recipes(newRecipes) {
+      this.recipesInternal = newRecipes;
     }
   }
 };
@@ -96,7 +88,6 @@ export default {
 <style lang="scss" scoped>
 .recipe-preview-list {
   margin-bottom: 20px;
-  
 }
 
 .list-title {
