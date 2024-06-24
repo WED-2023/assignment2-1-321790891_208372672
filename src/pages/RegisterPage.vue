@@ -328,13 +328,13 @@ export default {
   justify-content: center;
   margin-top: 10px;
   margin-bottom: 70px;
-  // margin: 0 auto;
 }
 
 .button-container {
   flex-direction: column;
   position: relative;
   margin-top: 30px;
+  margin-left: 33px;
 }
 
 .mt-2{

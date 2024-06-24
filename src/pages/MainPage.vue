@@ -17,16 +17,6 @@
       <div class="right-column">
         
         <div v-if="!$root.store.username" class="sign-in-form">
-          <!-- <h2 class="form-title">Sign In</h2>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="username" id="username" v-model="username" placeholder="Enter Username">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" v-model="password" placeholder="Enter Password">
-          </div>
-          <button @click="submitForm" class="submit-button">Sign In</button> -->
           <div class="login-form">
             <b-form @submit.prevent="onLogin">
               <h1 class="title">Sign In</h1>
@@ -63,9 +53,11 @@
 
         <div v-else class="last-viewed">
           <RecipePreviewList
+          ref="lastViewedRecipesList"
           title="LAST VIEWED RECIPES"
           class="LastViewedRecipes"
           :disabled="!$root.store.username"
+          :loadLastViewed="true" 
         />
         </div>
 
@@ -109,9 +101,6 @@ export default {
   methods: {
     loadNewRandomRecipes() {
       this.$refs.randomRecipesList.updateRandomRecipes();
-    },
-    submitForm() {
-      // Logic to submit the form
     },
     validateState(param) {
       const { $dirty, $error } = this.$v.form[param];
@@ -159,59 +148,34 @@ export default {
 };
 </script>
 
-<!-- <style lang="scss" scoped>
-.RandomRecipes {
-  margin: 10px 0 10px;
-}
-.blur {
-  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
-  filter: blur(2px);
-}
-::v-deep .blur .recipe-preview {
-  pointer-events: none;
-  cursor: default;
-}
-</style> -->
 <style lang="scss" scoped>
-// .background-container {
-//   background-image: url('~@/assets/about-background.jpg'); /* Adjust the path based on your actual image location */
-//   background-size: cover;
-//   background-position: center;
-//   min-height: 100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 40px;
-// }
-
 .container {
   display: flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap; /* Allow items to wrap if needed */
 }
 
 .left-column {
-  flex: 1; /* Allow left column to grow and take available space */
-  margin-right: 20px; /* Adjust spacing between left and right columns */
+  flex: 1; 
+  margin-right: 20px; 
   margin-top: 40px;
-  margin-left: -60px; /* Adjust this value to move left column more to the left */
+  margin-left: -60px; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .right-column {
-  flex: 1; /* Allow right column to grow and take available space */
-  //margin-left: 170px; /* Adjust spacing between left and right columns */
+  flex: 1; 
   margin-top: 40px;
-  margin-right: -40px; /* Adjust this value to move left column more to the left */
-  //flex-basis: 40%; /* Adjusted to 30% */
+  margin-right: -30px; 
+  flex-direction: column;
 }
 
 .last-viewed{
-  margin-left: 70px; /* Adjust spacing between left and right columns */
+  margin-left: 70px; 
 }
 
 .login-form {
-  margin-left: 100px; /* Adjust spacing between left and right columns */
-  //padding: 2rem;
+  margin-left: 100px; 
   background: rgba(255, 255, 255, 0.9); // White background with some transparency
   display: flex;
   flex-direction: column;
@@ -224,15 +188,24 @@ export default {
 }
 
 .sigh-in-button {
+  border: 2px solid #e97f29;
+  background-color: #e97f29;
+  color: white;
+
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 4px;
   width: 100%;
-  background: linear-gradient(to right, #e97f29, #e97f29);
-  border: none;
   margin-top: 1rem;
 }
 
 
 .sigh-in-button:hover {
-  transform: scale(1.05); /* Increase size on hover */
+  background-color: white;
+  color: #e97f29;
+  border: 2px solid #e97f29;
 }
 
 .forgot-password {
@@ -252,19 +225,22 @@ export default {
 }
 
 .load-more-button {
-  width: 20%;
-  padding: 10px;
+  border: 2px solid #e97f29;
+  background-color: white;
+  color: #e97f29;
+  padding: 10px 20px;
+  font-size: 1rem;
   cursor: pointer;
-  background-color: #e97f29;
-  color: white;
-  border: #e97f29;
+  transition: background-color 0.3s, color 0.3s;
   border-radius: 4px;
-  margin-left: 37.5%;
+  margin-top: 5px; 
+  margin-left: 37%;
   margin-bottom: 20px;
 }
 
 .load-more-button:hover {
-  transform: scale(1.05); /* Increase size on hover */
+  background-color: #e97f29;
+  color: white;
 }
 
 
@@ -289,19 +265,5 @@ input[type="password"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
-// .sigh-in-button {
-//   width: 100%;
-//   padding: 10px;
-//   background-color: black;
-//   color: white;
-//   border: none;
-//   border-radius: 4px;
-//   cursor: pointer;
-//   margin-top: 20px;
-// }
-
-
-
 
 </style>

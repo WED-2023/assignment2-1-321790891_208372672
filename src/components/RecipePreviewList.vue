@@ -12,7 +12,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview, mockGetRandomRecipesPreview } from "../services/recipes.js";
+import { mockGetRecipesPreview, mockGetRandomRecipesPreview, mockGetFavoriteRecipes,mockGetLastViewedRecipes} from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
 
 
@@ -29,15 +29,33 @@ export default {
     numResults: {
       type: Number,
       required: true
+    },
+    loadLastViewed: {
+      type: Boolean,
+      default: false
+    },
+    loadFavorites: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
+      favoriteRecipes: [], // Initialize with an empty array
+      numFavorites: 0 // Initialize numFavorites
     };
   },
   mounted() {
-    this.updateRecipes(this.numResults);
+    // Check if the current route is the "Favorites" route
+    if (this.loadFavorites) {
+      this.updateFavoriteRecipes();
+    }
+    else if (this.loadLastViewed) {
+      this.updateLastViewedRecipes();
+    } else {
+      this.updateRecipes(this.numResults);
+    }
   },
   methods: {
     async updateRecipes(amountToFetch = 3) {
@@ -45,11 +63,9 @@ export default {
         // const response = await this.axios.get(
         //   this.$root.store.server_domain + "/recipes/random",
         // );
-
-       // const amountToFetch = 3; // Set this to how many recipes you want to fetch
         const response = mockGetRecipesPreview(amountToFetch);
-        //const response = mockGetRandomRecipesPreview(amountToFetch)
 
+        
         console.log(response);
         const recipes = response.data.recipes;
         console.log(recipes);
@@ -61,14 +77,37 @@ export default {
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
-        // const response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/random",
-        // );
-
         const amountToFetch = 3; // Set this to how many recipes you want to fetch
-        //const response = mockGetRecipesPreview(amountToFetch);
-        const response = mockGetRandomRecipesPreview(amountToFetch)
+        const response = mockGetRandomRecipesPreview(amountToFetch);
 
+        console.log(response);
+        const recipes = response.data.recipes;
+        console.log(recipes);
+        
+        this.recipes = [];
+        this.recipes.push(...recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateFavoriteRecipes() {
+      try {
+        const response = mockGetFavoriteRecipes();
+
+        
+        console.log(response);
+        const recipes = response.data.recipes;
+        console.log(recipes);
+        this.recipes = [];
+        this.recipes.push(...recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateLastViewedRecipes() {
+      try {
+        const response = mockGetLastViewedRecipes();
+        
         console.log(response);
         const recipes = response.data.recipes;
         console.log(recipes);
@@ -107,10 +146,7 @@ export default {
 .recipes {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adjust gap as needed */
+  gap: 10px; 
 }
 
-.recipe-item {
-  /* Additional styling if needed */
-}
 </style>
