@@ -52,3 +52,42 @@ export function getRecipes() {
     resolve(recipes);
   });
 }
+
+// Function to retrieve favorite recipes based on stored IDs
+export function mockGetFavoriteRecipes() {
+  const favoriteRecipesIds = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+  const favoriteRecipes = [];
+  
+  
+  favoriteRecipesIds.forEach(recipeId => {
+    // Find the recipe object with matching ID in either previews or full view
+    const recipe = recipe_previews.find(recipe => recipe.id === recipeId) ||
+                   recipe_full_view.find(recipe => recipe.id === recipeId);
+    
+    if (recipe) {
+      favoriteRecipes.push(recipe);
+      
+    }
+  });
+
+  return { data: { recipes: favoriteRecipes } };
+}
+
+export function mockGetLastViewedRecipes() {
+  const lastWatchedRecipesIds = JSON.parse(localStorage.getItem('lastWatchedRecipes')) || [];
+  const lastWatchedRecipes = [];
+  
+  
+  lastWatchedRecipesIds.forEach(recipeId => {
+    // Find the recipe object with matching ID in either previews or full view
+    const recipe = recipe_previews.find(recipe => recipe.id === recipeId) ||
+                   recipe_full_view.find(recipe => recipe.id === recipeId);
+    
+    if (recipe) {
+      lastWatchedRecipes.push(recipe);
+      
+    }
+  });
+
+  return { data: { recipes: lastWatchedRecipes } };
+}

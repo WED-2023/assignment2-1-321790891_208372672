@@ -24,9 +24,11 @@
     </div>
 
     <!-- Recipe Footer -->
-    <div class="recipe-footer">
+    <div class="recipe-footer"
+    :class="{ 'recipe-footer-viewed': viewed }" >
       <div class="title">
-        <div :title="recipe.title" class="recipe-title">
+        <div :title="recipe.title" 
+             class="recipe-title">
           {{ recipe.title }}
         </div>
       </div>
@@ -36,7 +38,7 @@
         <img src="@/assets/heart-empty.png" alt="Icon" class="like-icon" />
         <li>{{ recipe.aggregateLikes }} likes</li>
         <div>
-          <button @click.stop="toggleFavorite" :class="['favorite-button', { 'favorite-active': !isFavorite }]" class="favorite-button">
+          <button @click.stop.prevent="toggleFavorite" :class="['favorite-button', { 'favorite-active': !isFavorite }]" class="favorite-button">
           <img :src="isFavorite ? require('@/assets/favorite-full.jpg') : require('@/assets/favorite-empty.jpg')" alt="Favorite Icon" class="favorite-icon" />
           {{ isFavorite ? 'Added To Favorites' : 'Add To Favorites' }}
           </button>
@@ -60,7 +62,8 @@ export default {
   data() {
     return {
       // image_load: false
-      isFavorite: false // Track if the recipe is added to favorites
+      isFavorite: false, // Track if the recipe is added to favorites
+      viewed: false // Track if the recipe has been viewed
     };
   },
   props: {
@@ -93,9 +96,31 @@ export default {
     //   }
     // }
   },
+  created(){
+    const viewedRecipes = JSON.parse(localStorage.getItem('viewedRecipes')) || [];
+    this.viewed = viewedRecipes.includes(this.recipe.id);
+    alert(viewed)
+  },
+  mounted() {
+    // Load favorite status from local storage
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    this.isFavorite = favoriteRecipes.includes(this.recipe.id);
+
+
+  },
   methods: {
     toggleFavorite() {
       this.isFavorite = true;
+      let favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+
+      if (this.isFavorite) {
+        // Add recipe to favorites
+        if (!favoriteRecipes.includes(this.recipe.id)) {
+          favoriteRecipes.push(this.recipe.id);
+        }
+      }
+
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
       this.$emit('toggle-favorite', this.recipe.id);
     }
   }
@@ -112,18 +137,24 @@ export default {
 
 .recipe-preview {
   display: inline-block;
-  width: 550px; /* Set fixed width */
-  height: 280px; /* Set fixed height */
+  width: 550px; 
+  height: 280px;
   position: relative;
   margin: 10px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
   transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, text-decoration 0.3s; /* Added text-decoration transition */
+
 }
 
 .recipe-preview:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-preview:hover .recipe-title {
+  text-decoration: underline; /* Underline only the recipe title on hover */
 }
 
 .recipe-body {
@@ -161,17 +192,13 @@ export default {
   opacity: 1;
 }
 
-/* .recipe-preview:hover{
-  transform: scale(1.05); /* Increase size on hover */
-/* }  */
-
 .diet-icons {
   list-style: none;
   padding: 0;
   margin: 0;
   position: absolute;
-  top: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
+  top: 10px; 
+  right: 10px;
 }
 
 .diet-icons li {
@@ -181,7 +208,6 @@ export default {
 .diet-icon {
   width: 60px;
   height: 60px;
-  /* Add additional styling as needed */
 }
 
 .recipe-footer {
@@ -204,6 +230,11 @@ export default {
   text-overflow: ellipsis;
   font-weight: bold;
   margin-left: 5px;
+  transition: text-decoration 0.3s; /* Smooth transition for underline */
+}
+
+.recipe-footer-viewed {
+  color: #5059ac; /* Change text color to blue for viewed recipes */
 }
 
 .recipe-overview {
@@ -211,7 +242,6 @@ export default {
   padding: 0;
   margin: 10px 0;
   display: flex;
-  /* justify-content: space-between; */
 }
 
 .recipe-readyInMinutes{
@@ -219,16 +249,16 @@ export default {
 }
 
 .time-icon{
-  width: 19px; /* Adjust size as needed */
-  height: 19px; /* Adjust size as needed */
+  width: 19px; 
+  height: 19px; 
   margin-top: 2px;
   margin-right: 5px;
   margin-left: 5px;
 }
 
 .like-icon{
-  width: 16px; /* Adjust size as needed */
-  height: 16px; /* Adjust size as needed */
+  width: 16px; 
+  height: 16px; 
   margin-top: 4px;
   margin-right: 5px;
 }
@@ -255,9 +285,6 @@ export default {
   margin-left: 54px;
 }
 
-/* .favorite-button:hover {
-  background-color: #e5761b;
-} */
 
 .favorite-icon {
   width: 19px;
@@ -274,6 +301,4 @@ export default {
 .viewed-indicator {
   color: green;
 }
-
-
 </style>

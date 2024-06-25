@@ -11,7 +11,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview, mockGetRandomRecipesPreview } from "../services/recipes.js";
+import { mockGetRecipesPreview, mockGetRandomRecipesPreview, mockGetFavoriteRecipes,mockGetLastViewedRecipes} from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
 
 export default {
@@ -31,17 +31,34 @@ export default {
     recipes: {
       type: Array,
       default: () => [] // Default to an empty array if not provided
+    },
+    loadLastViewed: {
+      type: Boolean,
+      default: false
+    },
+    loadFavorites: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      recipesInternal: this.recipes // Use internal data property for recipes
+      recipesInternal: this.recipes, // Use internal data property for recipes
+      favoriteRecipes: [], // Initialize with an empty array
+      numFavorites: 0 // Initialize numFavorites
     };
   },
   mounted() {
-    
+    // Check if the current route is the "Favorites" route
+
+    if (this.loadFavorites) {
+      this.updateFavoriteRecipes();
+    }
+    else if (this.loadLastViewed) {
+      this.updateLastViewedRecipes();
+    } else {
       this.updateRecipes(this.numResults);
-    
+    }
   },
   methods: {
     async updateRecipes(amountToFetch = 3) {
@@ -61,6 +78,33 @@ export default {
         const response = mockGetRandomRecipesPreview(amountToFetch);
         const recipes = response.data.recipes;
         this.recipesInternal = recipes;
+        console.log(recipes);
+        this.recipes = [];
+        this.recipes.push(...recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateFavoriteRecipes() {
+      try {
+        const response = mockGetFavoriteRecipes();
+
+        
+        console.log(response);
+        const recipes = response.data.recipes;
+        console.log(recipes);
+        this.recipes = [];
+        this.recipes.push(...recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateLastViewedRecipes() {
+      try {
+        const response = mockGetLastViewedRecipes();
+        
+        console.log(response);
+        const recipes = response.data.recipes;
         console.log(recipes);
         this.recipes = [];
         this.recipes.push(...recipes);

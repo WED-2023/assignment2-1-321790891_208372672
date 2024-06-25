@@ -1,75 +1,39 @@
-<!-- <template>
+<template>
   <div class="container">
     <div v-if="recipe" class="recipe-container">
-      <div class="left-section">
+      <div class="header-image-container">
         <div class="recipe-header">
           <h1>{{ recipe.title }}</h1>
-        </div>
-        <hr class="separator" />
-        <div class="recipe-info">
+          <hr class="separator" />
+          <div class="recipe-info">
           <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
           <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p>
         </div>
+        </div>
+        <div class="image-container">
+          <img :src="recipe.image" class="recipe-image" />
+        </div>
       </div>
-      <div class="right-section">
-        <img :src="recipe.image" class="recipe-image" />
-        <div class="recipe-body">
-          <div class="recipe-ingredients">
-            <h3>Ingredients:</h3>
-            <ul>
-              <li
-                v-for="(r, index) in recipe.extendedIngredients"
-                :key="index + '_' + r.id"
-              >
-                {{ r.original }}
-              </li>
-            </ul>
-          </div>
-          <div class="recipe-instructions">
-            <h3>Instructions:</h3>
-            <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
-                {{ s.step }}
-              </li>
-            </ol>
-          </div>
-        </div> -->
-        <template>
-          <div class="container">
-            <div v-if="recipe" class="recipe-container">
-              <div class="header-image-container">
-                <div class="recipe-header">
-                  <h1>{{ recipe.title }}</h1>
-                  <hr class="separator" />
-                  <div class="recipe-info">
-                  <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
-                  <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p>
-                </div>
-                </div>
-                <div class="image-container">
-                  <img :src="recipe.image" class="recipe-image" />
-                </div>
-              </div>
-              
-              <div class="recipe-body">
-                
+      
+      <div class="recipe-body">
+        
 
-                <div class="recipe-ingredients">
-                  <h3>Ingredients:</h3>
-                  <ul>
-                    <li v-for="(r, index) in recipe.extendedIngredients" :key="index + '_' + r.id">
-                      {{ r.original }}
-                    </li>
-                  </ul>
-                </div>
-                <div class="recipe-instructions">
-                  <h3>Instructions:</h3>
-                  <ol>
-                    <li v-for="s in recipe._instructions" :key="s.number">
-                      {{ s.step }}
-                    </li>
-                  </ol>
-                </div>
+        <div class="recipe-ingredients">
+          <h3>Ingredients:</h3>
+          <ul>
+            <li v-for="(r, index) in recipe.extendedIngredients" :key="index + '_' + r.id">
+              {{ r.original }}
+            </li>
+          </ul>
+        </div>
+        <div class="recipe-instructions">
+          <h3>Instructions:</h3>
+          <ol>
+            <li v-for="s in recipe._instructions" :key="s.number">
+              {{ s.step }}
+            </li>
+          </ol>
+        </div>
       <!-- <pre>
       {{ $route.params }}
       {{ recipe }}
@@ -87,6 +51,17 @@ export default {
     return {
       recipe: null
     };
+  },
+  mounted() {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+    let viewedRecipes = JSON.parse(localStorage.getItem('viewedRecipes')) || [];
+
+    if (!viewedRecipes.includes(this.recipe.id)) {
+      viewedRecipes.push(this.recipe.id);
+    }
+
+    localStorage.setItem('viewedRecipes', JSON.stringify(viewedRecipes));
   },
   async created() {
     try {
@@ -118,7 +93,8 @@ export default {
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
+        id
       } = response.data.recipe;
 
       let _instructions = analyzedInstructions
@@ -136,191 +112,133 @@ export default {
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
+        id
       };
 
       this.recipe = _recipe;
+
+      // Add recipe to last watched recipes
+      this.addToLastWatchedRecipes(_recipe);
+
     } catch (error) {
       console.log(error);
+    }
+  },
+  methods: {
+    addToLastWatchedRecipes(recipe) {
+      // Retrieve last watched recipes from localStorage
+      let lastWatchedRecipes = JSON.parse(localStorage.getItem("lastWatchedRecipes")) || [];
+
+      // Add new recipe to the beginning of the array
+      lastWatchedRecipes.unshift(recipe.id);
+
+      // Ensure only up to 3 recipes are kept
+      if (lastWatchedRecipes.length > 3) {
+        lastWatchedRecipes = lastWatchedRecipes.slice(0, 3);
+      }
+
+      // Update localStorage with the updated last watched recipes
+      localStorage.setItem("lastWatchedRecipes", JSON.stringify(lastWatchedRecipes));
+      
     }
   }
 };
 </script>
 
-<!-- <style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-.recipe-container {
-  display: flex;
-  width: 100%;
-  max-width: 2000px;
-  padding: 20px;
-  gap: 20px;
-}
-
-.left-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.recipe-header {
-  text-align: left;
-  margin-top:15cap; 
-  /* margin-bottom: auto; */
-  margin-bottom: 6.7cap;
-}
-
-.recipe-header h1 {
-  font-size: 2.5em;
-  color: #333;
-}
-
-.separator {
-  border: 0;
-  border-top: 2px solid #e0e0e0;
-  margin: 10px 0; 
-  /* margin-bottom: 40px;  */
-}
-
-.recipe-info {
-  color: #555;
-  margin-top: auto; /* Pushes the info down */
-}
-
-.right-section {
-  flex: 1.5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Center content vertically */
-}
-
-.recipe-image {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-.recipe-body {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-
-.recipe-ingredients,
-.recipe-instructions {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  color: #333;
-  width: 100%;
-}
-
-.recipe-ingredients h3,
-.recipe-instructions h3 {
-  margin-top: 0;
-}
-
-.recipe-ingredients ul,
-.recipe-instructions ol {
-  padding-left: 20px;
-}
-
-.recipe-ingredients li,
-.recipe-instructions li {
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
-</style> -->
-
 <style scoped>
+html, body {
+  height: 100%;
+  margin: 0;
+  
+}
+
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .recipe-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1000px;
+  max-width: 900px;
   padding: 20px;
-  gap: 20px;
+  background-color: #ffffff;  
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .header-image-container {
   display: flex;
-  flex-direction: row;
-  align-items: center; /* Center the items vertically */
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
 .recipe-header {
-  flex: 1;
+  text-align: center;
+}
+
+.recipe-header h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin: 0;
 }
 
 .separator {
   border: 0;
   border-top: 2px solid #e0e0e0;
   margin: 10px 0; 
-  /* margin-bottom: 40px;  */
 }
 
-.recipe-header h1 {
-  font-size: 2.5em;
-  color: #333;
-  margin: 0; /* Remove default margin */
+.recipe-info {
+  color: #777;
+  font-size: 1.2em;
 }
 
 .image-container {
-  flex: 1.5;
+  width: 100%;
   display: flex;
-  justify-content: center; /* Center image horizontally */
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .recipe-image {
-  display: block;
-  width: 600px; /* Fixed width */
-  height: 500px; /* Fixed height */
-  object-fit: cover; /* Maintain aspect ratio and cover container */
-  border: 5px solid #fff; /* White frame */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Elegant shadow */
-  border-radius: 15px; /* Rounded corners */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  width: 900px;
+  height: 500px;
+  object-fit: cover;
+  border: 5px solid #ffffff;  
+  border-radius: 10px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .recipe-body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.recipe-info {
-  color: #555;
+  margin-top: 20px;
 }
 
 .recipe-ingredients,
 .recipe-instructions {
-  background-color: #ffffff;
+  background-color: #fafafa;
   padding: 20px;
   border-radius: 10px;
-  color: #333;
-  width: 100%;
+  border: 1px solid #e0e0e0;
 }
 
 .recipe-ingredients h3,
 .recipe-instructions h3 {
   margin-top: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #555;
 }
 
 .recipe-ingredients ul,
@@ -328,9 +246,17 @@ export default {
   padding-left: 20px;
 }
 
+.recipe-ingredients li::marker,
+.recipe-instructions li::marker {
+  color: #e97f29;
+  font-weight: bold;
+}
+
 .recipe-ingredients li,
 .recipe-instructions li {
   margin-bottom: 10px;
   line-height: 1.5;
+  font-size: 1.1em;
+  color: #555;
 }
 </style>
