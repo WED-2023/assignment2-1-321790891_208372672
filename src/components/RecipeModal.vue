@@ -149,6 +149,7 @@ export default {
 .ml-2 {
   margin-left: 8px;
 }
+
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;

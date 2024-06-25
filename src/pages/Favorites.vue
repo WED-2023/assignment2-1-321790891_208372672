@@ -9,6 +9,7 @@
           title="MY FAVORITE RECIPES"
           class="FavoritesRecipes"
           :loadFavorites = "true"
+          :titleStyle="customTitleStyle"
         />
       </div>
     </div>
@@ -26,7 +27,11 @@ export default {
   data() {
     return {
       favoriteRecipes: [], // Initialize with an empty array
-      numFavorites: 0 // Initialize numFavorites
+      numFavorites: 0 ,// Initialize numFavorites
+      customTitleStyle: {
+        fontSize: '40px',
+        marginBottom: '20px'
+      }
     };
   }
 };
@@ -41,7 +46,6 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: #000;
 }
 
 .content {

@@ -64,6 +64,8 @@
           title="Found Recipes"
           class="FoundRecipes"
           :recipes="sortedRecipes"
+          :numSearch="this.numResults"
+          :searchPage = "true"
         />
       </div>
     </div>
@@ -187,7 +189,7 @@ export default {
 }
 
 .num-results-select {
-  width: 60px; /* Smaller width */
+  width: 62px; 
   margin-right: 10px;
 }
 
@@ -229,7 +231,7 @@ export default {
 .filter-category .mb-2 .btn {
   margin-right: 10px; /* Add space between buttons */
   margin-bottom: 5px; /* Add space below buttons for better wrapping */
-  color: orange;
+  color: #e97f29;
   background-color: rgb(240, 236, 236);
   border-color: black;
   padding: 5px 10px; /* Adjust padding to make buttons smaller */
@@ -240,7 +242,7 @@ export default {
 
 .filter-category .mb-2 .btn:hover {
   color: white;
-  background-color: orange;
+  background-color: #e97f29;
 }
 
 .filter-category .mb-2 .btn::selection {

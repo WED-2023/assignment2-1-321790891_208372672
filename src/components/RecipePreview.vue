@@ -25,7 +25,7 @@
     <!-- Recipe Footer -->
     <div class="recipe-footer" :class="{ 'recipe-footer-viewed': viewed }">
       <div class="title">
-        <div :title="recipe.title" class="recipe-title">
+        <div :title="recipe.title" class="recipe-title" >
           {{ recipe.title }}
         </div>
       </div>
@@ -64,7 +64,7 @@ export default {
     isFamilyRecipe: {
       type: Boolean,
       default: false
-    }
+    },
   },
   computed: {
     linkTo() {
@@ -219,7 +219,7 @@ export default {
 }
 
 .recipe-readyInMinutes {
-  margin-right: 90px;
+  margin-right: 70px;
 }
 
 .time-icon {
@@ -250,7 +250,7 @@ export default {
   align-items: center;
   font-size: 12pt;
   padding: 0px 10px;
-  margin-left: 3px;
+  margin-left: 35px;
   border-radius: 5px;
   font-weight: bold;
 }

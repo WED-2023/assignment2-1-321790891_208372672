@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">My Family Recipes Page</h1>
+    <h1 class="title">MY FAMILY RECIPES:</h1>
     <div class="FamilyRecipes">
       <RecipePreview
         v-for="(recipe, index) in familyRecipes"
@@ -53,10 +53,12 @@ export default {
 .title {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .FamilyRecipes {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 20px;
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="recipe-preview-list">
-    <h3 class="list-title">{{ title }}:</h3>
+    <h3 class="list-title" :style="titleStyle">{{ title }}:</h3>
     <div class="recipes">
       <div v-for="r in recipes" :key="r.id" class="recipe-item">
-        <RecipePreview :recipe="r" :isFamilyRecipe="false" @toggle-favorite="handleToggleFavorite" />
+        <RecipePreview :recipe="r" :isFamilyRecipe="false" :titleStyle="titleStyle" @toggle-favorite="handleToggleFavorite" />
       </div>
     </div>
   </div>
@@ -39,6 +39,18 @@ export default {
     loadFavorites: {
       type: Boolean,
       default: false
+    },
+    titleStyle: {
+      type: Object,
+      default: () => ({})
+    },
+    numSearch: {
+      type: Number,
+      default: 5
+    },
+    searchPage:{
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -56,6 +68,9 @@ export default {
     }
     else if (this.loadLastViewed) {
       this.updateLastViewedRecipes();
+    } 
+    else if (this.searchPage) {
+      this.updateRecipes(this.numSearch);
     } else {
       this.updateRecipes(this.numResults);
     }
