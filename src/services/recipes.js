@@ -16,6 +16,24 @@ export function mockGetRecipesPreview(amount = 1) {
   return { data: { recipes: recipes } };
 }
 
+import family_recipe_full_view from "../assets/mocks/family_recipe_full_view.json";
+import family_recipe_previews from "../assets/mocks/family_recipe_preview.json";
+
+export function mockGetFamilyRecipesPreview(amount = 1) {
+  let recipes = [];
+  for (let i = 0; i < amount; i++) {
+    if (i < family_recipe_previews.length) {
+      recipes.push(family_recipe_previews[i]);
+    } else {
+      // If the requested amount is greater than the available previews, reuse previews
+      recipes.push(family_recipe_previews[i % family_recipe_previews.length]);
+    }
+  }
+
+  return { data: { recipes: recipes } };
+}
+
+
 export function mockGetRandomRecipesPreview(amount = 1) {
   let shuffled = recipe_previews.sort(() => 0.5 - Math.random());
   let selected = shuffled.slice(0, amount);
@@ -33,6 +51,16 @@ export function mockGetRecipeFullDetails(recipeId) {
     return { status: 404, error: "Recipe not found", data: null };
   }
 
+}
+export function mockGetFamilyRecipeFullDetails(recipeId) {
+  const recipe = family_recipe_full_view.find(recipe => recipe.id === recipeId);
+  if (recipe) {
+    // Prepare instructions array
+    const _instructions = recipe.analyzedInstructions.flatMap(instruction => instruction.steps);
+    return { status: 200, data: { recipe: { ...recipe, _instructions } } };
+  } else {
+    return { status: 404, error: "Recipe not found", data: null };
+  }
 }
 let recipes = [];
 
@@ -52,6 +80,7 @@ export function getRecipes() {
     resolve(recipes);
   });
 }
+
 
 // Function to retrieve favorite recipes based on stored IDs
 export function mockGetFavoriteRecipes() {

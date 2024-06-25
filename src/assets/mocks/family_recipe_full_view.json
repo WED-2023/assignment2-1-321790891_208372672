@@ -1,0 +1,1203 @@
+[
+    {
+        "id": 123456,
+        "image": "https://imaot.co.il/images/Uploads/RecipeImages/90875715112020.jpg",
+        "title": "Kubbeh Soup with Beets",
+        "readyInMinutes": 120,
+        "aggregateLikes": 150,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Kubbeh, also known as kibbeh, is a style of dumpling that typically features ground meat wrapped in semolina, bulgar, or rice. Popular in communities across the Levant, kubbeh can be fried in oil, baked, or poached in soup like it is in this recipe from Pnina Shasha. In her Iraqi family, a beef and onion mixture is tucked into a semolina dough and then simmered in a ruby-hued beet broth. My grandmother served the dish every Friday for lunch. Today, my mom continues to make the soup, but not quite as often since kubbeh requires a good amount of time. Over the years, my family’s found a trick to help: once the kubbeh are formed, the dumplings can be frozen for months and can be used later.",
+        "analyzedInstructions": [
+            {
+                "name": "",
+                "steps": [
+                    {
+                        "number": 1,
+                        "step": "Make the kubbeh filling: Place the 1 chopped onion in a clean kitchen towel. Working over the sink or a bowl, squeeze out and discard as much liquid as possible. Place the onions in a large bowl. Add the beef to the large bowl along with the salt, pepper, baharat, and chopped celery leaves, if using. Mix with your hands until combined, then cover the bowl and refrigerate for 30 minutes."
+                    },
+                    {
+                        "number": 2,
+                        "step": "Make the kubbeh patties: Mix together 3 cups semolina flour, 1 cup water, 1 teaspoon salt, and 1 tablespoon oil in a medium bowl until smooth. Knead the mixture in the bowl to combine until it forms a dough that is moist but not sticky. If dough feels sticky, knead in additional semolina flour, 1 teaspoon at a time. If dough feels dry, add additional water, 1 teaspoon at a time."
+                    },
+                    {
+                        "number": 3,
+                        "step": "Cut dough into two pieces and keep one of them covered. Roll out the other piece of dough on a work surface lightly dusted with semolina flour, or between 2 pieces of wax paper until it is ⅛-inch thick. Cut out about 2 ½-inch rounds and place the cut pieces on a piece of wax paper. Re-roll the scrap and continue cutting rounds until you use up the dough. You can stack the cut rounds between layers of wax paper."
+                    },
+                    {
+                        "number": 4,
+                        "step": "Line 1 to 2 sheet pans with parchment paper. Remove the kubbeh filling from the refrigerator. Wetting your hands as needed to prevent the mixture from sticking, pinch off a small piece of the kubbeh filling and gently roll into a 1” ball. Place the ball of kubbeh filling in the center of a rolled out round of dough and pinch to seal the ends. Roll the ball gently in your hands into a ball to ensure the meat is sealed in the dough. Place on the prepared sheet pan. Repeat rolling, filling and shaping until the remaining kubbeh filling and dough have all been used. If planning to cook these kubbeh within 12 hours, place in the refrigerator; if waiting longer, freeze the kubbeh on the sheet pan until solid, about 2 hours, then transfer to an airtight container and freeze until ready to cook."
+                    },
+                    {
+                        "number": 5,
+                        "step": "Repeat steps 2 to 4 until all the dough and beef mixture have been used."
+                    },
+                    {
+                        "number": 6,
+                        "step": "Make the soup: In a large stockpot, heat 1 tablespoon of oil over medium heat. Saute the 1 chopped onion until translucent, about 4 minutes. Add the beets and saute until softened, about 7 to 8 minutes. Add the water, half of the lemon juice, sugar, salt, pepper, and celery leaves if using, and bring the mixture to a boil. Gently drop the kubbeh into the soup, reduce the heat to low, and cover the pot. Simmer until the kubbeh and the beets are cooked through, about 50 minutes."
+                    },
+                    {
+                        "number": 7,
+                        "step": "Season the soup with more salt and pepper to taste. Add remaining lemon juice and serve the soup with a few kubbeh per serving immediately."
+                    }
+                ]
+            }
+        ],
+        "instructions": "",
+        "extendedIngredients": [
+            {
+                "id": 1001,
+                "aisle": "Milk, Eggs, Other Dairy",
+                "image": "butter-sliced.jpg",
+                "consistency": "SOLID",
+                "name": "butter",
+                "nameClean": "butter",
+                "original": "1 tbsp butter",
+                "originalName": "butter",
+                "amount": 1.0,
+                "unit": "tbsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    }
+                }
+            },
+            {
+                "id": 11282,
+                "aisle": "Produce",
+                "image": "onion.png",
+                "consistency": "SOLID",
+                "name": "yellow onion",
+                "nameClean": "yellow onion",
+                "original": "1 large yellow onion, very finely chopped",
+                "originalName": "yellow onion, very finely chopped",
+                "amount": 1.0,
+                "unit": "large",
+                "meta": ["very finely chopped"],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    }
+                }
+            },
+            {
+                "id": 10023572,
+                "aisle": "Meat",
+                "image": "ground-beef.jpg",
+                "consistency": "SOLID",
+                "name": "ground beef",
+                "nameClean": "ground beef",
+                "original": "¾ pound ground beef",
+                "originalName": "ground beef",
+                "amount": 0.75,
+                "unit": "pound",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 0.75,
+                        "unitShort": "lb",
+                        "unitLong": "pounds"
+                    },
+                    "metric": {
+                        "amount": 340.194,
+                        "unitShort": "g",
+                        "unitLong": "grams"
+                    }
+                }
+            },
+            {
+                "id": 1082047,
+                "aisle": "Spices and Seasonings",
+                "image": "salt.jpg",
+                "consistency": "SOLID",
+                "name": "kosher salt",
+                "nameClean": "kosher salt",
+                "original": "1 teaspoon kosher salt",
+                "originalName": "kosher salt",
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 2031,
+                "aisle": "Spices and Seasonings",
+                "image": "pepper.jpg",
+                "consistency": "SOLID",
+                "name": "black pepper",
+                "nameClean": "black pepper",
+                "original": "½ teaspoon freshly ground black pepper, plus more to taste",
+                "originalName": "freshly ground black pepper, plus more to taste",
+                "amount": 0.5,
+                "unit": "teaspoon",
+                "meta": ["freshly ground", "plus more to taste"],
+                "measures": {
+                    "us": {
+                        "amount": 0.5,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 0.5,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 1062047,
+                "aisle": "Spices and Seasonings",
+                "image": "salt-and-pepper.jpg",
+                "consistency": "SOLID",
+                "name": "salt and pepper",
+                "nameClean": "salt and pepper",
+                "original": "salt and pepper, to taste",
+                "originalName": "salt and pepper, to taste",
+                "amount": 1.0,
+                "unit": "to taste",
+                "meta": ["to taste"],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    }
+                }
+            },
+            {
+                "id": 1072009,
+                "aisle": "Spices and Seasonings",
+                "image": "baharat.jpg",
+                "consistency": "SOLID",
+                "name": "baharat",
+                "nameClean": "baharat",
+                "original": "1 teaspoon baharat",
+                "originalName": "baharat",
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 11143,
+                "aisle": "Produce",
+                "image": "celery.jpg",
+                "consistency": "SOLID",
+                "name": "celery leaves",
+                "nameClean": "celery leaves",
+                "original": "¼ cup chopped celery leaves (optional)",
+                "originalName": "chopped celery leaves (optional)",
+                "amount": 0.25,
+                "unit": "cup",
+                "meta": ["chopped", "optional"],
+                "measures": {
+                    "us": {
+                        "amount": 0.25,
+                        "unitShort": "cup",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 0.25,
+                        "unitShort": "cup",
+                        "unitLong": "cups"
+                    }
+                }
+            },
+            {
+                "id": 20081,
+                "aisle": "Baking",
+                "image": "flour.jpg",
+                "consistency": "SOLID",
+                "name": "semolina flour",
+                "nameClean": "semolina",
+                "original": "3 cups fine semolina flour",
+                "originalName": "fine semolina flour",
+                "amount": 3.0,
+                "unit": "cups",
+                "meta": ["fine"],
+                "measures": {
+                    "us": {
+                        "amount": 3.0,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 3.0,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    }
+                }
+            },
+            {
+                "id": 14412,
+                "aisle": "Beverages",
+                "image": "water.jpg",
+                "consistency": "LIQUID",
+                "name": "water",
+                "nameClean": "water",
+                "original": "1 ½ cups water, divided",
+                "originalName": "water, divided",
+                "amount": 1.5,
+                "unit": "cups",
+                "meta": ["divided"],
+                "measures": {
+                    "us": {
+                        "amount": 1.5,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 1.5,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    }
+                }
+            },
+            {
+                "id": 4582,
+                "aisle": "Oil, Vinegar, Salad Dressing",
+                "image": "vegetable-oil.jpg",
+                "consistency": "LIQUID",
+                "name": "canola oil",
+                "nameClean": "vegetable oil",
+                "original": "1 tablespoon canola oil",
+                "originalName": "canola oil",
+                "amount": 1.0,
+                "unit": "tablespoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    }
+                }
+            },
+            {
+                "id": 2047,
+                "aisle": "Spices and Seasonings",
+                "image": "salt.jpg",
+                "consistency": "SOLID",
+                "name": "salt",
+                "nameClean": "table salt",
+                "original": "4 teaspoons kosher salt",
+                "originalName": "kosher salt",
+                "amount": 4.0,
+                "unit": "teaspoons",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 4.0,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 4.0,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 19335,
+                "aisle": "Baking",
+                "image": "sugar-in-bowl.png",
+                "consistency": "SOLID",
+                "name": "granulated sugar",
+                "nameClean": "sugar",
+                "original": "1 tablespoon granulated sugar",
+                "originalName": "granulated sugar",
+                "amount": 1.0,
+                "unit": "tablespoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    }
+                }
+            },
+            {
+                "id": 11298,
+                "aisle": "Produce",
+                "image": "beet.jpg",
+                "consistency": "SOLID",
+                "name": "beets",
+                "nameClean": "beets",
+                "original": "3 large beets, peeled and cubed into 1/2-inch pieces (about 4 to 5 cups)",
+                "originalName": "beets, peeled and cubed into 1/2-inch pieces (about 4 to 5 cups)",
+                "amount": 3.0,
+                "unit": "large",
+                "meta": ["peeled", "cubed into 1/2-inch pieces", "(about 4 to 5 cups)"],
+                "measures": {
+                    "us": {
+                        "amount": 3.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    },
+                    "metric": {
+                        "amount": 3.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    }
+                }
+            },
+            {
+                "id": 9152,
+                "aisle": "Produce",
+                "image": "lemon-juice.jpg",
+                "consistency": "LIQUID",
+                "name": "lemon juice",
+                "nameClean": "lemon juice",
+                "original": "3 tablespoons fresh lemon juice, divided",
+                "originalName": "fresh lemon juice, divided",
+                "amount": 3.0,
+                "unit": "tablespoons",
+                "meta": ["fresh", "divided"],
+                "measures": {
+                    "us": {
+                        "amount": 3.0,
+                        "unitShort": "Tbsps",
+                        "unitLong": "Tbsps"
+                    },
+                    "metric": {
+                        "amount": 3.0,
+                        "unitShort": "Tbsps",
+                        "unitLong": "Tbsps"
+                    }
+                }
+            }
+        ],
+        "servings": 6
+    },
+    {
+        "id": 234567,
+        "image": "https://scontent.ftlv5-1.fna.fbcdn.net/v/t1.18169-9/20882989_764022357112359_6512191428965960257_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0327a3&_nc_ohc=wGkRVqwIUK0Q7kNvgHVMtcR&_nc_ht=scontent.ftlv5-1.fna&oh=00_AYA1Ja1SAdq7NiuSbW7v97s4RPVEVxbbNo_IeURVcxWSww&oe=66A27C1B",
+        "title": "Tbit - Iraqi Slow Cooked Chicken and Rice",
+        "readyInMinutes": 600,
+        "aggregateLikes": 200,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": true,
+        "summary": "Iraqi style dish. Chicken with rice and the goodness of spices! Just perfectly comforting and yummy. My grandma always made it for the entire family on Shabbat and on holidays",
+        "analyzedInstructions": [
+            {
+                "name": "",
+                "steps": [
+                    {
+                        "number": 1,
+                        "step": "Preheat oven to 210F/ 100C."
+                    },
+                    {
+                        "number": 2,
+                        "step": "In a cast iron/ cast aluminum (oven safe) pot, preheat the oil over medium-high heat and add the chopped onion. Sauté for 2-3 minutes until translucent."
+                    },
+                    {
+                        "number": 3,
+                        "step": "Add in the chopped tomato and garlic and stir for another minute."
+                    },
+                    {
+                        "number": 4,
+                        "step": "Add the chicken and let cook while stirring and turning occasionally until chicken is cooked on all sides. Cook and stir for about 5-7 minutes."
+                    },
+                    {
+                        "number": 5,
+                        "step": "Add in the rice, water, spices, tomato paste and raisins and mix together. Let cook and boil for about 7-10 minutes and remove from heat."
+                    },
+                    {
+                        "number": 6,
+                        "step": "Place in the preheated oven and let cook overnight (8-10 hours)."
+                    }
+                ]
+            }
+        ],
+        "instructions": "",
+        "extendedIngredients": [
+            {
+                "id": 5006,
+                "aisle": "Meat",
+                "image": "chicken-drumsticks.jpg",
+                "consistency": "SOLID",
+                "name": "chicken thighs/drumsticks",
+                "nameClean": "chicken drumsticks",
+                "original": "500gr Chicken Thighs/ Drumsticks washed and dried",
+                "originalName": "Chicken Thighs/ Drumsticks washed and dried",
+                "amount": 500.0,
+                "unit": "grams",
+                "meta": ["washed and dried"],
+                "measures": {
+                    "us": {
+                        "amount": 17.637,
+                        "unitShort": "oz",
+                        "unitLong": "ounces"
+                    },
+                    "metric": {
+                        "amount": 500.0,
+                        "unitShort": "g",
+                        "unitLong": "grams"
+                    }
+                }
+            },
+            {
+                "id": 11282,
+                "aisle": "Produce",
+                "image": "onion.png",
+                "consistency": "SOLID",
+                "name": "onion",
+                "nameClean": "onion",
+                "original": "½ Onion – Chopped",
+                "originalName": "Onion – Chopped",
+                "amount": 0.5,
+                "unit": "",
+                "meta": ["chopped"],
+                "measures": {
+                    "us": {
+                        "amount": 0.5,
+                        "unitShort": "",
+                        "unitLong": ""
+                    },
+                    "metric": {
+                        "amount": 0.5,
+                        "unitShort": "",
+                        "unitLong": ""
+                    }
+                }
+            },
+            {
+                "id": 11529,
+                "aisle": "Produce",
+                "image": "tomato.png",
+                "consistency": "SOLID",
+                "name": "tomato",
+                "nameClean": "tomato",
+                "original": "½ Tomato – Chopped",
+                "originalName": "Tomato – Chopped",
+                "amount": 0.5,
+                "unit": "",
+                "meta": ["chopped"],
+                "measures": {
+                    "us": {
+                        "amount": 0.5,
+                        "unitShort": "",
+                        "unitLong": ""
+                    },
+                    "metric": {
+                        "amount": 0.5,
+                        "unitShort": "",
+                        "unitLong": ""
+                    }
+                }
+            },
+            {
+                "id": 11215,
+                "aisle": "Produce",
+                "image": "garlic.png",
+                "consistency": "SOLID",
+                "name": "garlic",
+                "nameClean": "garlic",
+                "original": "1 Garlic Clove – Chopped",
+                "originalName": "Garlic Clove – Chopped",
+                "amount": 1.0,
+                "unit": "clove",
+                "meta": ["chopped"],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "clove",
+                        "unitLong": "clove"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "clove",
+                        "unitLong": "clove"
+                    }
+                }
+            },
+            {
+                "id": 4582,
+                "aisle": "Oil, Vinegar, Salad Dressing",
+                "image": "vegetable-oil.jpg",
+                "consistency": "LIQUID",
+                "name": "vegetable oil",
+                "nameClean": "vegetable oil",
+                "original": "1 tbsp Vegetable Oil",
+                "originalName": "Vegetable Oil",
+                "amount": 1.0,
+                "unit": "tbsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsp",
+                        "unitLong": "Tbsp"
+                    }
+                }
+            },
+            {
+                "id": 20444,
+                "aisle": "Pasta and Rice",
+                "image": "uncooked-white-rice.png",
+                "consistency": "SOLID",
+                "name": "white rice",
+                "nameClean": "white rice",
+                "original": "¾ Cup White Rice (I used Jasmine)",
+                "originalName": "White Rice (I used Jasmine)",
+                "amount": 0.75,
+                "unit": "cup",
+                "meta": ["(I used Jasmine)"],
+                "measures": {
+                    "us": {
+                        "amount": 0.75,
+                        "unitShort": "cup",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 0.75,
+                        "unitShort": "cup",
+                        "unitLong": "cups"
+                    }
+                }
+            },
+            {
+                "id": 14412,
+                "aisle": "Beverages",
+                "image": "water.jpg",
+                "consistency": "LIQUID",
+                "name": "water",
+                "nameClean": "water",
+                "original": "1½ Cup Hot Boiling Water",
+                "originalName": "Hot Boiling Water",
+                "amount": 1.5,
+                "unit": "cup",
+                "meta": ["hot", "boiling"],
+                "measures": {
+                    "us": {
+                        "amount": 1.5,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 1.5,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    }
+                }
+            },
+            {
+                "id": 11887,
+                "aisle": "Canned and Jarred",
+                "image": "tomato-paste.jpg",
+                "consistency": "PASTE",
+                "name": "tomato paste",
+                "nameClean": "tomato paste",
+                "original": "1 tsp Tomato Paste",
+                "originalName": "Tomato Paste",
+                "amount": 1.0,
+                "unit": "tsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "tsp",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 9299,
+                "aisle": "Dried Fruits",
+                "image": "raisins.jpg",
+                "consistency": "SOLID",
+                "name": "raisins",
+                "nameClean": "raisins",
+                "original": "Handful of Raisins",
+                "originalName": "Handful of Raisins",
+                "amount": 1.0,
+                "unit": "handful",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "handful",
+                        "unitLong": "handful"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "handful",
+                        "unitLong": "handful"
+                    }
+                }
+            },
+            {
+                "id": 1002011,
+                "aisle": "Spices and Seasonings",
+                "image": "ground-clove.jpg",
+                "consistency": "SOLID",
+                "name": "ground clove",
+                "nameClean": "ground clove",
+                "original": "⅛ tsp Ground Clove",
+                "originalName": "Ground Clove",
+                "amount": 0.125,
+                "unit": "tsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 0.125,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 0.125,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 1012010,
+                "aisle": "Spices and Seasonings",
+                "image": "ground-cinnamon.jpg",
+                "consistency": "SOLID",
+                "name": "ground cinnamon",
+                "nameClean": "ground cinnamon",
+                "original": "¼ tsp Ground Cinnamon",
+                "originalName": "Ground Cinnamon",
+                "amount": 0.25,
+                "unit": "tsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 0.25,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 0.25,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 2025,
+                "aisle": "Spices and Seasonings",
+                "image": "ground-nutmeg.jpg",
+                "consistency": "SOLID",
+                "name": "ground nutmeg",
+                "nameClean": "ground nutmeg",
+                "original": "½ tsp Ground Nutmeg",
+                "originalName": "Ground Nutmeg",
+                "amount": 0.5,
+                "unit": "tsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 0.5,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 0.5,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 2047,
+                "aisle": "Spices and Seasonings",
+                "image": "salt.jpg",
+                "consistency": "SOLID",
+                "name": "salt",
+                "nameClean": "table salt",
+                "original": "¼ – ½ tsp Salt",
+                "originalName": "Salt",
+                "amount": 0.5,
+                "unit": "tsp",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 0.5,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 0.5,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 1002030,
+                "aisle": "Spices and Seasonings",
+                "image": "black-pepper.png",
+                "consistency": "SOLID",
+                "name": "black pepper",
+                "nameClean": "black pepper",
+                "original": "Black Pepper",
+                "originalName": "Black Pepper",
+                "amount": 1.0,
+                "unit": "to taste",
+                "meta": ["to taste"],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    }
+                }
+            }
+        ],
+        "servings": 4
+    },
+    {
+        "id": 345678,
+        "image": "https://passi.co.il/wp-content/uploads/2022/01/%D7%A7%D7%A6%D7%99%D7%A6%D7%95%D7%AA-%D7%A2%D7%A8%D7%95%D7%A7-%D7%9E%D7%AA%D7%9B%D7%95%D7%9F-%D7%A4%D7%A9%D7%95%D7%98-%D7%95%D7%98%D7%A2%D7%99%D7%9D.webp",
+        "title": "Aruk - Iraqi Herb Latkes",
+        "readyInMinutes": 90,
+        "aggregateLikes": 150,
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "In Jewish Iraqi homes, youll often find these fragrant, golden-green latkes made with loads of fresh herbs, because they come together with minimal effort. Unlike the more familiar and labor-intensive Ashkenazi latkes, made with raw grated potato, these use mashed, precooked potatoes, resulting in crispy patties with a soft interior.",
+        "analyzedInstructions": [
+            {
+                "name": "",
+                "steps": [
+                    {
+                        "number": 1,
+                        "step": "Preheat the oven to 350°F (175°C)."
+                    },
+                    {
+                        "number": 2,
+                        "step": "Bake the potatoes in their skins until completely soft when poked with a skewer or thin knife, about an hour. Let them cool on the counter."
+                    },
+                    {
+                        "number": 3,
+                        "step": "Scoop out the cooled potato flesh and roughly mash in a large bowl."
+                    },
+                    {
+                        "number": 4,
+                        "step": "Grate the onion into another bowl. Squeeze out as much moisture as you can, and then add the onion to the potatoes."
+                    },
+                    {
+                        "number": 5,
+                        "step": "Add the eggs, flour, scallions, parsley, cilantro, cumin, paprika, baharat, salt, and several twists of pepper and mix thoroughly. If you have time, cover and refrigerate for 30 minutes (this will stabilize the texture)."
+                    },
+                    {
+                        "number": 6,
+                        "step": "Line a tray or plate with two layers of paper towels. Fill a large nonstick skillet with vegetable oil to a depth of 1/4 inch (six millimeters) and heat the oil over medium-high heat."
+                    },
+                    {
+                        "number": 7,
+                        "step": "While the oil is heating, rub your hands with additional oil and shape the potato mixture into patties about two and 1/2 inches (six centimeters) across. Working in batches, add the patties to the hot oil and fry until they are deep golden-green and crispy, two to three minutes on each side. Transfer to the paper towels to drain. Repeat to cook the remaining patties."
+                    },
+                    {
+                        "number": 8,
+                        "step": "Serve hot or warm, with red pepper tahini sauce. Aruk latkes are best fresh out of the skillet, but you can keep leftovers in an airtight container in the fridge for a day; reheat them at 350°F (175°C) for five to seven minutes."
+                    }
+                ]
+            }
+        ],
+        "instructions": "",
+        "extendedIngredients": [
+            {
+                "id": 11352,
+                "aisle": "Produce",
+                "image": "russet-potatoes.jpg",
+                "consistency": "SOLID",
+                "name": "russet potatoes",
+                "nameClean": "russet potato",
+                "original": "3 medium russet potatoes, (about 1 and 1/2 pounds/680 grams total)",
+                "originalName": "russet potatoes",
+                "amount": 3.0,
+                "unit": "",
+                "meta": ["medium"],
+                "measures": {
+                    "us": {
+                        "amount": 3.0,
+                        "unitShort": "",
+                        "unitLong": ""
+                    },
+                    "metric": {
+                        "amount": 3.0,
+                        "unitShort": "",
+                        "unitLong": ""
+                    }
+                }
+            },
+            {
+                "id": 11282,
+                "aisle": "Produce",
+                "image": "onion.png",
+                "consistency": "SOLID",
+                "name": "yellow onion",
+                "nameClean": "yellow onion",
+                "original": "1 large yellow onion",
+                "originalName": "yellow onion",
+                "amount": 1.0,
+                "unit": "large",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    }
+                }
+            },
+            {
+                "id": 1123,
+                "aisle": "Milk, Eggs, Other Dairy",
+                "image": "egg.jpg",
+                "consistency": "SOLID",
+                "name": "eggs",
+                "nameClean": "egg",
+                "original": "2 large eggs, lightly beaten",
+                "originalName": "large eggs, lightly beaten",
+                "amount": 2.0,
+                "unit": "large",
+                "meta": ["lightly beaten"],
+                "measures": {
+                    "us": {
+                        "amount": 2.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    },
+                    "metric": {
+                        "amount": 2.0,
+                        "unitShort": "large",
+                        "unitLong": "large"
+                    }
+                }
+            },
+            {
+                "id": 20081,
+                "aisle": "Baking",
+                "image": "flour.png",
+                "consistency": "SOLID",
+                "name": "all-purpose flour",
+                "nameClean": "wheat flour",
+                "original": "2 tablespoons all-purpose flour",
+                "originalName": "all-purpose flour",
+                "amount": 2.0,
+                "unit": "tablespoons",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 2.0,
+                        "unitShort": "Tbsps",
+                        "unitLong": "Tbsps"
+                    },
+                    "metric": {
+                        "amount": 2.0,
+                        "unitShort": "Tbsps",
+                        "unitLong": "Tbsps"
+                    }
+                }
+            },
+            {
+                "id": 11291,
+                "aisle": "Produce",
+                "image": "spring-onions.jpg",
+                "consistency": "SOLID",
+                "name": "scallions",
+                "nameClean": "spring onions",
+                "original": "1/4 cup (25 grams) chopped scallions",
+                "originalName": "chopped scallions",
+                "amount": 0.25,
+                "unit": "cup",
+                "meta": ["chopped"],
+                "measures": {
+                    "us": {
+                        "amount": 0.25,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 25.0,
+                        "unitShort": "g",
+                        "unitLong": "grams"
+                    }
+                }
+            },
+            {
+                "id": 11297,
+                "aisle": "Produce;Spices and Seasonings",
+                "image": "parsley.jpg",
+                "consistency": "SOLID",
+                "name": "fresh parsley",
+                "nameClean": "parsley",
+                "original": "3/4 cup (30 grams) chopped fresh parsley",
+                "originalName": "chopped fresh parsley",
+                "amount": 0.75,
+                "unit": "cup",
+                "meta": ["chopped", "fresh"],
+                "measures": {
+                    "us": {
+                        "amount": 0.75,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 30.0,
+                        "unitShort": "g",
+                        "unitLong": "grams"
+                    }
+                }
+            },
+            {
+                "id": 11165,
+                "aisle": "Produce;Spices and Seasonings",
+                "image": "cilantro.png",
+                "consistency": "SOLID",
+                "name": "fresh cilantro",
+                "nameClean": "cilantro",
+                "original": "3/4 cup (30 grams) chopped fresh cilantro",
+                "originalName": "chopped fresh cilantro",
+                "amount": 0.75,
+                "unit": "cup",
+                "meta": ["chopped", "fresh"],
+                "measures": {
+                    "us": {
+                        "amount": 0.75,
+                        "unitShort": "cups",
+                        "unitLong": "cups"
+                    },
+                    "metric": {
+                        "amount": 30.0,
+                        "unitShort": "g",
+                        "unitLong": "grams"
+                    }
+                }
+            },
+            {
+                "id": 1002014,
+                "aisle": "Spices and Seasonings",
+                "image": "cumin.jpg",
+                "consistency": "SOLID",
+                "name": "ground cumin",
+                "nameClean": "ground cumin",
+                "original": "1 teaspoon ground cumin",
+                "originalName": "ground cumin",
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 2028,
+                "aisle": "Spices and Seasonings",
+                "image": "paprika.jpg",
+                "consistency": "SOLID",
+                "name": "sweet paprika",
+                "nameClean": "sweet paprika",
+                "original": "1 teaspoon sweet paprika",
+                "originalName": "sweet paprika",
+                "amount": 1.0,
+                "unit": "teaspoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 98963,
+                "aisle": "Spices and Seasonings",
+                "image": "baharat.jpg",
+                "consistency": "SOLID",
+                "name": "baharat",
+                "nameClean": "baharat",
+                "original": "1 and 1/2 teaspoons baharat",
+                "originalName": "baharat",
+                "amount": 1.5,
+                "unit": "teaspoons",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.5,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    },
+                    "metric": {
+                        "amount": 1.5,
+                        "unitShort": "tsps",
+                        "unitLong": "teaspoons"
+                    }
+                }
+            },
+            {
+                "id": 2047,
+                "aisle": "Spices and Seasonings",
+                "image": "salt.jpg",
+                "consistency": "SOLID",
+                "name": "kosher salt",
+                "nameClean": "kosher salt",
+                "original": "1 tablespoon kosher salt",
+                "originalName": "kosher salt",
+                "amount": 1.0,
+                "unit": "tablespoon",
+                "meta": [],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsps",
+                        "unitLong": "Tbsps"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "Tbsps",
+                        "unitLong": "Tbsps"
+                    }
+                }
+            },
+            {
+                "id": 1002030,
+                "aisle": "Spices and Seasonings",
+                "image": "black-pepper.png",
+                "consistency": "SOLID",
+                "name": "freshly ground black pepper",
+                "nameClean": "black pepper",
+                "original": "freshly ground black pepper",
+                "originalName": "freshly ground black pepper",
+                "amount": 1.0,
+                "unit": "to taste",
+                "meta": ["to taste"],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    }
+                }
+            },
+            {
+                "id": 4513,
+                "aisle": "Oil, Vinegar, Salad Dressing",
+                "image": "vegetable-oil.jpg",
+                "consistency": "LIQUID",
+                "name": "vegetable oil",
+                "nameClean": "vegetable oil",
+                "original": "vegetable or olive oil, for frying",
+                "originalName": "vegetable or olive oil, for frying",
+                "amount": 1.0,
+                "unit": "to taste",
+                "meta": ["for frying"],
+                "measures": {
+                    "us": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    },
+                    "metric": {
+                        "amount": 1.0,
+                        "unitShort": "to taste",
+                        "unitLong": "to taste"
+                    }
+                }
+            }
+        ],
+        "servings": 4
+    }    
+    
+]

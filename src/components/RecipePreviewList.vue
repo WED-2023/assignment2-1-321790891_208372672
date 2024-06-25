@@ -3,7 +3,7 @@
     <h3 class="list-title">{{ title }}:</h3>
     <div class="recipes">
       <div v-for="r in recipes" :key="r.id" class="recipe-item">
-        <RecipePreview :recipe="r" @toggle-favorite="handleToggleFavorite" />
+        <RecipePreview :recipe="r" :isFamilyRecipe="false" @toggle-favorite="handleToggleFavorite" />
       </div>
     </div>
   </div>

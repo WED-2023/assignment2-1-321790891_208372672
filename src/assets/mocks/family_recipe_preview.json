@@ -1,0 +1,38 @@
+[
+    {
+        "id": 123456,
+        "image": "https://imaot.co.il/images/Uploads/RecipeImages/90875715112020.jpg",
+        "title": "Kubbeh Soup with Beets",
+        "readyInMinutes": 120,
+        "aggregateLikes": 150,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "Kubbeh, also known as kibbeh, is a style of dumpling that typically features ground meat wrapped in semolina, bulgar, or rice. Popular in communities across the Levant, kubbeh can be fried in oil, baked, or poached in soup like it is in this recipe from Pnina Shasha. In her Iraqi family, a beef and onion mixture is tucked into a semolina dough and then simmered in a ruby-hued beet broth."
+    },
+    {
+        "id": 234567,
+        "image": "https://scontent.ftlv5-1.fna.fbcdn.net/v/t1.18169-9/20882989_764022357112359_6512191428965960257_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=0327a3&_nc_ohc=wGkRVqwIUK0Q7kNvgHVMtcR&_nc_ht=scontent.ftlv5-1.fna&oh=00_AYA1Ja1SAdq7NiuSbW7v97s4RPVEVxbbNo_IeURVcxWSww&oe=66A27C1B",
+        "title": "Tbit - Iraqi Slow Cooked Chicken and Rice",
+        "readyInMinutes": 600,
+        "aggregateLikes": 200,
+        "vegetarian": false,
+        "vegan": false,
+        "glutenFree": true,
+        "summary": "Iraqi style dish. Chicken with rice and the goodness of spices! Just perfectly comforting and yummy."
+    },
+    {
+        "id": 456789,
+        "image": "https://passi.co.il/wp-content/uploads/2022/01/%D7%A7%D7%A6%D7%99%D7%A6%D7%95%D7%AA-%D7%A2%D7%A8%D7%95%D7%A7-%D7%9E%D7%AA%D7%9B%D7%95%D7%9F-%D7%A4%D7%A9%D7%95%D7%98-%D7%95%D7%98%D7%A2%D7%99%D7%9D.webp",
+        "title": "Aruk - Iraqi Herb Latkes",
+        "readyInMinutes": 90,
+        "aggregateLikes": 150,
+        "vegetarian": true,
+        "vegan": false,
+        "glutenFree": false,
+        "summary": "In Jewish Iraqi homes, you'll often find these fragrant, golden-green latkes made with loads of fresh herbs, because they come together with minimal effort. Unlike the more familiar and labor-intensive Ashkenazi latkes, made with raw grated potato, these use mashed, precooked potatoes, resulting in crispy patties with a soft interior."
+    }
+    
+    
+    
+]

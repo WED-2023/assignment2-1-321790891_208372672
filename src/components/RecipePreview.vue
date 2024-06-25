@@ -1,10 +1,9 @@
 <template>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    :to="linkTo"
     class="recipe-preview"
   >
     <div class="recipe-body">
-    
       <!-- Recipe Image and Overlay -->
       <img :src="recipe.image" class="recipe-image" />
       <div class="image-overlay">View Recipe</div>
@@ -24,11 +23,9 @@
     </div>
 
     <!-- Recipe Footer -->
-    <div class="recipe-footer"
-    :class="{ 'recipe-footer-viewed': viewed }" >
+    <div class="recipe-footer" :class="{ 'recipe-footer-viewed': viewed }">
       <div class="title">
-        <div :title="recipe.title" 
-             class="recipe-title">
+        <div :title="recipe.title" class="recipe-title">
           {{ recipe.title }}
         </div>
       </div>
@@ -39,11 +36,10 @@
         <li>{{ recipe.aggregateLikes }} likes</li>
         <div>
           <button @click.stop.prevent="toggleFavorite" :class="['favorite-button', { 'favorite-active': !isFavorite }]" class="favorite-button">
-          <img :src="isFavorite ? require('@/assets/favorite-full.jpg') : require('@/assets/favorite-empty.jpg')" alt="Favorite Icon" class="favorite-icon" />
-          {{ isFavorite ? 'Added To Favorites' : 'Add To Favorites' }}
+            <img :src="isFavorite ? require('@/assets/favorite-full.jpg') : require('@/assets/favorite-empty.jpg')" alt="Favorite Icon" class="favorite-icon" />
+            {{ isFavorite ? 'Added To Favorites' : 'Add To Favorites' }}
           </button>
         </div>
-
       </ul>
       <div class="recipe-indicators">
         <span v-if="recipe.viewed" class="viewed-indicator">Viewed</span>
@@ -54,14 +50,8 @@
 
 <script>
 export default {
-  // mounted() {
-  //   this.axios.get(this.recipe.image).then((i) => {
-  //     this.image_load = true;
-  //   });
-  // },
   data() {
     return {
-      // image_load: false
       isFavorite: false, // Track if the recipe is added to favorites
       viewed: false // Track if the recipe has been viewed
     };
@@ -70,47 +60,31 @@ export default {
     recipe: {
       type: Object,
       required: true
+    },
+    isFamilyRecipe: {
+      type: Boolean,
+      default: false
     }
-
-    // id: {
-    //   type: Number,
-    //   required: true
-    // },
-    // title: {
-    //   type: String,
-    //   required: true
-    // },
-    // readyInMinutes: {
-    //   type: Number,
-    //   required: true
-    // },
-    // image: {
-    //   type: String,
-    //   required: true
-    // },
-    // aggregateLikes: {
-    //   type: Number,
-    //   required: false,
-    //   default() {
-    //     return undefined;
-    //   }
-    // }
   },
-  created(){
+  computed: {
+    linkTo() {
+      return this.isFamilyRecipe
+        ? { name: 'RecipeFullView', params: { recipeId: this.recipe.id } }
+        : { name: 'recipe', params: { recipeId: this.recipe.id } };
+    }
+  },
+  created() {
     const viewedRecipes = JSON.parse(localStorage.getItem('viewedRecipes')) || [];
     this.viewed = viewedRecipes.includes(this.recipe.id);
-    alert(viewed)
   },
   mounted() {
     // Load favorite status from local storage
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     this.isFavorite = favoriteRecipes.includes(this.recipe.id);
-
-
   },
   methods: {
     toggleFavorite() {
-      this.isFavorite = true;
+      this.isFavorite = !this.isFavorite;
       let favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
 
       if (this.isFavorite) {
@@ -118,6 +92,9 @@ export default {
         if (!favoriteRecipes.includes(this.recipe.id)) {
           favoriteRecipes.push(this.recipe.id);
         }
+      } else {
+        // Remove recipe from favorites
+        favoriteRecipes = favoriteRecipes.filter(id => id !== this.recipe.id);
       }
 
       localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
@@ -146,7 +123,6 @@ export default {
   overflow: hidden;
   transition: box-shadow 0.3s;
   transition: box-shadow 0.3s, text-decoration 0.3s; /* Added text-decoration transition */
-
 }
 
 .recipe-preview:hover {
@@ -162,7 +138,6 @@ export default {
   width: 100%;
   height: 200px;
 }
-
 
 .recipe-body .recipe-image {
   display: block;
@@ -214,7 +189,6 @@ export default {
   padding: 10px;
   background-color: white;
   color: black;
-
 }
 
 .title {
@@ -244,11 +218,11 @@ export default {
   display: flex;
 }
 
-.recipe-readyInMinutes{
+.recipe-readyInMinutes {
   margin-right: 90px;
 }
 
-.time-icon{
+.time-icon {
   width: 19px; 
   height: 19px; 
   margin-top: 2px;
@@ -256,7 +230,7 @@ export default {
   margin-left: 5px;
 }
 
-.like-icon{
+.like-icon {
   width: 16px; 
   height: 16px; 
   margin-top: 4px;
@@ -276,15 +250,14 @@ export default {
   align-items: center;
   font-size: 12pt;
   padding: 0px 10px;
-  margin-left: 35px;
+  margin-left: 3px;
   border-radius: 5px;
   font-weight: bold;
 }
 
 .favorite-button.favorite-active {
-  margin-left: 54px;
+  margin-left: 45px;
 }
-
 
 .favorite-icon {
   width: 19px;
