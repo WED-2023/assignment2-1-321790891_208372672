@@ -1,7 +1,8 @@
 // src/services/recipes.js
 import recipe_full_view from "../assets/mocks/recipe_full_view.json";
 import recipe_previews from "../assets/mocks/recipe_preview.json";
-import api from "../main.js";
+// import api from "../main.js";
+import api from './api';
 const routerPrefix = "recipes";
 
 export function mockGetRecipesPreview(amount = 1) {

@@ -80,7 +80,7 @@ export default {
       this.updateRandomRecipes(this.numSearch);
     } else {
       alert("regular");
-      this.updateRandomRecipes(this.numResults);
+      this.updateRecipes(this.numResults);
     }
   },
   methods: {
