@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { toggleFavoriteRecipe } from "../services/recipes.js";
 export default {
   data() {
     return {
@@ -78,27 +79,24 @@ export default {
     this.viewed = viewedRecipes.includes(this.recipe.id);
   },
   mounted() {
-    // Load favorite status from local storage
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    this.isFavorite = favoriteRecipes.includes(this.recipe.id);
+   
   },
   methods: {
-    toggleFavorite() {
-      this.isFavorite = !this.isFavorite;
-      let favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    async toggleFavorite() {
+      this.isFavorite = !this.isFavorite; // Toggle the favorite state
+      try {
+        // Call the API to add or remove the favorite
+        await toggleFavoriteRecipe(this.recipe.id, this.isFavorite);
 
-      if (this.isFavorite) {
-        // Add recipe to favorites
-        if (!favoriteRecipes.includes(this.recipe.id)) {
-          favoriteRecipes.push(this.recipe.id);
-        }
-      } else {
-        // Remove recipe from favorites
-        favoriteRecipes = favoriteRecipes.filter(id => id !== this.recipe.id);
+        // Emit an event to inform the parent component
+        this.$emit('toggle-favorite', this.recipe.id, this.isFavorite);
+
+        console.log(`Successfully ${this.isFavorite ? 'added' : 'removed'} recipe ${this.recipe.id} from favorites.`);
+      } catch (error) {
+        // Revert the favorite state if there's an error
+        this.isFavorite = !this.isFavorite;
+        console.error('Failed to toggle favorite:', error.message);
       }
-
-      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-      this.$emit('toggle-favorite', this.recipe.id);
     }
   }
 };

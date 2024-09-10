@@ -11,7 +11,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview, getRandomRecipes, mockGetFavoriteRecipes,mockGetLastViewedRecipes} from "../services/recipes.js";
+import { mockGetRecipesPreview, getRandomRecipes,mockGetLastViewedRecipes,getFavoriteRecipes} from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
 
 export default {
@@ -66,7 +66,6 @@ export default {
   },
   mounted() {
     // Check if the current route is the "Favorites" route
-
     if (this.loadFavorites) {
       this.updateFavoriteRecipes();
     }
@@ -77,9 +76,11 @@ export default {
       this.updateRecipes(this.numSearch);
     } 
     else if (this.mainPage) {
+      alert("main page");
       this.updateRandomRecipes(this.numSearch);
     } else {
-      this.updateRecipes(this.numResults);
+      alert("regular");
+      this.updateRandomRecipes(this.numResults);
     }
   },
   methods: {
@@ -97,7 +98,7 @@ export default {
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
-        
+        alert("main page 2");
         // Await the promise returned by getRandomRecipes
         const recipes = await getRandomRecipes(amountToFetch); // Correctly await the data
         this.recipesInternal = recipes; // Update internal state with the recipes
@@ -109,16 +110,14 @@ export default {
     },
     async updateFavoriteRecipes() {
       try {
-        const response = mockGetFavoriteRecipes();
-
+        // Call the new API function to fetch favorite recipes
+        const recipes = await getFavoriteRecipes();
         
-        console.log(response);
-        const recipes = response.data.recipes;
-        console.log(recipes);
-        this.recipes = [];
-        this.recipes.push(...recipes);
+        // Update the component's recipes with the fetched favorites
+        this.recipesInternal = recipes;
+        this.recipes = [...recipes]; // Update component's recipes array
       } catch (error) {
-        console.log(error);
+        console.error('Error fetching favorite recipes:', error);
       }
     },
     async updateLastViewedRecipes() {
