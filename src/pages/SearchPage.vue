@@ -75,7 +75,7 @@
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
 import { mockGetRecipesPreview } from "../services/recipes";
-
+import { searchRecipes } from "../services/recipes";
 export default {
   components: {
     RecipePreviewList
@@ -115,10 +115,23 @@ export default {
     onSearch() {
       this.fetchRecipes();
     },
-    fetchRecipes() {
-      const { data } = mockGetRecipesPreview(this.numResults);
-      this.recipes = data.recipes;
-      this.showResults = true;
+    async fetchRecipes() {
+      try {
+        // Call the new searchRecipes function and pass the required parameters
+        const recipes = await searchRecipes(
+          this.searchQuery,
+          this.selectedFilters.cuisine,
+          this.selectedFilters.diet,
+          this.selectedFilters.intolerance,
+          this.numResults
+        );
+
+        // Update the state with the fetched recipes
+        this.recipes = recipes;
+        this.showResults = true; // Display the search results
+      } catch (error) {
+        console.error('Error fetching recipes:', error);
+      }
     },
     toggleFilter() {
       this.showFilter = !this.showFilter;

@@ -35,6 +35,24 @@ export function mockGetFamilyRecipesPreview(amount = 1) {
   return { data: { recipes: recipes } };
 }
 
+export async function searchRecipes(recipeName, cuisine, diet, intolerance, number) {
+  try {
+    // Make a GET request to the backend to search for recipes
+    const response = await api.get(`${routerPrefix}/search`, {
+      params: {
+        query: recipeName || '',  // Send the search term
+        cuisine: cuisine.join(','),  // Join array values into a comma-separated string
+        diet: diet.join(','),  // Join array values into a comma-separated string
+        intolerances: intolerance.join(','),  // Join array values into a comma-separated string
+        number: number || 5
+      }
+    });
+    return response.data; // Return the search results from the backend
+  } catch (error) {
+    console.error('Error fetching search results:', error.message);
+    throw error; // Propagate error for further handling
+  }
+}
 
 // Function to fetch random recipes
 export async function getRandomRecipes(number = 3) {
@@ -52,6 +70,22 @@ export async function getRandomRecipes(number = 3) {
   }
 }
 
+export async function toggleFavoriteRecipe(recipeId, isFavorite) {
+  try {
+    if (isFavorite) {
+      // Add to favorites
+      const response = await api.post(`/users/favorites`, { recipeId });
+      return response.data; // Assume the backend returns a success message
+    } else {
+      // Remove from favorites
+      const response = await api.delete(`${routerPrefix}/favorites/${recipeId}`);
+      return response.data; // Assume the backend returns a success message
+    }
+  } catch (error) {
+    console.error('Error toggling favorite:', error.message);
+    throw error; // Propagate error for further handling
+  }
+}
 
 export function mockGetRecipeFullDetails(recipeId) {
   // return { data: { recipe: recipe_full_view } };
@@ -93,25 +127,15 @@ export function getRecipes() {
   });
 }
 
-
-// Function to retrieve favorite recipes based on stored IDs
-export function mockGetFavoriteRecipes() {
-  const favoriteRecipesIds = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-  const favoriteRecipes = [];
-  
-  
-  favoriteRecipesIds.forEach(recipeId => {
-    // Find the recipe object with matching ID in either previews or full view
-    const recipe = recipe_previews.find(recipe => recipe.id === recipeId) ||
-                   recipe_full_view.find(recipe => recipe.id === recipeId);
-    
-    if (recipe) {
-      favoriteRecipes.push(recipe);
-      
-    }
-  });
-
-  return { data: { recipes: favoriteRecipes } };
+export async function getFavoriteRecipes() {
+  try {
+    // Make a GET request to the backend to fetch favorite recipes
+    const response = await api.get(`/users/favorites`);
+    return response.data; // Return the array of favorite recipes
+  } catch (error) {
+    console.error('Error fetching favorite recipes:', error.message);
+    throw error; // Propagate error for further handling
+  }
 }
 
 export function mockGetLastViewedRecipes() {
