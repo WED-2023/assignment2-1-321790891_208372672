@@ -7,6 +7,7 @@
             ref="randomRecipesList"
             title="EXPLORE RECIPES"
             class="RandomRecipes"
+            :mainPage = "true"
           />
           <button @click="loadNewRandomRecipes" class="load-more-button">
             Load More

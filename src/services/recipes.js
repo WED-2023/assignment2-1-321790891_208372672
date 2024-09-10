@@ -43,7 +43,7 @@ export async function getRandomRecipes(number = 3) {
     const response = await api.get(`${routerPrefix}/random`, {
       params: { number }  // Optional query parameter for the number of recipes
     });
-    
+
     // Return the data received from the backend
     return response.data;
   } catch (error) {

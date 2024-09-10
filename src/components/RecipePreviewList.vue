@@ -51,6 +51,10 @@ export default {
     searchPage:{
       type: Boolean,
       default: false
+    },
+    mainPage: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -71,8 +75,11 @@ export default {
     } 
     else if (this.searchPage) {
       this.updateRecipes(this.numSearch);
+    } 
+    else if (this.mainPage) {
+      this.updateRandomRecipes(this.numSearch);
     } else {
-      this.updateRandomRecipes(this.numResults);
+      this.updateRecipes(this.numResults);
     }
   },
   methods: {
@@ -90,6 +97,7 @@ export default {
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
+        
         // Await the promise returned by getRandomRecipes
         const recipes = await getRandomRecipes(amountToFetch); // Correctly await the data
         this.recipesInternal = recipes; // Update internal state with the recipes
