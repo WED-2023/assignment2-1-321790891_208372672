@@ -76,10 +76,8 @@ export default {
       this.updateRecipes(this.numSearch);
     } 
     else if (this.mainPage) {
-      alert("main page");
       this.updateRandomRecipes(this.numSearch);
     } else {
-      alert("regular");
       this.updateRecipes(this.numResults);
     }
   },
@@ -98,7 +96,6 @@ export default {
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
-        alert("main page 2");
         // Await the promise returned by getRandomRecipes
         const recipes = await getRandomRecipes(amountToFetch); // Correctly await the data
         this.recipesInternal = recipes; // Update internal state with the recipes
