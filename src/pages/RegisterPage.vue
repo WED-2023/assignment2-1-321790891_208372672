@@ -190,7 +190,8 @@ import {
   sameAs,
   email
 } from "vuelidate/lib/validators";
-import { mockRegister } from "../services/auth.js";
+import { Register } from "../services/auth.js"; // Import the Register function from auth.js
+
 export default {
   name: "Register",
   data() {
@@ -203,48 +204,48 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
-        submitError: undefined
+        profilePictureUrl: "", // Optional field
+        submitError: undefined,
       },
       countries: [{ value: null, text: "", disabled: true }],
       errors: [],
-      validated: false
+      validated: false,
     };
   },
-  
   validations: {
     form: {
       username: {
         required,
         length: (u) => minLength(3)(u) && maxLength(8)(u),
-        alpha
+        alpha,
       },
       firstName: {
         required,
         length: (f) => minLength(3)(f) && maxLength(15)(f),
-        alpha
+        alpha,
       },
       lastName: {
         required,
         length: (l) => minLength(3)(l) && maxLength(15)(l),
-        alpha
+        alpha,
       },
       country: {
-        required
+        required,
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
       },
       email: {
         required,
         emailFormat: (value) => /\S+@\S+\.\S+/.test(value), // Custom rule for email format
-        maxLength: maxLength(40) // Maximum length of 40 characters
+        maxLength: maxLength(40), // Maximum length of 40 characters
       },
       confirmedPassword: {
         required,
-        sameAsPassword: sameAs("password")
-      }
-    }
+        sameAsPassword: sameAs("password"),
+      },
+    },
   },
   mounted() {
     this.countries.push(...countries);
@@ -258,15 +259,20 @@ export default {
       try {
         const userDetails = {
           username: this.form.username,
-          password: this.form.password
+          firstName: this.form.firstName,
+          lastName: this.form.lastName,
+          country: this.form.country,
+          password: this.form.password,
+          email: this.form.email,
+          profilePictureUrl: this.form.profilePictureUrl,
         };
 
-        const response = mockRegister(userDetails);
+        await Register(userDetails); // Call the Register function
 
-        this.$router.push("/login");
+        this.$router.push("/login"); // Redirect to login after successful registration
       } catch (err) {
-        console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        console.log(err);
+        this.form.submitError = err.message || "Registration failed";
       }
     },
     onRegister() {
@@ -285,13 +291,15 @@ export default {
         password: "",
         confirmedPassword: "",
         email: "",
-        submitError: undefined
+        profilePictureUrl: "",
+        submitError: undefined,
       };
       this.$v.$reset();
-    }
-  }
+    },
+  },
 };
 </script>
+
 
 <style lang="scss" scoped>
 .background {

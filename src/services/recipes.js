@@ -1,6 +1,8 @@
 // src/services/recipes.js
 import recipe_full_view from "../assets/mocks/recipe_full_view.json";
 import recipe_previews from "../assets/mocks/recipe_preview.json";
+import api from "../main.js";
+const routerPrefix = "recipes";
 
 export function mockGetRecipesPreview(amount = 1) {
   let recipes = [];
@@ -34,10 +36,20 @@ export function mockGetFamilyRecipesPreview(amount = 1) {
 }
 
 
-export function mockGetRandomRecipesPreview(amount = 1) {
-  let shuffled = recipe_previews.sort(() => 0.5 - Math.random());
-  let selected = shuffled.slice(0, amount);
-  return { data: { recipes: selected } };
+// Function to fetch random recipes
+export async function getRandomRecipes(number = 3) {
+  try {
+    // Send a GET request to the backend to fetch random recipes
+    const response = await api.get(`${routerPrefix}/random`, {
+      params: { number }  // Optional query parameter for the number of recipes
+    });
+    
+    // Return the data received from the backend
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching random recipes:', error.message);
+    throw error;  // Propagate error for further handling
+  }
 }
 
 

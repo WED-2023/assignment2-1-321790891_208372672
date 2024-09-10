@@ -1,4 +1,3 @@
-
 <template>
   <div class="background-container">
     <div class="container">
@@ -9,13 +8,12 @@
             title="EXPLORE RECIPES"
             class="RandomRecipes"
           />
-        <button @click="loadNewRandomRecipes" class="load-more-button">
-          Load More
-        </button>
+          <button @click="loadNewRandomRecipes" class="load-more-button">
+            Load More
+          </button>
+        </div>
       </div>
-    </div>
       <div class="right-column">
-        
         <div v-if="!$root.store.username" class="sign-in-form">
           <div class="login-form">
             <b-form @submit.prevent="onLogin">
@@ -40,41 +38,36 @@
                 <b-form-invalid-feedback>Password is required</b-form-invalid-feedback>
               </b-form-group>
 
-            
-                <b-button type="submit" variant="primary" class="sigh-in-button">Sign In</b-button>
-                <router-link to="forgot-password" class="forgot-password">Forgot Password?</router-link>
-              </b-form>
+              <b-button type="submit" variant="primary" class="sign-in-button">Sign In</b-button>
+              <router-link to="forgot-password" class="forgot-password">Forgot Password?</router-link>
+            </b-form>
 
-              <b-alert class="mt-2" v-if="form.submitError" variant="warning" dismissible show>
-                Login failed: {{ form.submitError }}
-              </b-alert>
-            </div>
+            <b-alert class="mt-2" v-if="form.submitError" variant="warning" dismissible show>
+              Login failed: {{ form.submitError }}
+            </b-alert>
           </div>
+        </div>
 
         <div v-else class="last-viewed">
           <RecipePreviewList
-          ref="lastViewedRecipesList"
-          title="LAST VIEWED RECIPES"
-          class="LastViewedRecipes"
-          :disabled="!$root.store.username"
-          :loadLastViewed="true" 
-        />
+            ref="lastViewedRecipesList"
+            title="LAST VIEWED RECIPES"
+            class="LastViewedRecipes"
+            :disabled="!$root.store.username"
+            :loadLastViewed="true" 
+          />
         </div>
 
       </div>
-    <!-- <div
-      style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
-    >
-      Centeredasdasdad
-    </div>-->
     </div>
-</div>
+  </div>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
 import { required } from "vuelidate/lib/validators";
-import {mockLogin} from "../services/auth.js"
+import { Login } from "../services/auth.js";
+
 export default {
   components: {
     RecipePreviewList
@@ -100,6 +93,7 @@ export default {
   },
   methods: {
     loadNewRandomRecipes() {
+      // Calls the method in RecipePreviewList to fetch new random recipes
       this.$refs.randomRecipesList.updateRandomRecipes();
     },
     validateState(param) {
@@ -108,40 +102,23 @@ export default {
     },
     async Login() {
       try {
-        
-        // const response = await this.axios.post(
-        //   this.$root.store.server_domain +"/Login",
+        const response = await Login(this.form.username, this.form.password);
 
-
-        //   {
-        //     username: this.form.username,
-        //     password: this.form.password
-        //   }
-        // );
-
-        const success = true; // modify this to test the error handling
-        const response = mockLogin(this.form.username, this.form.password, success);
-
-        // console.log(response);
-        // this.$root.loggedIn = true;
-        console.log(this.$root.store.login);
-        this.$root.store.login(this.form.username);
-        this.$router.push("/");
+        // If login is successful, proceed to update the state and navigate
+        console.log("Login successful:", response);
+        this.$root.store.login(this.form.username); // Update the app's state for logged in user
+        this.$router.push("/"); // Redirect to the main page
       } catch (err) {
-        console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        console.error("Login failed:", err);
+        this.form.submitError = err.message || "Login failed. Please try again.";
       }
     },
-
     onLogin() {
-      // console.log("login method called");
       this.form.submitError = undefined;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("login method go");
-
       this.Login();
     }
   }

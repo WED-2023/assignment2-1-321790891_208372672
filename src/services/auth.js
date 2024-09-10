@@ -1,25 +1,36 @@
 // src/services/auth.js
+import api from "../main.js";
+const routerPrefix = "auth";
 
-
-  export function mockLogin(credentials, success = true) {
-    // Check if already logged in
-    if (!success) {
-      throw { status: 409, response: { data: { message: "A user is already logged in", success: false } } };
-    }
-
-    // If all checks pass, return a success message
-    return { status: 200, response: { data: { message: "login succeeded", success: true}} };
+export async function Login(username, password) {
+  try {
+    const response = await api.post(`${routerPrefix}/Login`, {
+      username: username,
+      password: password,
+    });
+    return response.data; // Return the response data from the backend
+  } catch (error) {
+    throw error.response ? error.response.data : error; // Pass the error details for proper handling
   }
+}
   
 
-  export function mockRegister(userDetails, success = true) {
-
-    if (!success) {
-      throw { status: 409, response: { data: { message: "Username taken", success: false } } };
-    }
-  
-    return { status: 200, response: { data: { message: "user created", success: true}} };
+export async function Register(userDetails) {
+  try {
+    const response = await api.post(`${routerPrefix}/Register`, {
+      username: userDetails.username,
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      country: userDetails.country,
+      password: userDetails.password,
+      email: userDetails.email,
+      profilePictureUrl: userDetails.profilePictureUrl || "", // Optional profile picture URL
+    });
+    return response.data; // Return the successful response
+  } catch (error) {
+    throw error.response ? error.response.data : error; // Handle errors properly
   }
+}
   
 
 

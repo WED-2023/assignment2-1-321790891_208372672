@@ -11,7 +11,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview, mockGetRandomRecipesPreview, mockGetFavoriteRecipes,mockGetLastViewedRecipes} from "../services/recipes.js";
+import { mockGetRecipesPreview, getRandomRecipes, mockGetFavoriteRecipes,mockGetLastViewedRecipes} from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
 
 export default {
@@ -72,7 +72,7 @@ export default {
     else if (this.searchPage) {
       this.updateRecipes(this.numSearch);
     } else {
-      this.updateRecipes(this.numResults);
+      this.updateRandomRecipes(this.numResults);
     }
   },
   methods: {
@@ -90,14 +90,13 @@ export default {
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
-        const response = mockGetRandomRecipesPreview(amountToFetch);
-        const recipes = response.data.recipes;
-        this.recipesInternal = recipes;
-        console.log(recipes);
-        this.recipes = [];
-        this.recipes.push(...recipes);
+        // Await the promise returned by getRandomRecipes
+        const recipes = await getRandomRecipes(amountToFetch); // Correctly await the data
+        this.recipesInternal = recipes; // Update internal state with the recipes
+        this.recipes = [...recipes]; // Update component's recipes array
+        console.log("Fetched random recipes:", recipes); // Debugging output
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching random recipes:", error); // Log any errors
       }
     },
     async updateFavoriteRecipes() {

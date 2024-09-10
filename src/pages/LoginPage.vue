@@ -45,7 +45,8 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-import {mockLogin} from "../services/auth.js"
+import { Login } from "../services/auth.js";
+
 export default {
   name: "Login",
   data() {
@@ -59,12 +60,8 @@ export default {
   },
   validations: {
     form: {
-      username: {
-        required
-      },
-      password: {
-        required
-      }
+      username: { required },
+      password: { required }
     }
   },
   methods: {
@@ -74,45 +71,29 @@ export default {
     },
     async Login() {
       try {
-        
-        // const response = await this.axios.post(
-        //   this.$root.store.server_domain +"/Login",
+        const response = await Login(this.form.username, this.form.password);
 
-
-        //   {
-        //     username: this.form.username,
-        //     password: this.form.password
-        //   }
-        // );
-
-        const success = true; // modify this to test the error handling
-        const response = mockLogin(this.form.username, this.form.password, success);
-
-        // console.log(response);
-        // this.$root.loggedIn = true;
-        console.log(this.$root.store.login);
-        this.$root.store.login(this.form.username);
-        this.$router.push("/");
+        // If login is successful, proceed to update the state and navigate
+        console.log("Login successful:", response);
+        this.$root.store.login(this.form.username); // Update the app's state for logged in user
+        this.$router.push("/"); // Redirect to the main page
       } catch (err) {
-        console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        console.error("Login failed:", err);
+        this.form.submitError = err.message || "Login failed. Please try again.";
       }
     },
-
     onLogin() {
-      // console.log("login method called");
       this.form.submitError = undefined;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("login method go");
-
       this.Login();
     }
   }
 };
 </script>
+
 <style lang="scss" scoped>
 html, body {
   height: 100%;
