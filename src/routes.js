@@ -1,5 +1,5 @@
-import Main from "./pages/MainPage";
-import NotFound from "./pages/NotFoundPage";
+import Main from "./pages/MainPage.vue";
+import NotFound from "./pages/NotFoundPage.vue";
 
 const routes = [
   {
