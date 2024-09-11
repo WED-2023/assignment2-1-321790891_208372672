@@ -81,7 +81,7 @@
           class="FoundRecipes"
           :recipes="sortedRecipes"
           :numSearch="this.numResults"
-          :searchPage="true"
+          
         />
       </div>
     </div>
