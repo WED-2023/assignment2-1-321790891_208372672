@@ -123,7 +123,7 @@ export default {
           this.selectedFilters.cuisine,
           this.selectedFilters.diet,
           this.selectedFilters.intolerance,
-          this.numResults
+          2
         );
 
         // Update the state with the fetched recipes

@@ -86,21 +86,27 @@ export default {
   methods: {
     async updateRecipes(amountToFetch = 3) {
       try {
-        const response = mockGetRecipesPreview(amountToFetch);
-        const recipes = response.data.recipes;
-        this.recipesInternal = recipes;
-        console.log(recipes);
-        this.recipes = [];
-        this.recipes.push(...recipes);
+        // Call the new searchRecipes function and pass the required parameters
+        const recipes = await searchRecipes(
+          this.searchQuery,
+          this.selectedFilters.cuisine,
+          this.selectedFilters.diet,
+          this.selectedFilters.intolerance,
+          2
+        );
+
+        // Update the state with the fetched recipes
+        this.recipes = recipes;
+        this.showResults = true; // Display the search results
       } catch (error) {
-        console.log(error);
+        console.error('Error fetching recipes:', error);
       }
     },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
         alert("main page 2");
         // Await the promise returned by getRandomRecipes
-        const recipes = await getRandomRecipes(amountToFetch); // Correctly await the data
+        const recipes = await getRandomRecipes(2); //change later to amountToFetch
         this.recipesInternal = recipes; // Update internal state with the recipes
         this.recipes = [...recipes]; // Update component's recipes array
         console.log("Fetched random recipes:", recipes); // Debugging output
