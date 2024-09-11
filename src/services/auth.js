@@ -34,9 +34,16 @@ export async function Register(userDetails) {
   
 
 
-  export function mockLogout() {
-    return { status: 200, response: { data: { message: "logout succeeded", success: true}} };
-
+  
+export async function logout() {
+  try {
+    // Send a POST request to the backend logout endpoint
+    const response = await api.post('/auth/Logout');
+    return response.data; // Return the response data (success message)
+  } catch (error) {
+    console.error('Error during logout:', error.message);
+    throw error; // Propagate the error for further handling
   }
+}
   
 

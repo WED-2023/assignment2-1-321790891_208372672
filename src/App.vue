@@ -44,6 +44,7 @@
 
 <script>
 import RecipeModal from './components/RecipeModal.vue';
+import { logout } from './services/auth.js';
 export default {
   name: "App",
   components: {
@@ -57,7 +58,9 @@ export default {
     }
   },
   methods: {
-    Logout() {
+    async Logout() {
+      const response = await logout();
+        console.log(response.message); // Handle the success message
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
 

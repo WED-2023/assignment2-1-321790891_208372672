@@ -46,7 +46,7 @@ export default {
     },
     numSearch: {
       type: Number,
-      default: 5
+      default: 3
     },
     searchPage:{
       type: Boolean,
@@ -110,7 +110,7 @@ export default {
     async updateRandomRecipes(amountToFetch = 3) {
       try {
         // Await the promise returned by getRandomRecipes
-        const recipes = await getRandomRecipes(2); //change later to amountToFetch
+        const recipes = await getRandomRecipes(amountToFetch); 
         this.recipesInternal = recipes; // Update internal state with the recipes
         this.recipes = [...recipes]; // Update component's recipes array
         console.log("Fetched random recipes:", recipes); // Debugging output
