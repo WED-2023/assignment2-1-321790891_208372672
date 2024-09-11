@@ -55,7 +55,11 @@ export default {
     mainPage: {
       type: Boolean,
       default: false
-    }
+    },
+    Private: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
@@ -77,7 +81,9 @@ export default {
     } 
     else if (this.mainPage) {
       this.updateRandomRecipes(this.numSearch);
-    } else {
+    }
+    else if(this.Private){} 
+    else {
       this.updateRecipes(this.numResults);
     }
   },

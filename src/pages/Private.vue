@@ -6,6 +6,7 @@
           ref="recipeList"
           title="MY RECIPES"
           class="RandomRecipes"
+          :Private = "true"
           :titleStyle="customTitleStyle"
           :recipes="userRecipes"
         />
