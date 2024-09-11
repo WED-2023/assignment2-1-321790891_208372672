@@ -5,19 +5,6 @@ import recipe_previews from "../assets/mocks/recipe_preview.json";
 import api from './api';
 const routerPrefix = "recipes";
 
-export function mockGetRecipesPreview(amount = 1) {
-  let recipes = [];
-  for(let i = 0; i < amount; i++){
-    if (i < recipe_previews.length) {
-      recipes.push(recipe_previews[i]);
-    } else {
-      // If the requested amount is greater than the available previews, reuse previews
-      recipes.push(recipe_previews[i % recipe_previews.length]);
-    }
-  }
-
-  return { data: { recipes: recipes } };
-}
 
 import family_recipe_full_view from "../assets/mocks/family_recipe_full_view.json";
 import family_recipe_previews from "../assets/mocks/family_recipe_preview.json";
@@ -89,17 +76,6 @@ export async function toggleFavoriteRecipe(recipeId, isFavorite) {
   }
 }
 
-export function mockGetRecipeFullDetails(recipeId) {
-  // return { data: { recipe: recipe_full_view } };
-
-  const recipe = recipe_full_view.find(recipe => recipe.id === recipeId);
-  if (recipe) {
-    return { status: 200, data: { recipe: recipe } };
-  } else {
-    return { status: 404, error: "Recipe not found", data: null };
-  }
-
-}
 export function mockGetFamilyRecipeFullDetails(recipeId) {
   const recipe = family_recipe_full_view.find(recipe => recipe.id === recipeId);
   if (recipe) {
@@ -140,24 +116,7 @@ export async function getFavoriteRecipes() {
   }
 }
 
-export function mockGetLastViewedRecipes() {
-  const lastWatchedRecipesIds = JSON.parse(localStorage.getItem('lastWatchedRecipes')) || [];
-  const lastWatchedRecipes = [];
-  
-  
-  lastWatchedRecipesIds.forEach(recipeId => {
-    // Find the recipe object with matching ID in either previews or full view
-    const recipe = recipe_previews.find(recipe => recipe.id === recipeId) ||
-                   recipe_full_view.find(recipe => recipe.id === recipeId);
-    
-    if (recipe) {
-      lastWatchedRecipes.push(recipe);
-      
-    }
-  });
 
-  return { data: { recipes: lastWatchedRecipes } };
-}
 
 export async function getRecipeFullDetails(recipeId) {
   // Send a GET request to the backend to fetch full details of the recipe

@@ -11,7 +11,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview, getRandomRecipes,mockGetLastViewedRecipes,getFavoriteRecipes,searchRecipes} from "../services/recipes.js";
+import { getRandomRecipes,getFavoriteRecipes,searchRecipes} from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
 
 export default {
@@ -31,10 +31,6 @@ export default {
     recipes: {
       type: Array,
       default: () => [] // Default to an empty array if not provided
-    },
-    loadLastViewed: {
-      type: Boolean,
-      default: false
     },
     loadFavorites: {
       type: Boolean,
@@ -80,9 +76,6 @@ export default {
     if (this.loadFavoritesMain) {
       this.updateThreeFavoriteRecipes();
     }
-    else if (this.loadLastViewed) {
-      this.updateLastViewedRecipes();
-    } 
     else if (this.searchPage) {
       this.updateRecipes(this.numSearch);
     } 
@@ -151,19 +144,6 @@ export default {
         this.recipes = [...limitedRecipes]; // Update component's recipes array
       } catch (error) {
         console.error('Error fetching favorite recipes:', error);
-      }
-    },
-    async updateLastViewedRecipes() {
-      try {
-        const response = mockGetLastViewedRecipes();
-        
-        console.log(response);
-        const recipes = response.data.recipes;
-        console.log(recipes);
-        this.recipes = [];
-        this.recipes.push(...recipes);
-      } catch (error) {
-        console.log(error);
       }
     },
     async handleToggleFavorite(recipeId, isFavorite) {
