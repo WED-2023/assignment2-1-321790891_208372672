@@ -11,7 +11,7 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
-import { mockGetRecipesPreview, getRandomRecipes,mockGetLastViewedRecipes,getFavoriteRecipes} from "../services/recipes.js";
+import { mockGetRecipesPreview, getRandomRecipes,mockGetLastViewedRecipes,getFavoriteRecipes,searchRecipes} from "../services/recipes.js";
 import { mockAddFavorite } from "../services/user.js";
 
 export default {
@@ -82,24 +82,25 @@ export default {
     }
   },
   methods: {
-    async updateRecipes(amountToFetch = 3) {
-      try {
-        // Call the new searchRecipes function and pass the required parameters
-        const recipes = await searchRecipes(
-          this.searchQuery,
-          this.selectedFilters.cuisine,
-          this.selectedFilters.diet,
-          this.selectedFilters.intolerance,
-          2
-        );
+    async updateRecipes(numResults = 3, searchQuery = '', cuisines = [], diets = [], intolerances = []) {
+    try {
+      // Call the searchRecipes function with the provided parameters
+      const recipes = await searchRecipes(
+        searchQuery,
+        cuisines,
+        diets,
+        intolerances,
+        numResults
+      );
 
-        // Update the state with the fetched recipes
-        this.recipes = recipes;
-        this.showResults = true; // Display the search results
-      } catch (error) {
-        console.error('Error fetching recipes:', error);
-      }
-    },
+      // Update the component's recipes with the fetched data
+      this.recipes = recipes;
+      this.recipesInternal = [...recipes];
+      console.log("Updated Recipes:", recipes); // Debugging output
+    } catch (error) {
+      console.error('Error updating recipes:', error);
+    }
+  },
     async updateRandomRecipes(amountToFetch = 3) {
       try {
         // Await the promise returned by getRandomRecipes

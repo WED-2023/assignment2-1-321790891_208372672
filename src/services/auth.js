@@ -1,5 +1,5 @@
 // src/services/auth.js
-import api from "../main.js";
+import api from "../services/api.js";
 const routerPrefix = "auth";
 
 export async function Login(username, password) {

@@ -8,12 +8,12 @@
       <b-form-group label="Recipe Name">
         <b-form-input v-model="recipe.name" required></b-form-input>
       </b-form-group>
-      
+
       <!-- Recipe Image URL Section -->
       <b-form-group label="Recipe Image URL">
         <b-form-input v-model="recipe.imageUrl" placeholder="e.g. https://example.com/image.jpg" required></b-form-input>
       </b-form-group>
-      
+
       <b-form-group label="Preparation Time">
         <b-form-input v-model="recipe.preparationTime" type="number" required></b-form-input>
       </b-form-group>
@@ -38,9 +38,6 @@
         <b-button variant="success" @click="addInstruction">Add Instruction</b-button>
       </b-form-group>
 
-      <b-form-group label="Portions">
-        <b-form-input v-model="recipe.portions" type="number" required></b-form-input>
-      </b-form-group>
 
       <!-- Summary Section -->
       <b-form-group label="Summary">
@@ -60,6 +57,8 @@
 </template>
 
 <script>
+import { createRecipe } from '../services/user.js'; // Import your createRecipe function
+
 export default {
   name: 'RecipeModal',
   props: {
@@ -82,7 +81,7 @@ export default {
             unit: 'tsp'
           }
         ],
-        instructions: [''],
+        instructions: [{ description: '' }],  // Ensure instructions are objects with a description property
         portions: 1,
         summary: '',
         isVegan: false,
@@ -95,10 +94,15 @@ export default {
     closeModal() {
       this.$emit('close');
     },
-    submitForm() {
-      // Handle the recipe creation logic here
-      console.log('New Recipe Created:', this.recipe);
-      this.$emit('close');
+    async submitForm() {
+      try {
+        // Send the recipe data to the backend via the createRecipe function
+        await createRecipe(this.recipe);
+        console.log('Recipe successfully created');
+        this.closeModal();
+      } catch (error) {
+        console.error('Failed to create recipe:', error.message);
+      }
     },
     addIngredient() {
       this.recipe.ingredients.push({ name: '', amount: 0, unit: 'tsp' });
@@ -107,7 +111,7 @@ export default {
       this.recipe.ingredients.splice(index, 1);
     },
     addInstruction() {
-      this.recipe.instructions.push('');
+      this.recipe.instructions.push({ description: '' });  // Add a new instruction object
     },
     removeInstruction(index) {
       this.recipe.instructions.splice(index, 1);
