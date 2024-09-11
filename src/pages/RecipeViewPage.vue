@@ -9,6 +9,20 @@
           <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
           <!-- <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p> -->
           <p><strong>Likes:</strong> {{ recipe.popularity }} likes</p> 
+          <ul class="diet-icons">
+            <li v-if="recipe.vegetarian">
+              <img src="@/assets/vegetarian.png" alt="Vegetarian" class="diet-icon" />
+            </li>
+            <li v-if="recipe.vegan">
+              <img src="@/assets/vegan.png" alt="Vegan" class="diet-icon" />
+            </li>
+            <li v-if="recipe.glutenFree">
+              <img src="@/assets/gluten.png" alt="Gluten-Free" class="diet-icon" />
+            </li>
+          </ul>
+          <br>
+          <p class="summary"><strong>About recipe:</strong></p>
+          <p><span v-html="recipe.summary"></span></p>
         </div>
         </div>
         <div class="image-container">
@@ -96,6 +110,7 @@ export default {
         image,
         title,
         id,
+        summary,
         vegan,
         vegetarian,
         glutenFree
@@ -118,7 +133,11 @@ export default {
         readyInMinutes,
         image,
         title,
-        id
+        id,
+        summary,
+        vegan,
+        vegetarian,
+        glutenFree
       };
 
       this.recipe = _recipe;
@@ -263,5 +282,22 @@ html, body {
   line-height: 1.5;
   font-size: 1.1em;
   color: #555;
+}
+
+.diet-icons {
+  list-style: none; /* Removes the grey dots */
+  display: flex; /* Aligns items in a row */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+  justify-content: center; /* Centers items horizontally */
+}
+
+.diet-icons li {
+  margin-left: 5px;
+}
+
+.diet-icon {
+  width: 60px;
+  height: 60px;
 }
 </style>

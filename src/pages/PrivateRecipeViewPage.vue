@@ -7,28 +7,43 @@
             <hr class="separator" />
             <div class="recipe-info">
             <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
-            <!-- <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p> -->
-            <p><strong>Likes:</strong> {{ recipe.popularity }} likes</p> 
+            <ul class="diet-icons">
+                <li v-if="recipe.vegetarian">
+                    <img src="@/assets/vegetarian.png" alt="Vegetarian" class="diet-icon" />
+                </li>
+                <li v-if="recipe.vegan">
+                    <img src="@/assets/vegan.png" alt="Vegan" class="diet-icon" />
+                </li>
+                <li v-if="recipe.glutenFree">
+                    <img src="@/assets/gluten.png" alt="Gluten-Free" class="diet-icon" />
+                </li>
+            </ul>
+            <br>
+            <p class="summary"><strong>About recipe:</strong> </p>
+            <p><span v-html="recipe.summary"></span></p>
+            <!-- <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p> --> 
           </div>
           </div>
           <div class="image-container">
             <img :src="recipe.image" class="recipe-image" />
           </div>
         </div>
+
+
         <div class="recipe-body">
           <div class="recipe-ingredients">
             <h3>Ingredients:</h3>
             <ul>
-              <li v-for="(r, index) in recipe.extendedIngredients" :key="index + '_' + r.id">
-                {{ r.original }}
+              <li v-for="(r, index) in recipe.ingredients" :key="index + '_' + r.id">
+                {{ r.amount + " " + r.unit + " of " + r.name}}
               </li>
             </ul>
           </div>
           <div class="recipe-instructions">
             <h3>Instructions:</h3>
             <ol>
-              <li v-for="s in recipe._instructions" :key="s.number">
-                {{ s.step }}
+              <li v-for="s in recipe.instructions" :key="s.number">
+                {{ s.description }}
               </li>
             </ol>
           </div>
@@ -43,7 +58,7 @@
   </template>
   
   <script>
-  import { getPrivateRecipeFullDetails } from "../services/recipes.js";
+  import { getPrivateRecipeFullDetails } from "../services/user.js";
   
   export default {
     data() {
@@ -56,8 +71,8 @@
       window.scrollTo(0, 0);
       let viewedRecipes = JSON.parse(localStorage.getItem('viewedRecipes')) || [];
   
-      if (!viewedRecipes.includes(this.recipe.id)) {
-        viewedRecipes.push(this.recipe.id);
+      if (!viewedRecipes.includes(this.recipe.recipe_id)) {
+        viewedRecipes.push(this.recipe.recipe_id);
       }
   
       localStorage.setItem('viewedRecipes', JSON.stringify(viewedRecipes));
@@ -74,7 +89,7 @@
           //     withCredentials: true
           //   }
           // );
-          response = await getRecipeFullDetails(this.$route.params.recipeId);
+          response = await getPrivateRecipeFullDetails(this.$route.params.recipeId);
           console.log(response.data.id);
           if (!response || response.status !== 200 || !response.data) {
             console.log("Invalid response or missing data:", response);
@@ -87,38 +102,33 @@
           return;
         }
   
-        console.log(response.data.id);
+        console.log(response.data);
         let {
-          analyzedInstructions,
-          extendedIngredients,
-          popularity,
+          instructions,
+          ingredients,
           readyInMinutes,
           image,
           title,
           id,
+          summary,
           vegan,
           vegetarian,
           glutenFree
         } = response.data;
-  
-        
-  
-        let _instructions = analyzedInstructions
-          .map((fstep) => {
-            fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-            return fstep.steps;
-          })
-          .reduce((a, b) => [...a, ...b], []);
+
+
   
         let _recipe = {
-          _instructions,
-          analyzedInstructions,
-          extendedIngredients,
-          popularity,
+          instructions,
+          ingredients,
           readyInMinutes,
           image,
           title,
-          id
+          id,
+          summary,
+          vegan,
+          vegetarian,
+          glutenFree
         };
   
         this.recipe = _recipe;
@@ -204,13 +214,15 @@
     color: #777;
     font-size: 1.2em;
   }
-  
+
   .image-container {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
   }
+
+  
   
   .recipe-image {
     width: 900px;
@@ -264,4 +276,21 @@
     font-size: 1.1em;
     color: #555;
   }
+
+  .diet-icons {
+  list-style: none; /* Removes the grey dots */
+  display: flex; /* Aligns items in a row */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+  justify-content: center; /* Centers items horizontally */
+}
+
+.diet-icons li {
+  margin-left: 5px;
+}
+
+.diet-icon {
+  width: 60px;
+  height: 60px;
+}
   </style>

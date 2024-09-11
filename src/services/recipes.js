@@ -130,14 +130,3 @@ export async function getRecipeFullDetails(recipeId) {
   }
 }
 
-export async function getPrivateRecipeFullDetails(recipeId) {
-  // Send a GET request to the backend to fetch full details of the recipe
-  try {
-    const response = await api.get(`${routerPrefix}/${recipeId}/fullDetails`)
-    // Return the data received from the backend
-    return response;
-  } catch (error) {
-    console.error('Error fetching full details of the recipe:', error.message);
-    throw error;  // Propagate error for further handling
-  }
-}

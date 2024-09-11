@@ -6,9 +6,10 @@
           ref="recipeList"
           title="MY RECIPES"
           class="RandomRecipes"
-          :Private = "true"
           :titleStyle="customTitleStyle"
           :recipes="userRecipes"
+          :PrivateRecipe="true"
+          @click.native="goToRecipe(recipe.id)"
         />
       </div>
     </div>
@@ -40,6 +41,12 @@ export default {
     } catch (error) {
       console.error('Failed to load user recipes:', error.message);
       // Handle error (e.g., show a message to the user)
+    }
+  },
+  methods:{
+    goToRecipe(recipeId) {
+      console.log('Navigating to private recipe with ID:', recipeId);
+      this.$router.push({ name: 'PrivateRecipeFullView', params: { recipeId } });
     }
   }
 };

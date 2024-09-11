@@ -3,7 +3,7 @@
     <h3 class="list-title" :style="titleStyle">{{ title }}:</h3>
     <div class="recipes">
       <div v-for="r in recipes" :key="r.id" class="recipe-item">
-        <RecipePreview :recipe="r" :isFamilyRecipe="false" :titleStyle="titleStyle" @toggle-favorite="handleToggleFavorite" />
+        <RecipePreview :recipe="r" :isFamilyRecipe="false" :isPrivateRecipe="isPrivateRecipe(r)" :titleStyle="titleStyle" @toggle-favorite="handleToggleFavorite" />
       </div>
     </div>
   </div>
@@ -60,6 +60,10 @@ export default {
       type: Boolean,
       default: false
     },
+    PrivateRecipe:{
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -83,9 +87,12 @@ export default {
       this.updateRandomRecipes(this.numSearch);
     }
     else if(this.Private){} 
-    
   },
   methods: {
+    isPrivateRecipe(recipe) {
+      // Add your logic here to determine if a recipe is private
+      return this.PrivateRecipe; // Or any logic based on the recipe itself
+    },
     async updateRecipes(numResults = 3, searchQuery = '', cuisines = [], diets = [], intolerances = []) {
     try {
       // Call the searchRecipes function with the provided parameters
@@ -130,7 +137,6 @@ export default {
     },
     async updateThreeFavoriteRecipes() {
     try {
-      alert("main");
       // Call the API function to fetch favorite recipes
       const recipes = await getFavoriteRecipes();
 
@@ -184,9 +190,5 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px; /* Adjust gap as needed */
-}
-
-.recipe-item {
-  /* Additional styling if needed */
 }
 </style>

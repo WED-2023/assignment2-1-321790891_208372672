@@ -79,7 +79,7 @@ export default {
   computed: {
     linkTo() {
       if (this.isPrivateRecipe) {
-        return { name: 'PrivateRecipeFullView', params: { recipeId: this.recipe.id } };
+        return { name: 'PrivateRecipeFullView', params: { recipeId: this.recipe.recipe_id } };
       } else if (this.isFamilyRecipe) {
         return { name: 'RecipeFullView', params: { recipeId: this.recipe.id } };
       } else {
