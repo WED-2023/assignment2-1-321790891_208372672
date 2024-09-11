@@ -43,7 +43,7 @@
   </template>
   
   <script>
-  import { getRecipeFullDetails } from "../services/recipes.js";
+  import { getPrivateRecipeFullDetails } from "../services/recipes.js";
   
   export default {
     data() {

@@ -18,42 +18,45 @@ import api from "../services/api.js";
     }
   }
   
-export async function createRecipe(recipe) {
-  try {
-    console.log('Sending recipe to backend:', recipe);
-    
-    // Make sure ingredients and instructions are formatted correctly
-    const formattedIngredients = recipe.ingredients.map((ingredient) => ({
-      name: ingredient.name,
-      amount: ingredient.amount,
-      unit: ingredient.unit,
-    }));
-
-    const formattedInstructions = recipe.instructions.map((instruction) => ({
-      description: instruction,  // Assuming each instruction is a string
-    }));
-
-    // Prepare the payload
-    const payload = {
-      image: recipe.imageUrl,
-      title: recipe.name,
-      readyInMinutes: recipe.preparationTime,
-      servings: recipe.portions,
-      vegetarian: recipe.isVegetarian,
-      vegan: recipe.isVegan,
-      glutenFree: recipe.isGlutenFree,
-      summary: recipe.summary,
-      extendedIngredients: formattedIngredients,
-      instructions: formattedInstructions,
-    };
-
-    // Send the payload to the backend
-    const response = await api.post('/users/recipes', payload);
-    console.log('Recipe successfully created:', response.data);
-
-    return response.data;  // Return response data if needed
-  } catch (error) {
-    console.error('Error sending recipe to backend:', error.message);
-    throw error;
+  export async function createRecipe(recipe) {
+    try {
+      console.log('Sending recipe to backend:', recipe);
+      
+      // Format ingredients
+      const formattedIngredients = recipe.ingredients.map((ingredient) => ({
+        name: ingredient.name,
+        amount: ingredient.amount,
+        unit: ingredient.unit,
+      }));
+  
+      // Format instructions to include step_number and description
+      const formattedInstructions = recipe.instructions.map((instruction, index) => ({
+        step_number: index + 1,  // Step numbers start from 1
+        description: instruction,  // Assuming each instruction is a string
+      }));
+  
+      // Prepare the payload
+      const payload = {
+        image: recipe.imageUrl,
+        title: recipe.name,
+        readyInMinutes: recipe.preparationTime,
+        servings: recipe.portions,
+        vegetarian: recipe.isVegetarian,
+        vegan: recipe.isVegan,
+        glutenFree: recipe.isGlutenFree,
+        summary: recipe.summary,
+        extendedIngredients: formattedIngredients,
+        instructions: formattedInstructions,  // Include the formatted instructions
+      };
+  
+      // Send the payload to the backend
+      const response = await api.post('/users/recipes', payload);
+      console.log('Recipe successfully created:', response.data);
+  
+      return response.data;  // Return response data if needed
+    } catch (error) {
+      console.error('Error sending recipe to backend:', error.message);
+      throw error;
+    }
   }
-}
+  
