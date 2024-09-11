@@ -3,20 +3,21 @@
     <div class="recipes-container">
       <div class="content">
         <RecipePreviewList 
-        ref="randomRecipesList" 
-        title="MY RECIPES" 
-        class="RandomRecipes" 
-        :titleStyle="customTitleStyle"
+          ref="recipeList"
+          title="MY RECIPES"
+          class="RandomRecipes"
+          :titleStyle="customTitleStyle"
+          :recipes="userRecipes"
         />
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-import { Button } from "bootstrap";
 import RecipePreviewList from "../components/RecipePreviewList";
+import { getUserRecipes } from "../services/user.js";
+
 export default {
   components: {
     RecipePreviewList
@@ -26,8 +27,19 @@ export default {
       customTitleStyle: {
         fontSize: '40px',
         marginBottom: '20px'
-      }
+      },
+      userRecipes: [] // Store the fetched user recipes here
     };
+  },
+  async mounted() {
+    try {
+      // Fetch user recipes when the component is mounted
+      const recipes = await getUserRecipes();
+      this.userRecipes = recipes; // Set the fetched recipes to the userRecipes data property
+    } catch (error) {
+      console.error('Failed to load user recipes:', error.message);
+      // Handle error (e.g., show a message to the user)
+    }
   }
 };
 </script>
@@ -53,7 +65,4 @@ export default {
   margin-top: 20px;
   text-align: center;
 }
-
-
-
 </style>

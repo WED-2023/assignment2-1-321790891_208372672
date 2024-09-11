@@ -117,21 +117,24 @@ export default {
     },
     async fetchRecipes() {
       try {
-        // Call the new searchRecipes function and pass the required parameters
-        const recipes = await searchRecipes(
-          this.searchQuery,
-          this.selectedFilters.cuisine,
-          this.selectedFilters.diet,
-          this.selectedFilters.intolerance,
-          2
-        );
+      // Call the search function with appropriate parameters
+      const recipes = await searchRecipes(
+        this.searchQuery,
+        this.selectedFilters.cuisine,
+        this.selectedFilters.diet,
+        this.selectedFilters.intolerance,
+        2
+      );
 
-        // Update the state with the fetched recipes
-        this.recipes = recipes;
-        this.showResults = true; // Display the search results
-      } catch (error) {
-        console.error('Error fetching recipes:', error);
-      }
+      // Check the fetched recipes
+      console.log("Fetched Recipes:", recipes);
+
+      // Update the state with the fetched recipes
+      this.recipes = recipes;
+      this.showResults = true; // Ensure that results are displayed
+    } catch (error) {
+      console.error('Error fetching recipes:', error.message);
+    }
     },
     toggleFilter() {
       this.showFilter = !this.showFilter;
