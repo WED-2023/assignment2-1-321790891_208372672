@@ -83,9 +83,7 @@ export default {
       this.updateRandomRecipes(this.numSearch);
     }
     else if(this.Private){} 
-    else {
-      this.updateRecipes(this.numResults);
-    }
+    
   },
   methods: {
     async updateRecipes(numResults = 3, searchQuery = '', cuisines = [], diets = [], intolerances = []) {
@@ -131,21 +129,30 @@ export default {
       }
     },
     async updateThreeFavoriteRecipes() {
-      try {
-        alert("main");
-        // Call the API function to fetch favorite recipes
-        const recipes = await getFavoriteRecipes();
-        
-        // Slice the array to get only the first 3 recipes
-        const limitedRecipes = recipes.slice(0, 3);
+    try {
+      alert("main");
+      // Call the API function to fetch favorite recipes
+      const recipes = await getFavoriteRecipes();
 
-        // Update the component's internal recipes with only 3 recipes
-        this.recipesInternal = limitedRecipes;
-        this.recipes = [...limitedRecipes]; // Update component's recipes array
+      // Extract the IDs of all fetched recipes
+      const favoriteRecipeIds = recipes.map(recipe => recipe.id);
+
+      // Save the IDs to local storage
+      localStorage.setItem('favoriteRecipeIds', JSON.stringify(favoriteRecipeIds));
+
+      // Slice the array to get only the first 3 recipes
+      const limitedRecipes = recipes.slice(0, 3);
+
+      // Update the component's internal recipes with only 3 recipes
+      this.recipesInternal = limitedRecipes;
+      this.recipes = [...limitedRecipes]; // Update component's recipes array
+
+      console.log('Favorite recipes updated and saved to local storage:', favoriteRecipeIds);
       } catch (error) {
         console.error('Error fetching favorite recipes:', error);
       }
     },
+
     async handleToggleFavorite(recipeId, isFavorite) {
       try {
         const response = await mockAddFavorite(recipeId);

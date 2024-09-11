@@ -4,11 +4,9 @@
     class="recipe-preview"
   >
     <div class="recipe-body">
-      <!-- Recipe Image and Overlay -->
       <img :src="recipe.image" class="recipe-image" />
       <div class="image-overlay">View Recipe</div>
       
-      <!-- Diet Icons -->
       <ul class="diet-icons">
         <li v-if="recipe.vegetarian">
           <img src="@/assets/vegetarian.png" alt="Vegetarian" class="diet-icon" />
@@ -22,7 +20,6 @@
       </ul>
     </div>
 
-    <!-- Recipe Footer -->
     <div class="recipe-footer" :class="{ 'recipe-footer-viewed': viewed }">
       <div class="title">
         <div :title="recipe.title" class="recipe-title" >
@@ -35,8 +32,15 @@
         <img src="@/assets/heart-empty.png" alt="Icon" class="like-icon" />
         <li>{{ recipe.aggregateLikes }} likes</li>
         <div>
-          <button @click.stop.prevent="toggleFavorite" :class="['favorite-button', { 'favorite-active': !isFavorite }]" class="favorite-button">
-            <img :src="isFavorite ? require('@/assets/favorite-full.jpg') : require('@/assets/favorite-empty.jpg')" alt="Favorite Icon" class="favorite-icon" />
+          <button 
+            @click.stop.prevent="toggleFavorite" 
+            :class="['favorite-button', { 'favorite-active': isFavorite }]"
+          >
+            <img 
+              :src="isFavorite ? require('@/assets/favorite-full.jpg') : require('@/assets/favorite-empty.jpg')" 
+              alt="Favorite Icon" 
+              class="favorite-icon" 
+            />
             {{ isFavorite ? 'Added To Favorites' : 'Add To Favorites' }}
           </button>
         </div>
@@ -50,6 +54,7 @@
 
 <script>
 import { toggleFavoriteRecipe } from "../services/recipes.js";
+
 export default {
   data() {
     return {
@@ -67,27 +72,28 @@ export default {
       default: false
     },
     isPrivateRecipe: {
-    type: Boolean,
-    default: false
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     linkTo() {
-    if (this.isPrivateRecipe) {
-      return { name: 'PrivateRecipeFullView', params: { recipeId: this.recipe.id } };
-    } else if (this.isFamilyRecipe) {
-      return { name: 'RecipeFullView', params: { recipeId: this.recipe.id } };
-    } else {
-      return { name: 'recipe', params: { recipeId: this.recipe.id } };
+      if (this.isPrivateRecipe) {
+        return { name: 'PrivateRecipeFullView', params: { recipeId: this.recipe.id } };
+      } else if (this.isFamilyRecipe) {
+        return { name: 'RecipeFullView', params: { recipeId: this.recipe.id } };
+      } else {
+        return { name: 'recipe', params: { recipeId: this.recipe.id } };
+      }
     }
-  }
   },
   created() {
     const viewedRecipes = JSON.parse(localStorage.getItem('viewedRecipes')) || [];
     this.viewed = viewedRecipes.includes(this.recipe.id);
-  },
-  mounted() {
-   
+
+    // Check if the recipe is already in favorites
+    const favoriteRecipeIds = JSON.parse(localStorage.getItem('favoriteRecipeIds')) || [];
+    this.isFavorite = favoriteRecipeIds.includes(this.recipe.id);
   },
   methods: {
     async toggleFavorite() {
@@ -95,6 +101,20 @@ export default {
       try {
         // Call the API to add or remove the favorite
         await toggleFavoriteRecipe(this.recipe.id, this.isFavorite);
+
+        // Update local storage
+        const favoriteRecipeIds = JSON.parse(localStorage.getItem('favoriteRecipeIds')) || [];
+        if (this.isFavorite) {
+          if (!favoriteRecipeIds.includes(this.recipe.id)) {
+            favoriteRecipeIds.push(this.recipe.id); // Add to favorites
+          }
+        } else {
+          const index = favoriteRecipeIds.indexOf(this.recipe.id);
+          if (index > -1) {
+            favoriteRecipeIds.splice(index, 1); // Remove from favorites
+          }
+        }
+        localStorage.setItem('favoriteRecipeIds', JSON.stringify(favoriteRecipeIds));
 
         // Emit an event to inform the parent component
         this.$emit('toggle-favorite', this.recipe.id, this.isFavorite);
@@ -109,6 +129,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+/* Your existing styles */
+</style>
 
 <style scoped>
 
