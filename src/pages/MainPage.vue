@@ -55,7 +55,7 @@
             title="MY FAVORITE RECIPES"
             class="FavoriteRecipes"
             :disabled="!$root.store.username"
-            :loadFavorites="true" 
+            :loadFavoritesMain="true" 
           />
         </div>
 

@@ -40,6 +40,10 @@ export default {
       type: Boolean,
       default: false
     },
+    loadFavoritesMain: {
+      type: Boolean,
+      default: false
+    },
     titleStyle: {
       type: Object,
       default: () => ({})
@@ -72,6 +76,9 @@ export default {
     // Check if the current route is the "Favorites" route
     if (this.loadFavorites) {
       this.updateFavoriteRecipes();
+    }
+    if (this.loadFavoritesMain) {
+      this.updateThreeFavoriteRecipes();
     }
     else if (this.loadLastViewed) {
       this.updateLastViewedRecipes();
@@ -126,6 +133,22 @@ export default {
         // Update the component's recipes with the fetched favorites
         this.recipesInternal = recipes;
         this.recipes = [...recipes]; // Update component's recipes array
+      } catch (error) {
+        console.error('Error fetching favorite recipes:', error);
+      }
+    },
+    async updateThreeFavoriteRecipes() {
+      try {
+        alert("main");
+        // Call the API function to fetch favorite recipes
+        const recipes = await getFavoriteRecipes();
+        
+        // Slice the array to get only the first 3 recipes
+        const limitedRecipes = recipes.slice(0, 3);
+
+        // Update the component's internal recipes with only 3 recipes
+        this.recipesInternal = limitedRecipes;
+        this.recipes = [...limitedRecipes]; // Update component's recipes array
       } catch (error) {
         console.error('Error fetching favorite recipes:', error);
       }
