@@ -7,17 +7,15 @@
           <hr class="separator" />
           <div class="recipe-info">
           <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
-          <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p>
+          <!-- <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p> -->
+          <p><strong>Likes:</strong> {{ recipe.popularity }} likes</p> 
         </div>
         </div>
         <div class="image-container">
           <img :src="recipe.image" class="recipe-image" />
         </div>
       </div>
-      
       <div class="recipe-body">
-        
-
         <div class="recipe-ingredients">
           <h3>Ingredients:</h3>
           <ul>
@@ -45,7 +43,8 @@
 </template>
 
 <script>
-import { mockGetRecipeFullDetails } from "../services/recipes.js";
+import { getRecipeFullDetails } from "../services/recipes.js";
+
 export default {
   data() {
     return {
@@ -75,27 +74,34 @@ export default {
         //     withCredentials: true
         //   }
         // );
-
-        response = mockGetRecipeFullDetails(this.$route.params.recipeId);
-
-        // console.log("response.status", response.status);
-        if (response.status !== 200) this.$router.replace("/NotFound");
+        response = await getRecipeFullDetails(this.$route.params.recipeId);
+        console.log(response.data.id);
+        if (!response || response.status !== 200 || !response.data) {
+          console.log("Invalid response or missing data:", response);
+          this.$router.replace("/NotFound");
+          return;
+        }
       } catch (error) {
         console.log("error.response.status", error.response.status);
         this.$router.replace("/NotFound");
         return;
       }
 
+      console.log(response.data.id);
       let {
         analyzedInstructions,
-        instructions,
         extendedIngredients,
-        aggregateLikes,
+        popularity,
         readyInMinutes,
         image,
         title,
-        id
-      } = response.data.recipe;
+        id,
+        vegan,
+        vegetarian,
+        glutenFree
+      } = response.data;
+
+      
 
       let _instructions = analyzedInstructions
         .map((fstep) => {
@@ -105,11 +111,10 @@ export default {
         .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
-        instructions,
         _instructions,
         analyzedInstructions,
         extendedIngredients,
-        aggregateLikes,
+        popularity,
         readyInMinutes,
         image,
         title,
