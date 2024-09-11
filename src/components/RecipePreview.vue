@@ -66,13 +66,21 @@ export default {
       type: Boolean,
       default: false
     },
+    isPrivateRecipe: {
+    type: Boolean,
+    default: false
+    }
   },
   computed: {
     linkTo() {
-      return this.isFamilyRecipe
-        ? { name: 'RecipeFullView', params: { recipeId: this.recipe.id } }
-        : { name: 'recipe', params: { recipeId: this.recipe.id } };
+    if (this.isPrivateRecipe) {
+      return { name: 'PrivateRecipeFullView', params: { recipeId: this.recipe.id } };
+    } else if (this.isFamilyRecipe) {
+      return { name: 'RecipeFullView', params: { recipeId: this.recipe.id } };
+    } else {
+      return { name: 'recipe', params: { recipeId: this.recipe.id } };
     }
+  }
   },
   created() {
     const viewedRecipes = JSON.parse(localStorage.getItem('viewedRecipes')) || [];
