@@ -49,13 +49,13 @@
           </div>
         </div>
 
-        <div v-else class="last-viewed">
+        <div v-else class="favorite-recipes">
           <RecipePreviewList
-            ref="lastViewedRecipesList"
-            title="LAST VIEWED RECIPES"
-            class="LastViewedRecipes"
+            ref="favoriteRecipesList"
+            title="MY FAVORITE RECIPES"
+            class="FavoriteRecipes"
             :disabled="!$root.store.username"
-            :loadLastViewed="true" 
+            :loadFavorites="true" 
           />
         </div>
 
@@ -148,7 +148,7 @@ export default {
   flex-direction: column;
 }
 
-.last-viewed{
+.favorite-recipes{
   margin-left: 70px; 
 }
 
@@ -198,7 +198,7 @@ export default {
 }
 
 .RandomRecipes,
-.LastViewedRecipes {
+.FavoriteRecipes {
   margin-bottom: 10px;
 }
 
