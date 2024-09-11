@@ -4,11 +4,10 @@
       <!-- Your background photo -->
     </div>
     <div class="icon-container">
-      <img src="../assets/logo.png" alt="Icon" class="icon">
+      <img src="../assets/logo.png" alt="Icon" class="icon" />
     </div>
     <div class="search-container">
-      <div class="search-icon">
-      </div>
+      <div class="search-icon"></div>
       <b-form @submit.prevent="onSearch" class="search-form">
         <div class="search-bar">
           <b-form-input
@@ -28,7 +27,9 @@
               :options="sortOptions"
               class="sort-select"
             ></b-form-select>
-            <b-button @click="toggleFilter" class="filter-button">Filter</b-button>
+            <b-button @click="toggleFilter" class="filter-button">
+              Filter
+            </b-button>
           </div>
         </div>
         <b-button class="search-button" type="submit">Search</b-button>
@@ -37,7 +38,12 @@
         <div class="filter-category">
           <h5>Cuisine</h5>
           <b-button-group class="mb-2">
-            <b-button v-for="cuisine in cuisines" :key="cuisine" @click="toggleFilterOption('cuisine', cuisine)">
+            <b-button
+              v-for="cuisine in cuisines"
+              :key="cuisine"
+              :class="{ selected: selectedFilters.cuisine.includes(cuisine) }"
+              @click="toggleFilterOption('cuisine', cuisine)"
+            >
               {{ cuisine }}
             </b-button>
           </b-button-group>
@@ -45,7 +51,12 @@
         <div class="filter-category">
           <h5>Diet</h5>
           <b-button-group class="mb-2">
-            <b-button v-for="diet in diets" :key="diet" @click="toggleFilterOption('diet', diet)">
+            <b-button
+              v-for="diet in diets"
+              :key="diet"
+              :class="{ selected: selectedFilters.diet.includes(diet) }"
+              @click="toggleFilterOption('diet', diet)"
+            >
               {{ diet }}
             </b-button>
           </b-button-group>
@@ -53,7 +64,12 @@
         <div class="filter-category">
           <h5>Intolerance</h5>
           <b-button-group class="mb-2">
-            <b-button v-for="intolerance in intolerances" :key="intolerance" @click="toggleFilterOption('intolerance', intolerance)">
+            <b-button
+              v-for="intolerance in intolerances"
+              :key="intolerance"
+              :class="{ selected: selectedFilters.intolerance.includes(intolerance) }"
+              @click="toggleFilterOption('intolerance', intolerance)"
+            >
               {{ intolerance }}
             </b-button>
           </b-button-group>
@@ -65,7 +81,7 @@
           class="FoundRecipes"
           :recipes="sortedRecipes"
           :numSearch="this.numResults"
-          :searchPage = "true"
+          :searchPage="true"
         />
       </div>
     </div>
@@ -74,42 +90,52 @@
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
-import { mockGetRecipesPreview } from "../services/recipes";
 import { searchRecipes } from "../services/recipes";
+
 export default {
   components: {
-    RecipePreviewList
+    RecipePreviewList,
   },
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
       numResults: 5,
       resultOptions: [5, 10, 15],
-      sortOptions: ['likes', 'time'],
-      sortOption: 'time', // Default sort option
+      sortOptions: ["likes", "time"],
+      sortOption: "time", // Default sort option
       showFilter: false,
       showResults: false,
-      cuisines: ['Italian', 'Thai', 'French', 'Greek', 'Chinese', 'Mexican', 'German', 'Indian', 'Japanese'],
-      diets: ['Vegetarian', 'Vegan'],
-      intolerances: ['Gluten', 'Dairy', 'Peanut', 'Seafood', 'Soy'],
+      cuisines: [
+        "Italian",
+        "Thai",
+        "French",
+        "Greek",
+        "Chinese",
+        "Mexican",
+        "German",
+        "Indian",
+        "Japanese",
+      ],
+      diets: ["Vegetarian", "Vegan"],
+      intolerances: ["Gluten", "Dairy", "Peanut", "Seafood", "Soy"],
       selectedFilters: {
         cuisine: [],
         diet: [],
-        intolerance: []
+        intolerance: [],
       },
-      recipes: []
+      recipes: [],
     };
   },
   computed: {
     sortedRecipes() {
       let sorted = [...this.recipes];
-      if (this.sortOption === 'likes') {
+      if (this.sortOption === "likes") {
         sorted.sort((a, b) => b.aggregateLikes - a.aggregateLikes);
-      } else if (this.sortOption === 'time') {
+      } else if (this.sortOption === "time") {
         sorted.sort((a, b) => a.readyInMinutes - b.readyInMinutes);
       }
       return sorted;
-    }
+    },
   },
   methods: {
     onSearch() {
@@ -117,24 +143,24 @@ export default {
     },
     async fetchRecipes() {
       try {
-      // Call the search function with appropriate parameters
-      const recipes = await searchRecipes(
-        this.searchQuery,
-        this.selectedFilters.cuisine,
-        this.selectedFilters.diet,
-        this.selectedFilters.intolerance,
-        2
-      );
+        // Call the search function with appropriate parameters
+        const recipes = await searchRecipes(
+          this.searchQuery,
+          this.selectedFilters.cuisine,
+          this.selectedFilters.diet,
+          this.selectedFilters.intolerance,
+          this.numResults
+        );
 
-      // Check the fetched recipes
-      console.log("Fetched Recipes:", recipes);
+        // Check the fetched recipes
+        console.log("Fetched Recipes:", recipes);
 
-      // Update the state with the fetched recipes
-      this.recipes = recipes;
-      this.showResults = true; // Ensure that results are displayed
-    } catch (error) {
-      console.error('Error fetching recipes:', error.message);
-    }
+        // Update the state with the fetched recipes
+        this.recipes = recipes;
+        this.showResults = true; // Ensure that results are displayed
+      } catch (error) {
+        console.error("Error fetching recipes:", error.message);
+      }
     },
     toggleFilter() {
       this.showFilter = !this.showFilter;
@@ -146,8 +172,8 @@ export default {
       } else {
         this.selectedFilters[type].push(option);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -205,7 +231,7 @@ export default {
 }
 
 .num-results-select {
-  width: 62px; 
+  width: 62px;
   margin-right: 10px;
 }
 
@@ -261,8 +287,9 @@ export default {
   background-color: #e97f29;
 }
 
-.filter-category .mb-2 .btn::selection {
-  color: aqua;
+.filter-category .mb-2 .btn.selected {
+  background-color: #e97f29; /* Highlight selected options in orange */
+  color: white;
 }
 
 .filter-category h5 {
