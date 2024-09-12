@@ -30,7 +30,7 @@
         <img src="@/assets/time2.png" alt="Icon" class="time-icon" />
         <li class="recipe-readyInMinutes">{{ recipe.readyInMinutes }} minutes</li>
         <img src="@/assets/heart-empty.png" alt="Icon" class="like-icon" />
-        <li>{{ recipe.aggregateLikes }} likes</li>
+        <li>{{ recipe.popularity }} likes</li>
         <div>
           <button 
             @click.stop.prevent="toggleFavorite" 
