@@ -18,10 +18,6 @@
                     <img src="@/assets/gluten.png" alt="Gluten-Free" class="diet-icon" />
                 </li>
             </ul>
-            <br>
-            <p class="summary"><strong>About recipe:</strong> </p>
-            <p><span v-html="recipe.summary"></span></p>
-            <!-- <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p> --> 
           </div>
           </div>
           <div class="image-container">
@@ -29,8 +25,11 @@
           </div>
         </div>
 
-
         <div class="recipe-body">
+          <div class="recipe-about">
+            <h3>About the recipe:</h3>
+            <p><span v-html="recipe.summary"></span></p>
+          </div>
           <div class="recipe-ingredients">
             <h3>Ingredients:</h3>
             <ul>
@@ -241,6 +240,7 @@
     margin-top: 20px;
   }
   
+  .recipe-about,
   .recipe-ingredients,
   .recipe-instructions {
     background-color: #fafafa;
@@ -249,6 +249,7 @@
     border: 1px solid #e0e0e0;
   }
   
+  .recipe-about h3,
   .recipe-ingredients h3,
   .recipe-instructions h3 {
     margin-top: 0;
