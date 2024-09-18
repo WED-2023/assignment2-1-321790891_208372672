@@ -1,7 +1,9 @@
 <template>
   <div class="about-page">
     <div class="container">
-      <h1 class="title">ABOUT <span class="special-font">FOXCHEF CUISINE</span></h1>
+      <h2 class="container-title">
+        ABOUT <span class="special-font">FOXCHEF CUISINE</span>
+      </h2>
       <div class="content">
         <p>
           Welcome to <strong class="special-font">FOXCHEF CUISINE</strong> ! We are a dedicated team of students passionate about bringing the joy of cooking to everyone. Our mission is to create a user-friendly platform where food enthusiasts can explore a diverse range of recipes, from traditional favorites to innovative culinary creations.
@@ -12,6 +14,7 @@
         <p>
           As students, we have combined our skills in web development and culinary arts to create a platform that is both visually appealing and highly functional. We believe that cooking should be an enjoyable and accessible activity for everyone, and we are committed to continuously improving our website based on user feedback.
         </p>
+        <br>
         <h2 class="subtitle">Our Team</h2>
         <p>
           Our development team consists of aspiring web developers and designers who are passionate about food and technology. We have worked tirelessly to bring FOXCHEF CUISINE to life, and we are excited to share our project with you.
@@ -49,20 +52,49 @@ export default {
 }
 
 .container {
-  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.9); 
+  padding: 80px;
+  display: flex;
+  justify-content: center; ;
   margin: 0 auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 900px; 
+  width: 100%; 
+  min-height: 100vh;
+  box-sizing: border-box;
+  position: relative; 
 }
 
-.title {
-  font-size: 28px;
-  margin-bottom: 30px;
-  text-align: center;
+.container::before {
+  content: '';
+  position: absolute;
+  top: 20px; /* Adjust this value to control distance from the top */
+  left: 20px; /* Adjust this value to control distance from the left */
+  right: 20px; /* Adjust this value to control distance from the right */
+  bottom: 20px; /* Adjust this value to control distance from the bottom */
+  border: 4px solid #f3c562; /* Orange border */
+  pointer-events: none; /* Ensures it does not interfere with content */
+  z-index: 0; /* Keeps it behind the title */
+
+  /* Clip out the portion behind the title */
+  clip-path: polygon(0 0, 23% 0, 23% 45px, 77% 45px, 77% 0, 100% 0, 100% 100%, 0 100%);
 }
+
+.container-title{
+  font-size: 26px;
+  color: #e97f29; /* Orange color for the title */
+  position: absolute; /* Absolute positioning to move it in line with the top border */
+  top: 10px; /* Adjust this value to move the title higher, closer to the top */
+  left: 50%; /* Center the title horizontally */
+  transform: translateX(-50%); /* Adjusts centering considering absolute position */
+  padding: 0 20px; /* Adds padding to the background around the text */
+  z-index: 10; /* Ensure the title is layered above the border */
+  font-weight: bold;
+  letter-spacing: 3px; /* Add spacing between letters */
+  white-space: nowrap; /* Prevents the title from breaking into multiple lines */
+}
+
 
 .special-font {
   font-family: 'Lucida Handwriting', cursive; /* Different font for the site name */
@@ -78,6 +110,7 @@ export default {
   font-size: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .links {

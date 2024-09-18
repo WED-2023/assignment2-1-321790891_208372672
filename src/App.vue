@@ -124,7 +124,8 @@ export default {
 }
 
 .site-name {
-  font-family: 'Lucida Handwriting', cursive; /* Different font for the site name */
+  font-family: 'Lucida Handwriting', 'Brush Script MT', 'Comic Sans MS', cursive; /* Different font for the site name */
+  //font-family: 'Lucida Handwriting', cursive; /* Different font for the site name */
   font-size: 20px;
   color: #d16c3d; /* Orange color */
   margin-left: 5px; /* Closer to the logo */
@@ -197,7 +198,6 @@ export default {
 
 .dropbtn {
   font-weight: bold;
-  //color: #d16c3d; /* Orange text color */
   margin-right: 15px; /* Spacing between links */
   text-decoration: none;
   padding: 5px 10px;
