@@ -1,5 +1,5 @@
 <template>
-  <b-modal :visible="show" @hide="closeModal">
+  <b-modal :visible="show" @hide="closeModal" hide-footer size="lg">
     <template #modal-title>
       <h5>Create New Recipe</h5>
     </template>
@@ -24,18 +24,18 @@
           <b-form-input v-model="ingredient.name" placeholder="e.g. flour" class="ingredient-name" required></b-form-input>
           <b-form-input v-model="ingredient.amount" type="number" placeholder="Amount" class="ingredient-amount ml-2" required></b-form-input>
           <b-form-select v-model="ingredient.unit" :options="measurementUnits" class="ingredient-unit ml-2" required></b-form-select>
-          <b-button size="sm" variant="danger" @click="removeIngredient(index)" class="ml-2">Remove</b-button>
+          <b-button size="sm" variant="danger" @click="removeIngredient(index)" class="remove-button">Remove</b-button>
         </div>
-        <b-button variant="success" @click="addIngredient">Add Ingredient</b-button>
+        <b-button variant="success" @click="addIngredient" class="add-ingredient-button">Add Ingredient</b-button>
       </b-form-group>
 
       <!-- Instructions Section -->
       <b-form-group label="Instructions">
         <div v-for="(instruction, index) in recipe.instructions" :key="index" class="d-flex align-items-center mb-2">
           <b-form-input v-model="instruction.name" :placeholder="'Step ' + (index + 1)" rows="3" required></b-form-input>
-          <b-button size="sm" variant="danger" @click="removeInstruction(index)" class="ml-2">Remove</b-button>
+          <b-button size="sm" variant="danger" @click="removeInstruction(index)" class="remove-button">Remove</b-button>
         </div>
-        <b-button variant="success" @click="addInstruction">Add Instruction</b-button>
+        <b-button variant="success" @click="addInstruction" class="add-istruction-button">Add Instruction</b-button>
       </b-form-group>
 
 
@@ -51,7 +51,10 @@
         <b-form-checkbox v-model="recipe.isGlutenFree">Gluten Free</b-form-checkbox>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Create Recipe</b-button>
+      <b-form-group class="create-recipe">
+        <b-button type="submit" variant="primary" class="create-button">Create Recipe</b-button>
+      </b-form-group>
+     
     </b-form>
   </b-modal>
 </template>
@@ -174,5 +177,29 @@ export default {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.add-ingredient-button,
+.add-istruction-button{
+  background: linear-gradient(to right, #f1b635, #f1b635);
+  border-color: #f1b635;
+}
+
+.remove-button{
+  background: linear-gradient(to right, black, black);
+  border-color: black;
+  margin-left: 8px;
+}
+
+.create-button{
+  background: linear-gradient(to right, #e97f29, #e97f29);
+  border-color: #e97f29;
+  width: 200px;
+}
+
+.create-recipe{
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  padding-top: 20px;
 }
 </style>

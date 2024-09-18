@@ -1,8 +1,5 @@
 <template>
-  <div class="search-page">
-    <div class="background-photo">
-      <!-- Your background photo -->
-    </div>
+  <div :class="['search-page', { 'center-content': !showResults & !showFilter  }]">
     <div class="icon-container">
       <img src="../assets/logo.png" alt="Icon" class="icon" />
     </div>
@@ -76,8 +73,13 @@
         </div>
       </div>
       <div v-if="showResults" class="search-results">
+        <h3 class="found-title">
+          FOUND RECIPES:
+        </h3>
+        <div v-if="this.isEmpty" class="no-recipes">
+          <h3>Oops! We couldn't find any recipes matching your search. Try something else or explore new flavors!</h3>
+        </div>
         <RecipePreviewList
-          title="Found Recipes"
           class="FoundRecipes"
           :recipes="sortedRecipes"
           :numSearch="this.numResults"
@@ -98,6 +100,7 @@ export default {
   },
   data() {
     return {
+      isEmpty: false,
       searchQuery: "",
       numResults: 5,
       resultOptions: [5, 10, 15],
@@ -129,11 +132,6 @@ export default {
   computed: {
     sortedRecipes() {
       let sorted = [...this.recipes];
-      if (this.sortOption === "likes") {
-        sorted.sort((a, b) => b.aggregateLikes - a.aggregateLikes);
-      } else if (this.sortOption === "time") {
-        sorted.sort((a, b) => a.readyInMinutes - b.readyInMinutes);
-      }
       return sorted;
     },
   },
@@ -149,8 +147,16 @@ export default {
           this.selectedFilters.cuisine,
           this.selectedFilters.diet,
           this.selectedFilters.intolerance,
-          this.numResults
+          this.numResults,
+          this.sortOption
         );
+
+        if(recipes.length == 0){
+        this.isEmpty = true;
+        }
+        else{
+          this.isEmpty = false;
+        }
 
         // Check the fetched recipes
         console.log("Fetched Recipes:", recipes);
@@ -179,6 +185,24 @@ export default {
 
 <style scoped>
 /* Existing styles */
+.found-title{
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.no-recipes{
+  color:black;
+  margin-left: 10px;
+  text-align: center; /* Align text to center */
+  padding: 20px;
+}
+.no-recipes h3{
+  font-size: 20px;
+  line-height: 1.6;     /* Line spacing between text lines */
+}
+
 .search-page {
   display: flex;
   flex-direction: column;
@@ -186,6 +210,10 @@ export default {
   min-height: 100vh;
   overflow-y: auto; /* Enable scrolling if content overflows vertically */
   position: relative; /* Ensure relative positioning for absolute child elements */
+}
+
+.center-content{
+  margin-top: 5%;
 }
 
 .icon-container {
@@ -215,7 +243,7 @@ export default {
 .search-bar {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .search-input {
