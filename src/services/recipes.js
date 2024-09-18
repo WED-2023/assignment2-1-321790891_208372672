@@ -23,8 +23,16 @@ export function mockGetFamilyRecipesPreview(amount = 1) {
   return { data: { recipes: recipes } };
 }
 
-export async function searchRecipes(recipeName, cuisine, diet, intolerance, number) {
+export async function searchRecipes(recipeName, cuisine, diet, intolerance, number, sort) {
   try {
+    let sortBy;
+    if (sort == "likes"){
+      sortBy = "popularity";
+    }
+    else{
+      sortBy = "time"
+    }
+
     // Make a GET request to the backend to search for recipes
     const response = await api.get(`${routerPrefix}/search`, {
       params: {
@@ -32,7 +40,8 @@ export async function searchRecipes(recipeName, cuisine, diet, intolerance, numb
         cuisine: cuisine.join(','),  // Join array values into a comma-separated string
         diet: diet.join(','),  // Join array values into a comma-separated string
         intolerances: intolerance.join(','),  // Join array values into a comma-separated string
-        number: number || 5
+        number: number || 5,
+        sort: sortBy || 'time'
       }
     });
     console.log("the recipes searched", response.data);

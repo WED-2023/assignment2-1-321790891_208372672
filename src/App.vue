@@ -266,7 +266,6 @@ export default {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  //font-size: 14px;
   margin: 2px 1px;
   cursor: pointer;
   border-radius: 4px;

@@ -45,16 +45,17 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 30px;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
 }
 
 .title {
@@ -69,7 +70,8 @@ export default {
 
 .content {
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 2;
+  padding: 20px;
 }
 
 .subtitle {

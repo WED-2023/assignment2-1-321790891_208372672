@@ -1,58 +1,54 @@
 <template>
-  <div class="container">
-    <div v-if="recipe" class="recipe-container">
-      <div class="header-image-container">
-        <div class="recipe-header">
-          <h1>{{ recipe.title }}</h1>
-          <hr class="separator" />
-          <div class="recipe-info">
-          <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
-          <!-- <p><strong>Likes:</strong> {{ recipe.aggregateLikes }} likes</p> -->
-          <p><strong>Likes:</strong> {{ recipe.popularity }} likes</p> 
-          <ul class="diet-icons">
-            <li v-if="recipe.vegetarian">
-              <img src="@/assets/vegetarian.png" alt="Vegetarian" class="diet-icon" />
-            </li>
-            <li v-if="recipe.vegan">
-              <img src="@/assets/vegan.png" alt="Vegan" class="diet-icon" />
-            </li>
-            <li v-if="recipe.glutenFree">
-              <img src="@/assets/gluten.png" alt="Gluten-Free" class="diet-icon" />
-            </li>
-          </ul>
+  <div class="background-container">
+    <div class="container">
+      <div v-if="recipe" class="recipe-container">
+        <div class="header-image-container">
+          <div class="recipe-header">
+            <h1>{{ recipe.title }}</h1>
+            <hr class="separator" />
+            <div class="recipe-info">
+            <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
+            <p><strong>Likes:</strong> {{ recipe.popularity }} likes</p> 
+            <ul class="diet-icons">
+              <li v-if="recipe.vegetarian">
+                <img src="@/assets/vegetarian.png" alt="Vegetarian" class="diet-icon" />
+              </li>
+              <li v-if="recipe.vegan">
+                <img src="@/assets/vegan.png" alt="Vegan" class="diet-icon" />
+              </li>
+              <li v-if="recipe.glutenFree">
+                <img src="@/assets/gluten.png" alt="Gluten-Free" class="diet-icon" />
+              </li>
+            </ul>
+          </div>
+          </div>
+          <div class="image-container">
+            <img :src="recipe.image" class="recipe-image" />
+          </div>
         </div>
-        </div>
-        <div class="image-container">
-          <img :src="recipe.image" class="recipe-image" />
-        </div>
-      </div>
-      <div class="recipe-body">
-        <div class="recipe-about">
-            <h3>About the recipe:</h3>
-            <p><span v-html="recipe.summary"></span></p>
-        </div>
+        <div class="recipe-body">
+          <div class="recipe-about">
+              <h3>About the recipe:</h3>
+              <p><span v-html="recipe.summary"></span></p>
+          </div>
 
-        <div class="recipe-ingredients">
-          <h3>Ingredients:</h3>
-          <ul>
-            <li v-for="(r, index) in recipe.extendedIngredients" :key="index + '_' + r.id">
-              {{ r.original }}
-            </li>
-          </ul>
-        </div>
-        <div class="recipe-instructions">
-          <h3>Instructions:</h3>
-          <ol>
-            <li v-for="s in recipe._instructions" :key="s.number">
-              {{ s.step }}
-            </li>
-          </ol>
-        </div>
-      <!-- <pre>
-      {{ $route.params }}
-      {{ recipe }}
-    </pre
-      > -->
+          <div class="recipe-ingredients">
+            <h3>Ingredients:</h3>
+            <ul>
+              <li v-for="(r, index) in recipe.extendedIngredients" :key="index + '_' + r.id">
+                {{ r.original }}
+              </li>
+            </ul>
+          </div>
+          <div class="recipe-instructions">
+            <h3>Instructions:</h3>
+            <ol>
+              <li v-for="s in recipe._instructions" :key="s.number">
+                {{ s.step }}
+              </li>
+            </ol>
+          </div>
+      </div>
     </div>
   </div>
 </div>
@@ -81,15 +77,7 @@ export default {
   async created() {
     try {
       let response;
-      // response = this.$route.params.response;
-
       try {
-        // response = await this.axios.get(
-        //   this.$root.store.server_domain + "/recipes/" + this.$route.params.recipeId,
-        //   {
-        //     withCredentials: true
-        //   }
-        // );
         response = await getRecipeFullDetails(this.$route.params.recipeId);
         console.log(response.data.id);
         if (!response || response.status !== 200 || !response.data) {
@@ -179,12 +167,24 @@ html, body {
   
 }
 
+.background-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/view1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+
 }
 
 .recipe-container {

@@ -1,4 +1,5 @@
 <template>
+  <div class="background-container">
     <div class="container">
       <div v-if="recipe" class="recipe-container">
         <div class="header-image-container">
@@ -51,6 +52,7 @@
         </div>
       </div>
     </div>
+  </div>
   </template>
   
   <script>
@@ -95,6 +97,17 @@
     height: 100%;
     margin: 0;
   }
+
+  .background-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/view1.jpg');
+  background-size: cover;
+  background-position: center;
+}
   
   .container {
     display: flex;

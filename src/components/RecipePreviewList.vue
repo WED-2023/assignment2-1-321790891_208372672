@@ -1,10 +1,16 @@
 <template>
   <div class="recipe-preview-list">
-    <h3 class="list-title" :style="titleStyle">{{ title }}:</h3>
+    <h3 class="list-title" :style="titleStyle">{{ title }}</h3>
     <div class="recipes">
+      <div v-if="this.isEmpty" class="no-recipes">
+        <h3 v-if="loadFavoritesMain" >Your recipe book is looking a little empty! Time to explore and save some tasty dishes!</h3>
+        <h3 v-if="loadFavorites">Your recipe book is looking a little empty! Time to explore and save some tasty dishes!</h3>
+        <h3 v-if="PrivateRecipe">You haven't whipped up any of your own recipes yet! Time to get creative and cook up something amazing!</h3>
+      </div>
       <div v-for="r in recipes" :key="r.id" class="recipe-item">
         <RecipePreview :recipe="r" :isFamilyRecipe="false" :isPrivateRecipe="isPrivateRecipe(r)" :titleStyle="titleStyle" @toggle-favorite="handleToggleFavorite" />
       </div>
+
     </div>
   </div>
 </template>
@@ -20,9 +26,13 @@ export default {
     RecipePreview
   },
   props: {
+    isEmpty:{
+      type: Boolean,
+      default: false
+    },
     title: {
       type: String,
-      required: true
+      required: false
     },
     numResults: {
       type: Number,
@@ -90,8 +100,7 @@ export default {
   },
   methods: {
     isPrivateRecipe(recipe) {
-      // Add your logic here to determine if a recipe is private
-      return this.PrivateRecipe; // Or any logic based on the recipe itself
+      return this.PrivateRecipe; 
     },
     async updateRecipes(numResults = 3, searchQuery = '', cuisines = [], diets = [], intolerances = []) {
     try {
@@ -104,8 +113,10 @@ export default {
         numResults
       );
 
+
       // Update the component's recipes with the fetched data
       this.recipes = recipes;
+
       this.recipesInternal = [...recipes];
       console.log("Updated Recipes:", recipes); // Debugging output
     } catch (error) {
@@ -127,6 +138,13 @@ export default {
       try {
         // Call the new API function to fetch favorite recipes
         const recipes = await getFavoriteRecipes();
+
+        if(recipes.length == 0){
+          this.isEmpty = true;
+        }
+        else{
+          this.isEmpty = false;
+        }
         
         // Update the component's recipes with the fetched favorites
         this.recipesInternal = recipes;
@@ -139,6 +157,13 @@ export default {
     try {
       // Call the API function to fetch favorite recipes
       const recipes = await getFavoriteRecipes();
+
+      if(recipes.length == 0){
+        this.isEmpty = true;
+      }
+      else{
+          this.isEmpty = false;
+      }
 
       // Extract the IDs of all fetched recipes
       const favoriteRecipeIds = recipes.map(recipe => recipe.id);
@@ -177,6 +202,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.no-recipes{
+  color:black;
+  margin-left: 10px;
+  text-align: center; /* Align text to center */
+  padding: 50px;
+}
+.no-recipes h3{
+  font-size: 20px;
+  line-height: 1.6;     /* Line spacing between text lines */
+}
+
 .recipe-preview-list {
   margin-bottom: 20px;
 }

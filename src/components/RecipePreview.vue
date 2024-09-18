@@ -130,9 +130,6 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Your existing styles */
-</style>
 
 <style scoped>
 
@@ -228,7 +225,7 @@ export default {
 }
 
 .recipe-title {
-  font-size: 14pt;
+  font-size: 13pt;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -248,9 +245,6 @@ export default {
   display: flex;
 }
 
-.recipe-readyInMinutes {
-  margin-right: 70px;
-}
 
 .time-icon {
   width: 19px; 
@@ -260,6 +254,11 @@ export default {
   margin-left: 5px;
 }
 
+.recipe-readyInMinutes {
+  margin-right: 70px;
+}
+
+
 .like-icon {
   width: 16px; 
   height: 16px; 
@@ -268,7 +267,7 @@ export default {
 }
 
 .recipe-overview li {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 .favorite-button {
@@ -278,15 +277,15 @@ export default {
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-size: 12pt;
+  font-size: 11pt;
   padding: 0px 10px;
-  margin-left: 35px;
+  margin-left: 60px;
   border-radius: 5px;
   font-weight: bold;
 }
 
 .favorite-button.favorite-active {
-  margin-left: 45px;
+  margin-left: 52px;
 }
 
 .favorite-icon {
