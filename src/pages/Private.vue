@@ -121,7 +121,7 @@ export default {
   left: 50%; /* Center the title horizontally */
   transform: translateX(-50%); /* Adjusts centering considering absolute position */
   padding: 0 20px; /* Adds padding to the background around the text */
-  z-index: 10; /* Ensure the title is layered above the border */
+  z-index: 0; /* Keeps it behind the title */
   font-weight: bold;
   letter-spacing: 3px; /* Add spacing between letters */
 }
